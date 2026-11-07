@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>Drift Fixture — 故意包含全部违规类型</title>
+  <style>
+    /* 每条规则至少命中一次；clean.css 里是零违规对照组 */
+    body {
+      background: #08090a;            /* OK: token bg */
+      color: #e6e8ec;                 /* OK: token text */
+      font-size: 16px;                /* OK: token */
+      font-family: "Inter", system-ui, sans-serif;  /* OK */
+    }
+
+    .hero {                            /* AI 味紫色渐变 + 硬编码紫 */
+      background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+      color: #ff00aa;                  /* off-token 硬编码色 */
+      font-size: 17px;                 /* off-scale font-size */
+      padding: 13px 18px;              /* off-scale spacing */
+      border-radius: 6px;              /* off-scale radius */
+      box-shadow: 0 1px 2px rgba(0,0,0,.4), 0 4px 8px rgba(0,0,0,.3), 0 12px 24px rgba(0,0,0,.2);
+    }
+
+    .panel {                           /* 毛玻璃 + 超大圆角 */
+      backdrop-filter: blur(12px);
+      filter: blur(4px);
+      border-radius: 32px;             /* excessive-radius */
+      border: 1px solid #123456;       /* off-token 色 */
+      z-index: 9999;                   /* magic-zindex */
+    }
+
+    .bad-font {
+      font-family: "Roboto", "Inter", sans-serif;  /* raw-font-family: Roboto */
+      font-size: 15px;                 /* off-scale */
+      margin: 7px;                     /* off-scale */
+    }
+
+    .emoji-row::before { content: "🚀"; }   /* emoji-icon */
+  </style>
+</head>
+<body>
+  <div class="hero" style="margin-top: 12px;">  <!-- inline-style（12px 本身合法） -->
+    <h1>Drift Fixture</h1>
+    <p>启动 ✨ 体验</p>                          <!-- emoji-icon -->
+  </div>
+
+  <div class="panel" style="color: #ff00aa;">   <!-- inline-style + 硬编码色 -->
+    <span>panel</span>
+  </div>
+</body>
+</html>

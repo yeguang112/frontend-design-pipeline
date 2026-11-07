@@ -1,0 +1,8 @@
+# 统一换行，避免 Windows CRLF 污染脚本与 CI
+* text=auto eol=lf
+
+# 二进制
+*.png binary
+*.woff2 binary
+*.jpg binary
+*.webp binary

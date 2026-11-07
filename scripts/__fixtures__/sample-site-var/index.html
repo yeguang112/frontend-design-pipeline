@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>Fixture Site (var-first) — 用于 P0-2 自测</title>
+  <style>
+    /* token-first 原型：先定义 05 §2 槽位，再全部用 var() 引用 */
+    :root {
+      /* 颜色 */
+      --bg: #08090a;
+      --surface: #12141a;
+      --surface-2: #1a1d24;
+      --overlay: rgb(0 0 0 / .72);
+      --fg: #e6e8ec;
+      --fg-2: #c9ccd3;
+      --muted: #8b919d;
+      --border: rgb(255 255 255 / .10);
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --accent-on: #ffffff;
+      --success: #10b981;
+      --warn: #e8a33d;
+      --danger: #c93a3f;
+
+      /* 字体 / 字号 */
+      --font-display: "Inter", system-ui, sans-serif;
+      --font-body: "Inter", system-ui, sans-serif;
+      --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+
+      --text-xs: 12px;
+      --text-sm: 13px;
+      --text-md: 14px;
+      --text-base: 16px;
+      --text-lg: 18px;
+      --text-xl: 24px;
+      --text-2xl: 32px;
+      --text-3xl: 48px;
+
+      --leading-body: 1.55;
+      --leading-tight: 1.15;
+      --tracking-display: -0.022em;
+      --weight-regular: 400;
+      --weight-strong: 600;
+
+      /* 间距（4/8 基准） */
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --space-12: 48px;
+      --space-16: 64px;
+      --space-24: 96px;
+
+      /* 圆角 */
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --radius-full: 999px;
+
+      /* 阴影 / 动效 / 层级 */
+      --shadow-1: 0 1px 2px rgb(0 0 0 / .30);
+      --shadow-2: 0 12px 32px rgb(0 0 0 / .45);
+      --ease-standard: cubic-bezier(.23, 1, .32, 1);
+      --dur-enter: 200ms;
+      --dur-exit: 140ms;
+      --z-sticky: 10;
+      --z-dropdown: 100;
+      --z-modal: 1000;
+    }
+
+    [data-theme="light"] {
+      --bg: #f7f8f8;
+      --surface: #ffffff;
+      --fg: #111113;
+      --muted: #6b7280;
+      --border: rgb(0 0 0 / .10);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      line-height: var(--leading-body);
+      letter-spacing: var(--tracking-display);
+      padding: var(--space-6);
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      box-shadow: var(--shadow-2);
+      transition: background-color var(--dur-enter) var(--ease-standard);
+    }
+
+    .card__title {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: var(--weight-strong);
+      line-height: var(--leading-tight);
+      margin: 0 0 var(--space-2);
+    }
+
+    .card__meta {
+      color: var(--muted);
+      font-size: var(--text-xs);
+      margin: 0 0 var(--space-4);
+    }
+
+    .btn {
+      background: var(--accent);
+      color: var(--accent-on);
+      border: 0;
+      border-radius: var(--radius-md);
+      padding: var(--space-2) var(--space-4);
+      font-size: var(--text-sm);
+      cursor: pointer;
+      transition: background-color var(--dur-exit) var(--ease-standard);
+    }
+
+    .btn:hover { background: var(--accent-hover); }
+
+    .badge {
+      border-radius: var(--radius-sm);
+      padding: var(--space-1) var(--space-2);
+      font-size: var(--text-xs);
+      background: var(--surface-2);
+    }
+
+    .stack { display: flex; flex-direction: column; gap: var(--space-4); }
+
+    .modal {
+      position: fixed;
+      z-index: var(--z-modal);
+      background: var(--surface-2);
+      border-radius: var(--radius-lg);
+      padding: var(--space-8);
+      box-shadow: var(--shadow-1);
+    }
+
+    @media (min-width: 768px) {
+      body { padding: var(--space-12); }
+      .card { padding: var(--space-8); }
+    }
+  </style>
+</head>
+<body>
+  <main class="stack">
+    <section class="card">
+      <h2 class="card__title">var-first fixture</h2>
+      <p class="card__meta">token-first 原型：只引用 var(--x)，不写字面值</p>
+      <button class="btn" type="button">Action</button>
+      <span class="badge">badge</span>
+    </section>
+    <div class="modal" style="position: static;">modal 示意</div>
+  </main>
+</body>
+</html>

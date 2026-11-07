@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <title>Acceptance Fixture</title>
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --surface: #ffffff;
+      --text: #14161a;
+      --muted: #6b7280;
+      --border: #e3e5ea;
+      --accent: #3b82f6;
+    }
+    [data-theme="dark"], html.dark {
+      --bg: #08090a;
+      --surface: #12141a;
+      --text: #e6e8ec;
+      --muted: #8b919d;
+      --border: #262a33;
+      --accent: #60a5fa;
+    }
+    @media (prefers-color-scheme: dark) {
+      html:not([data-theme="light"]) {
+        --bg: #08090a;
+        --surface: #12141a;
+        --text: #e6e8ec;
+        --muted: #8b919d;
+        --border: #262a33;
+        --accent: #60a5fa;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font: 14px/1.5 "Segoe UI", system-ui, sans-serif;
+      padding: 24px;
+    }
+    header {
+      display: flex; align-items: center; gap: 12px;
+      padding: 16px 24px; background: var(--surface);
+      border: 1px solid var(--border); border-radius: 12px;
+    }
+    header h1 { font-size: 16px; margin: 0; flex: 1; }
+    #menu-btn {
+      background: var(--accent); color: #fff; border: 0; border-radius: 8px;
+      padding: 8px 16px; font-size: 14px; cursor: pointer;
+    }
+    .menu {
+      display: none;
+      margin-top: 12px; padding: 16px 24px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    }
+    .menu.open { display: block; }
+    .menu a { display: block; padding: 8px 0; color: var(--text); text-decoration: none; }
+    .dot {
+      width: 10px; height: 10px; border-radius: 50%; background: var(--accent);
+      animation: pulse 900ms ease-in-out infinite;
+    }
+    @keyframes pulse { 0% { opacity: .35; } 50% { opacity: 1; } 100% { opacity: .35; } }
+    .view { display: none; margin-top: 16px; }
+    .view.active { display: block; }
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 24px; margin-bottom: 16px;
+      transition: transform 200ms ease-out;
+    }
+    .card:hover { transform: translateY(-2px); }
+    .muted { color: var(--muted); font-size: 12px; }
+    .empty-state { display: none; padding: 32px; text-align: center; color: var(--muted); }
+    body.is-empty .list { display: none; }
+    body.is-empty .empty-state { display: block; }
+    .scroll-box { height: 120px; overflow: auto; border: 1px dashed var(--border); border-radius: 8px; padding: 8px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="page-title">Acceptance Fixture</h1>
+    <span class="dot" id="status-dot"></span>
+    <button id="menu-btn" type="button">菜单</button>
+  </header>
+
+  <nav class="menu" id="menu">
+    <a href="#/home">Home</a>
+    <a href="#/settings">Settings</a>
+  </nav>
+
+  <main>
+    <section class="view" id="view-home">
+      <div class="card">
+        <h2>Home</h2>
+        <p class="muted">route: <code>#/home</code></p>
+      </div>
+      <div class="card list">
+        <h2>列表</h2>
+        <p>条目 A</p><p>条目 B</p><p>条目 C</p>
+      </div>
+      <div class="empty-state">暂无数据</div>
+    </section>
+
+    <section class="view" id="view-settings">
+      <div class="card">
+        <h2>Settings</h2>
+        <p class="muted">route: <code>#/settings</code></p>
+      </div>
+      <div class="scroll-box">
+        <p>scroll 1</p><p>scroll 2</p><p>scroll 3</p><p>scroll 4</p>
+        <p>scroll 5</p><p>scroll 6</p><p>scroll 7</p><p>scroll 8</p>
+      </div>
+      <div class="empty-state">还没有设置项</div>
+    </section>
+  </main>
+
+  <script>
+    // 极简 hash 路由
+    function route() {
+      const hash = location.hash || '#/home';
+      const id = hash.replace(/^#\/?/, '') || 'home';
+      document.querySelectorAll('.view').forEach((el) => el.classList.remove('active'));
+      const target = document.getElementById('view-' + id) || document.getElementById('view-home');
+      if (target) target.classList.add('active');
+      const title = document.getElementById('page-title');
+      if (title) title.textContent = 'Acceptance Fixture · ' + id;
+    }
+    window.addEventListener('hashchange', route);
+
+    // state 钩子：菜单展开
+    document.getElementById('menu-btn').addEventListener('click', () => {
+      document.getElementById('menu').classList.toggle('open');
+    });
+
+    // state 钩子：空状态
+    window.__setEmpty = function setEmpty(on) {
+      document.body.classList.add('is-empty');
+      return true;
+    };
+
+    // 主题钩子（可选，方便 capture-acceptance 的 __setTheme 路径）
+    window.__setTheme = function setTheme(t) {
+      document.documentElement.dataset.theme = t;
+      document.documentElement.classList.toggle('dark', t === 'dark');
+    };
+
+    route();
+  </script>
+</body>
+</html>

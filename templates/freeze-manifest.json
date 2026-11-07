@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "frozen_at": "2026-11-07T12:00:00+08:00",
+  "approved_by": "user",
+  "approved_quote": "就这版，冻结",
+  "guidelines_version": "1.0",
+  "source": "prototype/",
+  "note": "冻结后本目录只读；任何修改必须走 change-request 并重新冻结。",
+  "files": {
+    "index.html": { "sha256": "0000000000000000000000000000000000000000000000000000000000000000", "bytes": 48213 },
+    "assets/hero.webp": { "sha256": "1111111111111111111111111111111111111111111111111111111111111111", "bytes": 120345 }
+  }
+}

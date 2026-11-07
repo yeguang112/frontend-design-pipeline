@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>Clean Fixture — 合规代码回归（应 0 违规）</title>
+  <style>
+    /* 顶层 token 层：只有 --* 定义，裸值合法 */
+    :root {
+      --bg: #08090a;
+      --surface: #12141a;
+      --text: #e6e8ec;
+      --muted: #8b919d;
+      --accent: #3b82f6;
+      --border: #262a33;
+      --space-4: 16px;
+      --radius-md: 8px;
+      --text-base: 14px;
+      --z-sticky: 10;
+      --font-inter-family: "Inter", system-ui, sans-serif;
+    }
+
+    [data-theme="dark"] {
+      --bg: #08090a;
+      --text: #e6e8ec;
+    }
+
+    @font-face {
+      font-family: "InterVar";
+      src: url("./assets/fonts/Inter.woff2") format("woff2");
+      font-display: swap;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-inter-family);
+      font-size: var(--text-base);
+      font-optical-sizing: auto;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+      color: var(--muted);
+      z-index: var(--z-sticky);
+    }
+
+    .card:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .ghost {
+      background: transparent;
+      border-color: currentColor;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0);
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Clean Fixture</h1>
+    <p>所有样式都走 token；下面的 script 里出现了颜色字符串，但那是脚本，不是样式，必须跳过。</p>
+    <button class="ghost" type="button">Ghost</button>
+  </main>
+
+  <script>
+    // P0-4 回归：script 内的颜色字符串 / rgba(0,0,0,0) 不得被 hardcoded-color 误报
+    const canvasProbe = 'rgba(0,0,0,0)';
+    const fakeColor = '#ff00aa';
+    const config = { transparent: 'transparent', current: 'currentColor' };
+    console.log(canvasProbe, fakeColor, config);
+    window.__state = { loading: true };
+  </script>
+</body>
+</html>

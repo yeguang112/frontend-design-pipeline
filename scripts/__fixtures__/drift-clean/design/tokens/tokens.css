@@ -1,0 +1,24 @@
+/* Design token 定义（唯一允许写裸值的地方）：detect-drift 必须整体豁免这几类规则，
+   即使这些值故意不在 tokens.json 的集合里，也不应报 hardcoded-color / off-scale-* / raw-font-family / magic-zindex。 */
+:root {
+  --bg: #0b0c0f;
+  --surface: #15171d;
+  --fg: #f5f6f8;
+  --muted: #9aa1ad;
+  --accent: #ff5a1f;
+  --border: rgb(255 255 255 / .12);
+  --overlay: rgb(8 9 10 / .45);
+  --font-body: "Noto Sans SC", system-ui, sans-serif;
+  --text-body: 17px;
+  --space-7: 28px;
+  --radius-xl: 26px;
+  --shadow-9: 0 30px 80px rgb(0 0 0 / .55);
+  --z-toast: 1200;
+}
+
+[data-theme="light"] {
+  --bg: #fbfbfc;
+  --surface: #ffffff;
+  --fg: #101216;
+  --border: rgb(0 0 0 / .10);
+}

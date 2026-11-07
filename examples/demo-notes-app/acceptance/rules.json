@@ -1,0 +1,16 @@
+{
+  "failOn": "error",
+  "ignore": [
+    "prototype/_part*.html",
+    "acceptance/**",
+    "design/tokens/**"
+  ],
+  "rules": {
+    "raw-font-family": {
+      "allow": [
+        "InterVar"
+      ],
+      "note": "@font-face 必须声明字体族名；InterVar 是本地变量字体（assets/fonts/Inter-roman-latin.woff2），实现处一律 var(--font-*)。"
+    }
+  }
+}

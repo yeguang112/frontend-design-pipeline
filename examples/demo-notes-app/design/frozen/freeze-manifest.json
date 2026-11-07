@@ -1,0 +1,29 @@
+{
+    "version":  1,
+    "frozen_at":  "2026-11-07T12:05:04.207Z",
+    "files":  {
+                  "index.html":  {
+                                     "sha256":  "ef4f60eeca3e58fca57a297d600392bd748c5278f1f909ac98ccf75c13de05a1",
+                                     "bytes":  118829
+                                 },
+                  "assets/fonts/Inter-roman-latin-ext.woff2":  {
+                                                                   "sha256":  "539d139f99942e93bead7bbcd18bc00f5a73932eb3a8997367f2b79f4f75bc60",
+                                                                   "bytes":  110160
+                                                               },
+                  "assets/fonts/Inter-roman-latin.woff2":  {
+                                                               "sha256":  "f7ab715caa2c78facb4334b211c81ee66f037cf9c99ca3f24acd543e84a93278",
+                                                               "bytes":  67792
+                                                           }
+              },
+    "meta":  {
+                 "tool":  "verify-freeze.mjs@1.0.0",
+                 "root":  "D:\\work\\deepseekhharness\\deliverables\\design-pipeline\\examples\\demo-notes-app\\design\\frozen",
+                 "totalBytes":  118829,
+                 "label":  "DevNotes P4 freeze v1.7 (modal open rAF-independent)",
+                 "fileCount":  3
+             },
+    "approved_by":  "user (drill: self-signed)",
+    "approved_quote":  "ok freeze",
+    "guidelines_version":  "1.0",
+    "source":  "prototype/"
+}

@@ -1,0 +1,32 @@
+:root {
+  --bg: #08090a;
+  --surface: #12141a;
+  --text: #e6e8ec;
+  --accent: #3b82f6;
+  --radius: 8px;
+  --space: 16px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 14px/1.5 system-ui, sans-serif;
+}
+
+.page { padding: var(--space); }
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: var(--space);
+}
+
+.btn {
+  background: var(--accent);
+  color: #ffffff;
+  border: 0;
+  border-radius: var(--radius);
+  padding: 8px 16px;
+  cursor: pointer;
+}

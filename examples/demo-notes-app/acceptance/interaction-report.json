@@ -1,0 +1,111 @@
+{
+  "generatedAt": "2026-11-07T12:03:58.074Z",
+  "total": 13,
+  "pass": 9,
+  "fail": 4,
+  "results": [
+    {
+      "id": "I1",
+      "desc": "tabs: 点击 Snippets 切换面板",
+      "pass": true
+    },
+    {
+      "id": "I2",
+      "desc": "tabs: 方向键切换（ArrowRight）",
+      "pass": true
+    },
+    {
+      "id": "I3",
+      "desc": "notes: 搜索过滤 6→1→6",
+      "pass": true,
+      "detail": {
+        "filtered": 1,
+        "total": 6
+      }
+    },
+    {
+      "id": "I4",
+      "desc": "notes: rail 点击 empty",
+      "pass": true
+    },
+    {
+      "id": "I5",
+      "desc": "notes: Retry → loading → default",
+      "pass": true,
+      "detail": {
+        "sawSkeleton": true,
+        "backToDefault": true
+      }
+    },
+    {
+      "id": "I6",
+      "desc": "modal: 打开 / ESC 关闭 / 焦点回归",
+      "pass": false,
+      "detail": {
+        "focusBefore": false,
+        "modalOpen": false,
+        "focusInModal": false,
+        "modalClosed": true,
+        "focusReturned": false
+      }
+    },
+    {
+      "id": "I7",
+      "desc": "theme: 切换 light / dark",
+      "pass": true
+    },
+    {
+      "id": "I8",
+      "desc": "settings: dirty → 保存 loading → saved",
+      "pass": true,
+      "detail": {
+        "enabled": true,
+        "loading": true,
+        "saved": true
+      }
+    },
+    {
+      "id": "I9",
+      "desc": "settings: 非法邮箱提交 → 错误态 + 表单级提示",
+      "pass": true
+    },
+    {
+      "id": "I10",
+      "desc": "settings: switch 可切换且反映 checked",
+      "pass": true,
+      "detail": {
+        "before": true,
+        "after": false
+      }
+    },
+    {
+      "id": "I11",
+      "desc": "键盘: Tab 后首个可聚焦元素有 2px outline",
+      "pass": false,
+      "detail": {
+        "tag": "BODY",
+        "cls": "",
+        "outlineWidth": "3px",
+        "outlineStyle": "none"
+      }
+    },
+    {
+      "id": "I12",
+      "desc": "mobile: 菜单按钮可展开/收起",
+      "pass": false,
+      "detail": {
+        "navOpen": false,
+        "navClosed": true
+      }
+    },
+    {
+      "id": "I13",
+      "desc": "hover: 主 CTA 背景变为 --accent-hover",
+      "pass": false,
+      "detail": {
+        "hoverBg": "rgb(94, 106, 210)",
+        "tokenHover": "#4f5ac0"
+      }
+    }
+  ]
+}

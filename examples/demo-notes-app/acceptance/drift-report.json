@@ -1,0 +1,119 @@
+{
+  "tool": "detect-drift.mjs@1.0.0",
+  "generatedAt": "2026-11-07T12:03:01.656Z",
+  "projectDir": "D:\\work\\deepseekhharness\\deliverables\\design-pipeline\\examples\\demo-notes-app",
+  "tokens": {
+    "file": "D:\\work\\deepseekhharness\\deliverables\\design-pipeline\\examples\\demo-notes-app\\design\\tokens\\tokens.json",
+    "sha256": "a9dc35e1dc40ac305baceb601043f5299704f4babaa9bba58962518ea1be1e87",
+    "counts": {
+      "colors": 45,
+      "fontSize": 8,
+      "spacing": 12,
+      "radius": 5,
+      "fontFamilies": 3,
+      "zIndex": 3
+    }
+  },
+  "config": {
+    "failOn": "error",
+    "rules": {
+      "hardcoded-color": {
+        "enabled": true,
+        "severity": "error",
+        "allow": []
+      },
+      "ai-purple-gradient": {
+        "enabled": true,
+        "severity": "error",
+        "hueMin": 250,
+        "hueMax": 300,
+        "satMin": 0.6
+      },
+      "glassmorphism": {
+        "enabled": true,
+        "severity": "error"
+      },
+      "raw-font-family": {
+        "enabled": true,
+        "severity": "error",
+        "allow": [
+          "InterVar"
+        ],
+        "note": "@font-face 必须声明字体族名；InterVar 是本地变量字体（assets/fonts/Inter-roman-latin.woff2），实现处一律 var(--font-*)。"
+      },
+      "off-scale-font-size": {
+        "enabled": true,
+        "severity": "warn",
+        "tolerance": 0.5
+      },
+      "off-scale-spacing": {
+        "enabled": true,
+        "severity": "warn",
+        "tolerance": 0.5
+      },
+      "off-scale-radius": {
+        "enabled": true,
+        "severity": "warn",
+        "tolerance": 0.5
+      },
+      "inline-style": {
+        "enabled": true,
+        "severity": "warn"
+      },
+      "excessive-radius": {
+        "enabled": true,
+        "severity": "warn",
+        "max": 24
+      },
+      "emoji-icon": {
+        "enabled": true,
+        "severity": "warn",
+        "allow": [
+          "→",
+          "←",
+          "↑",
+          "↓",
+          "·",
+          "—",
+          "…",
+          "×",
+          "÷",
+          "°",
+          "±",
+          "≤",
+          "≥",
+          "≠"
+        ]
+      },
+      "shadow-stack": {
+        "enabled": true,
+        "severity": "warn",
+        "maxLayers": 2
+      },
+      "magic-zindex": {
+        "enabled": true,
+        "severity": "info"
+      }
+    },
+    "ignore": [
+      "prototype/_part*.html",
+      "acceptance/**",
+      "design/tokens/**"
+    ]
+  },
+  "scanned": {
+    "files": 2,
+    "skippedByIgnore": 4,
+    "bytes": 237492
+  },
+  "summary": {
+    "total": 0,
+    "bySeverity": {
+      "error": 0,
+      "warn": 0,
+      "info": 0
+    },
+    "byRule": []
+  },
+  "violations": []
+}

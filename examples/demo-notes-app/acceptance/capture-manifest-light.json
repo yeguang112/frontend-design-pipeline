@@ -1,0 +1,288 @@
+{
+  "tool": "capture-acceptance.mjs@1.0.0",
+  "startedAt": "2026-11-07T11:57:04.704Z",
+  "finishedAt": "2026-11-07T11:57:11.680Z",
+  "config": {
+    "file": "D:\\work\\deepseekhharness\\deliverables\\design-pipeline\\examples\\demo-notes-app\\acceptance\\accept.config.light.json",
+    "baseUrl": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html",
+    "out": "D:\\work\\deepseekhharness\\deliverables\\design-pipeline\\examples\\demo-notes-app\\acceptance\\screenshots-light",
+    "viewports": [
+      {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 1,
+        "label": "desktop"
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1,
+        "label": "mobile"
+      }
+    ],
+    "themes": [
+      "light"
+    ],
+    "routes": [
+      {
+        "id": "home",
+        "path": "",
+        "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=light-home#/home?demo=0&theme=light"
+      },
+      {
+        "id": "notes",
+        "path": "",
+        "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=light-notes#/notes?demo=0&theme=light"
+      },
+      {
+        "id": "settings",
+        "path": "",
+        "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=light-settings#/settings?demo=0&theme=light"
+      },
+      {
+        "id": "settings-form-error",
+        "path": "",
+        "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=light-settings-form-error#/settings?state=form-error&demo=0&theme=light"
+      },
+      {
+        "id": "notes-empty",
+        "path": "",
+        "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=light-notes-empty#/notes?state=empty&demo=0&theme=light"
+      }
+    ],
+    "states": [
+      {
+        "id": "default",
+        "actions": []
+      }
+    ],
+    "freezeAnimations": true,
+    "waitMs": 450,
+    "fullPage": false,
+    "format": "png"
+  },
+  "browser": {
+    "name": "attached",
+    "path": "ws://127.0.0.1:64818/devtools/browser/84a140ea-32f0-41a4-8591-daf6d68d6f29",
+    "version": null
+  },
+  "summary": {
+    "total": 10,
+    "ok": 10,
+    "failed": 0,
+    "bytes": 597088,
+    "byTheme": {
+      "light": 10
+    },
+    "byRoute": {
+      "home": 2,
+      "notes": 2,
+      "settings": 2,
+      "settings-form-error": 2,
+      "notes-empty": 2
+    }
+  },
+  "captures": [
+    {
+      "index": 0,
+      "route": "home",
+      "state": "default",
+      "theme": "light",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 1
+      },
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=light-home#/home?demo=0&theme=light",
+      "file": "home/default--1440x900--light.png",
+      "ok": true,
+      "durationMs": 656,
+      "sha256": "d6573962187dbad21fc63173024de838c5dc410871d97fbdc70002849bb16c57",
+      "bytes": 96216,
+      "width": 1440,
+      "height": 900,
+      "error": null
+    },
+    {
+      "index": 1,
+      "route": "home",
+      "state": "default",
+      "theme": "light",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1
+      },
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=light-home#/home?demo=0&theme=light",
+      "file": "home/default--390x844--light.png",
+      "ok": true,
+      "durationMs": 838,
+      "sha256": "fc6ebf61fb26e06d0de89e4d1c45a3a0982bd3d7f10dfdb4349cdc5385b9b2c6",
+      "bytes": 49740,
+      "width": 390,
+      "height": 844,
+      "error": null
+    },
+    {
+      "index": 2,
+      "route": "notes",
+      "state": "default",
+      "theme": "light",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 1
+      },
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=light-notes#/notes?demo=0&theme=light",
+      "file": "notes/default--1440x900--light.png",
+      "ok": true,
+      "durationMs": 696,
+      "sha256": "cb0ada366ce1f8c84a8a3ac53b3a37e90af5d1bf7977ab15d5314ce5c2451f2e",
+      "bytes": 88576,
+      "width": 1440,
+      "height": 900,
+      "error": null
+    },
+    {
+      "index": 3,
+      "route": "notes",
+      "state": "default",
+      "theme": "light",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1
+      },
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=light-notes#/notes?demo=0&theme=light",
+      "file": "notes/default--390x844--light.png",
+      "ok": true,
+      "durationMs": 790,
+      "sha256": "feea0dbfdd246ecc189d29e6235a302b32268c491e87e4355348acd8db4fcf0f",
+      "bytes": 57229,
+      "width": 390,
+      "height": 844,
+      "error": null
+    },
+    {
+      "index": 4,
+      "route": "settings",
+      "state": "default",
+      "theme": "light",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 1
+      },
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=light-settings#/settings?demo=0&theme=light",
+      "file": "settings/default--1440x900--light.png",
+      "ok": true,
+      "durationMs": 724,
+      "sha256": "c896746c20690b04a1997859d45eb2073b33b5fdcc21bae2f8722f65ef960004",
+      "bytes": 74824,
+      "width": 1440,
+      "height": 900,
+      "error": null
+    },
+    {
+      "index": 5,
+      "route": "settings",
+      "state": "default",
+      "theme": "light",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1
+      },
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=light-settings#/settings?demo=0&theme=light",
+      "file": "settings/default--390x844--light.png",
+      "ok": true,
+      "durationMs": 688,
+      "sha256": "c8c1e79c0348775314eaa581dc88fbb6207ab71874596dd991656f2f7810d2a3",
+      "bytes": 39939,
+      "width": 390,
+      "height": 844,
+      "error": null
+    },
+    {
+      "index": 6,
+      "route": "settings-form-error",
+      "state": "default",
+      "theme": "light",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 1
+      },
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=light-settings-form-error#/settings?state=form-error&demo=0&theme=light",
+      "file": "settings-form-error/default--1440x900--light.png",
+      "ok": true,
+      "durationMs": 638,
+      "sha256": "720924ae7b107b31b4f0d1572d7c0767a6d6647ab755bcc240fad8323cc2c329",
+      "bytes": 76586,
+      "width": 1440,
+      "height": 900,
+      "error": null
+    },
+    {
+      "index": 7,
+      "route": "settings-form-error",
+      "state": "default",
+      "theme": "light",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1
+      },
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=light-settings-form-error#/settings?state=form-error&demo=0&theme=light",
+      "file": "settings-form-error/default--390x844--light.png",
+      "ok": true,
+      "durationMs": 651,
+      "sha256": "b53faff88dedc31be85b534e65676995f92a80217335e37d747280aebb2c4520",
+      "bytes": 41721,
+      "width": 390,
+      "height": 844,
+      "error": null
+    },
+    {
+      "index": 8,
+      "route": "notes-empty",
+      "state": "default",
+      "theme": "light",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 1
+      },
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=light-notes-empty#/notes?state=empty&demo=0&theme=light",
+      "file": "notes-empty/default--1440x900--light.png",
+      "ok": true,
+      "durationMs": 647,
+      "sha256": "63e45aa681895dba389e91b79fbc22e0cb6950b750476827893c87af06c4aa2f",
+      "bytes": 42364,
+      "width": 1440,
+      "height": 900,
+      "error": null
+    },
+    {
+      "index": 9,
+      "route": "notes-empty",
+      "state": "default",
+      "theme": "light",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1
+      },
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=light-notes-empty#/notes?state=empty&demo=0&theme=light",
+      "file": "notes-empty/default--390x844--light.png",
+      "ok": true,
+      "durationMs": 635,
+      "sha256": "edc1565549d6b2ad07bd5eeee4e4d5b2de652a144585e51263a9aa56560da5f5",
+      "bytes": 29893,
+      "width": 390,
+      "height": 844,
+      "error": null
+    }
+  ],
+  "failed": []
+}

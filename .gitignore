@@ -1,0 +1,26 @@
+# 开发产物
+_work/
+_review/
+scripts/__fixtures__/out-*/
+scripts/__fixtures__/out-*.json
+_accept/
+.tmp/
+
+# 依赖 / 构建
+node_modules/
+dist/
+build/
+
+# 操作系统 / 编辑器
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# 运行时报告（示例包内的报告要提交，根目录的临时报告不提交）
+/freeze-report.json
+/drift-report.json
+/accept-report.json
+/acceptance-report.json
+/acceptance-report.md
+/out-tokens/

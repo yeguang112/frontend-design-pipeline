@@ -1,0 +1,55 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  self-test:
+    name: ${{ matrix.os }} / node ${{ matrix.node }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        node: [22, 24]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Toolchain self-test (21 checks)
+        run: node scripts/__fixtures__/self-test.mjs
+
+      - name: Demo freeze verification
+        run: node scripts/verify-freeze.mjs examples/demo-notes-app/design/frozen/freeze-manifest.json --base examples/demo-notes-app/design/frozen
+
+      - name: Demo drift (expect 0)
+        run: node scripts/detect-drift.mjs examples/demo-notes-app --tokens examples/demo-notes-app/design/tokens/tokens.json --json -
+
+      - name: Demo copy check (expect 0)
+        run: node scripts/check-copy.mjs examples/demo-notes-app/design/frozen/index.html --json -
+
+      - name: Acceptance verdict (A1-A17; browser items may be 未检)
+        run: node scripts/accept-verify.mjs --config examples/demo-notes-app/acceptance/accept.config.json --json acceptance-report.json --md acceptance-report.md
+
+      - name: Token extraction is non-degenerate
+        run: node scripts/extract-tokens.mjs examples/demo-notes-app/design/frozen/index.html --out out-tokens
+
+      - name: Assert extracted tokens cover spacing/font/radius
+        shell: bash
+        run: |
+          node -e "
+          const j=require('./out-tokens/tokens.json');
+          const c=j.meta.counts;
+          if(c.degenerate) { console.error('degenerate extraction'); process.exit(1); }
+          if(Object.keys(j.spacing||{}).length<6) { console.error('spacing too few'); process.exit(1); }
+          if(Object.keys(j.radius||{}).length<3) { console.error('radius too few'); process.exit(1); }
+          if(Object.keys(j.color||{}).length<8) { console.error('colors too few'); process.exit(1); }
+          console.log('tokens ok', JSON.stringify(c));
+          "

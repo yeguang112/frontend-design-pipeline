@@ -1,0 +1,11 @@
+{
+  "failOn": "error",
+  "rules": {
+    "excessive-radius": {
+      "max": 40
+    },
+    "hardcoded-color": {
+      "severity": "warn"
+    }
+  }
+}

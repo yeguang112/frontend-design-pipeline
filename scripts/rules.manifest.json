@@ -1,0 +1,335 @@
+{
+  "$description": "规则真源：references/03-negative-list.md 里 40 个规则 id 的机器可读清单。detect-drift.mjs 从这里读 severity 与实现状态；--list-rules 按此处渲染。改规则先改这个文件，再对齐脚本。",
+  "version": 1,
+  "source": "references/03-negative-list.md",
+  "generatedAt": "2026-11-07",
+  "severityPolicy": {
+    "P0": "error",
+    "P1": "warn",
+    "P2": "info",
+    "note": "严重度来自 03 的 [P0]/[P1]/[P2] 标记；P0 = 必须修，否则验收 FAIL。"
+  },
+  "counts": { "total": 40, "script": 12, "manual": 28 },
+  "rules": [
+    {
+      "id": "ai-purple-gradient",
+      "docId": "NEVER-A1",
+      "severity": "error",
+      "implementation": "script:ai-purple-gradient",
+      "check": "linear/radial-gradient 里存在色相 250–300°、饱和度 > 60% 的颜色停靠点",
+      "docRef": "03#NEVER-A1"
+    },
+    {
+      "id": "gradient-text",
+      "docId": "NEVER-A2",
+      "severity": "error",
+      "implementation": "manual",
+      "check": "人工：搜 `background-clip: text` / `-webkit-background-clip: text`，命中即 P0（品牌规范明确要求除外）",
+      "docRef": "03#NEVER-A2"
+    },
+    {
+      "id": "glow-blob",
+      "docId": "NEVER-A3",
+      "severity": "warn",
+      "implementation": "manual",
+      "check": "人工：装饰层 `filter: blur()` 大面积光斑、彩色外发光 box-shadow 扩散 > 24px",
+      "docRef": "03#NEVER-A3"
+    },
+    {
+      "id": "accent-overuse",
+      "docId": "NEVER-A4",
+      "severity": "error",
+      "implementation": "manual",
+      "check": "人工：同一屏 `var(--accent)` 可见使用 > 2 处（按钮/链接/图标/标签全上色）",
+      "docRef": "03#NEVER-A4"
+    },
+    {
+      "id": "shadow-color",
+      "docId": "NEVER-A6",
+      "severity": "warn",
+      "implementation": "manual",
+      "check": "人工：亮色底用纯黑阴影 rgba(0,0,0,.15+)，或阴影不含背景色相",
+      "docRef": "03#NEVER-A6"
+    },
+    {
+      "id": "glassmorphism",
+      "docId": "NEVER-B1",
+      "severity": "error",
+      "implementation": "script:glassmorphism",
+      "check": "`backdrop-filter` 或 `filter: …blur(` 出现（一屏 > 2 处为 P0）",
+      "docRef": "03#NEVER-B1"
+    },
+    {
+      "id": "shadow-stack",
+      "docId": "NEVER-B2",
+      "severity": "warn",
+      "implementation": "script:shadow-stack",
+      "check": "单条 box-shadow 层数 > 2（默认阈值，可用 rules.json 的 maxLayers 调）",
+      "docRef": "03#NEVER-B2"
+    },
+    {
+      "id": "nested-card",
+      "docId": "NEVER-B3",
+      "severity": "warn",
+      "implementation": "manual",
+      "check": "人工：卡片里套卡片（>2 层容器）且带圆角+阴影+边框三件套",
+      "docRef": "03#NEVER-B3"
+    },
+    {
+      "id": "excessive-radius",
+      "docId": "NEVER-C1",
+      "severity": "error",
+      "implementation": "script:excessive-radius",
+      "check": "border-radius > 24px（可配 max）；全站统一大圆角 + 大阴影",
+      "docRef": "03#NEVER-C1"
+    },
+    {
+      "id": "radius-inconsistent",
+      "docId": "NEVER-C2",
+      "severity": "error",
+      "implementation": "script:off-scale-radius",
+      "check": "border-radius 值不在 tokens.json 的 radius 集合里（同组件族半径不一致）",
+      "docRef": "03#NEVER-C2"
+    },
+    {
+      "id": "card-overuse",
+      "docId": "NEVER-C3",
+      "severity": "warn",
+      "implementation": "manual",
+      "check": "人工：非交互/非独立信息块使用卡片占比 > 50%（导航、列表、页脚也卡片化）",
+      "docRef": "03#NEVER-C3"
+    },
+    {
+      "id": "left-border-card",
+      "docId": "NEVER-C4",
+      "severity": "warn",
+      "implementation": "manual",
+      "check": "人工：圆角白卡片 + 左侧 4px 彩色竖条",
+      "docRef": "03#NEVER-C4"
+    },
+    {
+      "id": "three-equal-cards",
+      "docId": "NEVER-C5",
+      "severity": "error",
+      "implementation": "manual",
+      "check": "人工：首屏下方连续 3 个结构完全一致的等宽功能卡（图标+标题+两行描述）",
+      "docRef": "03#NEVER-C5"
+    },
+    {
+      "id": "pill-overuse",
+      "docId": "NEVER-C6",
+      "severity": "warn",
+      "implementation": "manual",
+      "check": "人工：同一页 uppercase 小药丸/eyebrow > 3 个",
+      "docRef": "03#NEVER-C6"
+    },
+    {
+      "id": "font-family-count",
+      "docId": "NEVER-D1",
+      "severity": "error",
+      "implementation": "script:raw-font-family",
+      "check": "同一文件字体家族 > 2（脚本按文件统计，含「非 token 字体」检查）",
+      "docRef": "03#NEVER-D1"
+    },
+    {
+      "id": "serif-default",
+      "docId": "NEVER-D2",
+      "severity": "warn",
+      "implementation": "manual",
+      "check": "人工：无品牌依据默认用 Fraunces / Instrument Serif / Playfair 等衬线",
+      "docRef": "03#NEVER-D2"
+    },
+    {
+      "id": "default-stack",
+      "docId": "NEVER-D3",
+      "severity": "warn",
+      "implementation": "manual",
+      "check": "人工：无品牌依据默认 Inter + slate-900 灰阶",
+      "docRef": "03#NEVER-D3"
+    },
+    {
+      "id": "off-scale-font-size",
+      "docId": "NEVER-D4",
+      "severity": "warn",
+      "implementation": "script:off-scale-font-size",
+      "check": "font-size 不在 tokens.json 的字号阶梯上（容差 0.5px）",
+      "docRef": "03#NEVER-D4"
+    },
+    {
+      "id": "uniform-grid",
+      "docId": "NEVER-E2",
+      "severity": "warn",
+      "implementation": "manual",
+      "check": "人工：整页每个区块都是等宽多列、节奏完全一致（< 3 种布局家族）",
+      "docRef": "03#NEVER-E2"
+    },
+    {
+      "id": "off-scale-spacing",
+      "docId": "NEVER-E3",
+      "severity": "error",
+      "implementation": "script:off-scale-spacing",
+      "check": "margin/padding/gap/inset 数值不在 tokens.json 的间距刻度上（容差 0.5px）",
+      "docRef": "03#NEVER-E3"
+    },
+    {
+      "id": "emoji-icon",
+      "docId": "NEVER-F1",
+      "severity": "error",
+      "implementation": "script:emoji-icon",
+      "check": "非 <script> 文本里出现 emoji（箭头/数学符号等在白名单里）",
+      "docRef": "03#NEVER-F1"
+    },
+    {
+      "id": "icon-mix",
+      "docId": "NEVER-F2",
+      "severity": "warn",
+      "implementation": "manual",
+      "check": "人工：同项目混用线性/面性/双色图标或不同 strokeWidth",
+      "docRef": "03#NEVER-F2"
+    },
+    {
+      "id": "external-placeholder",
+      "docId": "NEVER-F4",
+      "severity": "warn",
+      "implementation": "manual",
+      "check": "人工：搜 unsplash / picsum / placehold.co 等外链占位图",
+      "docRef": "03#NEVER-F4"
+    },
+    {
+      "id": "hover-everything",
+      "docId": "NEVER-G1",
+      "severity": "warn",
+      "implementation": "manual",
+      "check": "人工：每个卡片/图标/链接都 hover 位移、放大或发光",
+      "docRef": "03#NEVER-G1"
+    },
+    {
+      "id": "infinite-motion",
+      "docId": "NEVER-G2",
+      "severity": "warn",
+      "implementation": "manual",
+      "check": "人工：背景粒子/漂浮元素/循环 marquee > 1 处且无 reduced-motion 停止",
+      "docRef": "03#NEVER-G2"
+    },
+    {
+      "id": "motion-token",
+      "docId": "NEVER-G3",
+      "severity": "warn",
+      "implementation": "manual",
+      "check": "人工：动效时长/曲线不统一（对比 tokens.json 的 duration / easing 集合）",
+      "docRef": "03#NEVER-G3"
+    },
+    {
+      "id": "reduced-motion",
+      "docId": "NEVER-G4",
+      "severity": "error",
+      "implementation": "manual",
+      "check": "人工：存在动效但 CSS 里没有 `prefers-reduced-motion` 分支",
+      "docRef": "03#NEVER-G4"
+    },
+    {
+      "id": "fake-metric",
+      "docId": "NEVER-H1",
+      "severity": "error",
+      "implementation": "manual",
+      "check": "人工：无来源的「10× faster / 99.9% uptime」、Jane Doe / Acme / 假 logo 墙",
+      "docRef": "03#NEVER-H1"
+    },
+    {
+      "id": "lorem",
+      "docId": "NEVER-H2",
+      "severity": "error",
+      "implementation": "manual",
+      "check": "人工：搜 lorem ipsum / feature one / placeholder text / sample content",
+      "docRef": "03#NEVER-H2"
+    },
+    {
+      "id": "buzzword",
+      "docId": "NEVER-H3",
+      "severity": "warn",
+      "implementation": "manual",
+      "check": "人工：empower / seamless / unleash / 一站式 / 赋能 / 颠覆 堆叠",
+      "docRef": "03#NEVER-H3"
+    },
+    {
+      "id": "cta-duplicate",
+      "docId": "NEVER-H5",
+      "severity": "warn",
+      "implementation": "manual",
+      "check": "人工：同页多个同意图 CTA（联系我们 / 聊聊 / 开始合作并存）",
+      "docRef": "03#NEVER-H5"
+    },
+    {
+      "id": "missing-states",
+      "docId": "NEVER-I1",
+      "severity": "error",
+      "implementation": "manual",
+      "check": "人工：交互组件状态矩阵缺 hover/focus/disabled/loading/empty/error（对照 06 契约）",
+      "docRef": "03#NEVER-I1"
+    },
+    {
+      "id": "focus-visible",
+      "docId": "NEVER-I2",
+      "severity": "error",
+      "implementation": "manual",
+      "check": "人工：`outline: none` 无替代、键盘不可达；应存在 `:focus-visible` 轮廓",
+      "docRef": "03#NEVER-I2"
+    },
+    {
+      "id": "contrast",
+      "docId": "NEVER-I3",
+      "severity": "error",
+      "implementation": "manual",
+      "check": "人工：正文对比度 < 4.5:1、大字 < 3:1（accept-verify --cdp-url 的 A7 可计算）",
+      "docRef": "03#NEVER-I3"
+    },
+    {
+      "id": "cta-wrap",
+      "docId": "NEVER-I4",
+      "severity": "warn",
+      "implementation": "manual",
+      "check": "人工：桌面端 CTA 文案换成 2 行（截图目测）",
+      "docRef": "03#NEVER-I4"
+    },
+    {
+      "id": "hardcoded-value",
+      "docId": "NEVER-I5",
+      "severity": "error",
+      "implementation": "script:hardcoded-color",
+      "check": "组件里写死颜色（脚本检颜色子集；字号/间距/圆角裸值由 off-scale-* 三条规则覆盖）",
+      "docRef": "03#NEVER-I5"
+    },
+    {
+      "id": "adhoc-component",
+      "docId": "NEVER-I6",
+      "severity": "warn",
+      "implementation": "manual",
+      "check": "人工：使用处临时拼不在 components.md 里的组件",
+      "docRef": "03#NEVER-I6"
+    },
+    {
+      "id": "inline-style",
+      "docId": "NEVER-J2",
+      "severity": "warn",
+      "implementation": "script:inline-style",
+      "check": "markup（非 <script>）出现 `style=\"…\"` 内联样式",
+      "docRef": "03#NEVER-J2"
+    },
+    {
+      "id": "magic-number",
+      "docId": "NEVER-J3",
+      "severity": "warn",
+      "implementation": "script:magic-zindex",
+      "check": "z-index 不来自 tokens.json 的 zIndex 集合（脚本实现 z-index 子集；margin/width 魔法值人工）",
+      "docRef": "03#NEVER-J3"
+    },
+    {
+      "id": "theme-missing",
+      "docId": "NEVER-J5",
+      "severity": "warn",
+      "implementation": "manual",
+      "check": "人工：声明支持深色但只有一套 token，或动效无 reduced-motion",
+      "docRef": "03#NEVER-J5"
+    }
+  ]
+}

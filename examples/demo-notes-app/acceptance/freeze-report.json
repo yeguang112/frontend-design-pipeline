@@ -1,0 +1,30 @@
+{
+  "tool": "verify-freeze.mjs@1.0.0",
+  "generatedAt": "2026-11-07T12:05:04.410Z",
+  "manifest": {
+    "file": "D:\\work\\deepseekhharness\\deliverables\\design-pipeline\\examples\\demo-notes-app\\design\\frozen\\freeze-manifest.json",
+    "version": 1,
+    "frozen_at": "2026-11-07T12:05:04.207Z",
+    "fileCount": 3,
+    "label": "DevNotes P4 freeze v1.7 (modal open rAF-independent)"
+  },
+  "baseDir": "D:\\work\\deepseekhharness\\deliverables\\design-pipeline\\examples\\demo-notes-app\\design\\frozen",
+  "summary": {
+    "total": 3,
+    "pass": 3,
+    "modified": 0,
+    "missing": 0,
+    "extra": 0,
+    "changed": 0,
+    "status": "PASS",
+    "strictExtras": true
+  },
+  "modified": [],
+  "missing": [],
+  "extra": [],
+  "pass": [
+    "assets/fonts/Inter-roman-latin-ext.woff2",
+    "assets/fonts/Inter-roman-latin.woff2",
+    "index.html"
+  ]
+}

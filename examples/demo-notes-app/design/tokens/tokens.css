@@ -1,0 +1,182 @@
+/* ============================================================
+ * tokens.css · DevNotes
+ * 来源：design/frozen/index.html（sha256 8c301eb520b5a614…，118656 bytes）
+ * 语义层是唯一来源；组件实现只允许引用 semantic / component 变量。
+ * Primitive 仅内部映射，禁止组件直接引用。
+ * 双主题：:root = dark（产品原生），[data-theme="light"] 仅覆盖语义层。
+ * ============================================================ */
+
+:root {
+  /* ── Primitive ── */
+  --ink-0: #08090a;
+  --ink-1: #0f1011;
+  --ink-2: #101112;
+  --ink-3: #16171a;
+  --ink-4: #1d1f22;
+  --ink-5: #0c0d0e;
+  --snow-0: #f7f8f8;
+  --snow-1: #d0d6e0;
+  --snow-2: #8a8f98;
+  --snow-3: #7d828b;
+  --indigo-9: #5e6ad2;
+  --indigo-7: #4f5ac0;
+  --indigo-6: #434cae;
+  --indigo-4: #828fff;
+  --red-9: #c93a3f;
+  --red-4: #ff9a9e;
+  --green-9: #10b981;
+  --amber-9: #e8a33d;
+  --white: #ffffff;
+
+  /* ── Surface ── */
+  --bg: var(--ink-0);
+  --bg-elevated: var(--ink-1);
+  --surface: var(--ink-2);
+  --surface-2: var(--ink-3);
+  --surface-3: var(--ink-4);
+  --code-bg: var(--ink-5);
+  --overlay: rgb(0 0 0 / .72);
+
+  /* ── Foreground ── */
+  --fg: var(--snow-0);
+  --fg-2: var(--snow-1);
+  --muted: var(--snow-2);
+  --meta: var(--snow-3);
+
+  /* ── Border ── */
+  --border-subtle: rgb(255 255 255 / .05);
+  --border: rgb(255 255 255 / .08);
+  --border-strong: rgb(255 255 255 / .14);
+
+  /* ── Accent ── */
+  --accent: var(--indigo-9);
+  --accent-hover: var(--indigo-7);
+  --accent-active: var(--indigo-6);
+  --accent-on: var(--white);
+  --accent-ring: rgb(94 106 210 / .30);
+  --link: var(--indigo-4);
+
+  /* ── Status ── */
+  --success: var(--green-9);
+  --success-text: var(--green-9);
+  --warn: var(--amber-9);
+  --danger: var(--red-9);
+  --danger-text: var(--red-4);
+  --danger-bg: rgb(201 58 63 / .14);
+
+  /* ── Typography ── */
+  --font-display: "InterVar", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: "InterVar", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Berkeley Mono", Menlo, Consolas, monospace;
+  --text-xs: 12px;
+  --text-sm: 13px;
+  --text-md: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 24px;
+  --text-2xl: 32px;
+  --text-3xl: 48px;
+  --leading-display: 1.02;
+  --leading-heading: 1.2;
+  --leading-body: 1.55;
+  --leading-ui: 1.4;
+  --tracking-display: -0.022em;
+  --tracking-heading: -0.011em;
+  --tracking-normal: 0;
+  --weight-regular: 400;
+  --weight-ui: 510;
+  --weight-strong: 590;
+
+  /* ── Spacing ── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* ── Radius ── */
+  --radius-xs: 2px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 999px;
+
+  /* ── Elevation ── */
+  --shadow-card: none;
+  --shadow-1: 0 1px 2px rgb(0 0 0 / .30);
+  --shadow-2: 0 12px 32px rgb(0 0 0 / .45);
+
+  /* ── Motion ── */
+  --ease-standard: cubic-bezier(.23, 1, .32, 1);
+  --dur-enter: 200ms;
+  --dur-exit: 140ms;
+  --dur-spin: 700ms;
+
+  /* ── Layer ── */
+  --z-sticky: 10;
+  --z-dropdown: 100;
+  --z-modal: 1000;
+
+  /* ── Layout & component sizes ── */
+  --container: 1200px;
+  --container-text: 680px;
+  --gutter: var(--space-6);
+  --nav-h: 56px;
+  --sidebar-w: 240px;
+  --control-h-sm: 32px;
+  --control-h-md: 40px;
+  --control-h-lg: 48px;
+  --row-h: 64px;
+  --nav-item-h: 32px;
+  --badge-h: 20px;
+  --icon-sm: 16px;
+  --icon-md: 20px;
+  --switch-w: 36px;
+  --switch-h: 20px;
+  --switch-knob: 14px;
+  --switch-inset: 2px;
+  --modal-w: 480px;
+
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  --bg: #f7f8f8;
+  --bg-elevated: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f2f3f4;
+  --surface-3: #e9ebee;
+  --code-bg: #f2f3f4;
+  --overlay: rgb(8 9 10 / .45);
+  --fg: var(--ink-0);
+  --fg-2: #3b3f45;
+  --muted: #5f646c;
+  --meta: #666b72;
+  --border-subtle: rgb(8 9 10 / .06);
+  --border: rgb(8 9 10 / .10);
+  --border-strong: rgb(8 9 10 / .18);
+  --accent: var(--indigo-9);
+  --accent-hover: var(--indigo-7);
+  --accent-active: var(--indigo-6);
+  --accent-on: var(--white);
+  --accent-ring: rgb(94 106 210 / .22);
+  --link: #4b56bd;
+  --success: #0e7a55;
+  --success-text: #0e7a55;
+  --warn: #9a6512;
+  --danger: #c62f34;
+  --danger-text: #a51f24;
+  --danger-bg: rgb(198 47 52 / .08);
+  --shadow-card: 0 1px 2px rgb(8 9 10 / .06);
+  --shadow-1: 0 1px 2px rgb(8 9 10 / .08);
+  --shadow-2: 0 16px 40px rgb(8 9 10 / .16);
+
+  color-scheme: light;
+}

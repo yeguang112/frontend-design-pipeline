@@ -1,0 +1,592 @@
+{
+  "tool": "capture-acceptance.mjs@1.0.0",
+  "startedAt": "2026-11-07T12:05:04.489Z",
+  "finishedAt": "2026-11-07T12:05:19.503Z",
+  "config": {
+    "file": "D:\\work\\deepseekhharness\\deliverables\\design-pipeline\\examples\\demo-notes-app\\acceptance\\accept.config.json",
+    "baseUrl": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html",
+    "out": "D:\\work\\deepseekhharness\\deliverables\\design-pipeline\\examples\\demo-notes-app\\acceptance\\screenshots",
+    "viewports": [
+      {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 1,
+        "label": "desktop"
+      },
+      {
+        "width": 768,
+        "height": 1024,
+        "deviceScaleFactor": 1,
+        "label": "tablet"
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1,
+        "label": "mobile"
+      }
+    ],
+    "themes": [
+      "dark"
+    ],
+    "routes": [
+      {
+        "id": "home",
+        "path": "",
+        "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=home#/home?demo=0"
+      },
+      {
+        "id": "notes",
+        "path": "",
+        "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=notes#/notes?demo=0"
+      },
+      {
+        "id": "notes-empty",
+        "path": "",
+        "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=notes-empty#/notes?state=empty&demo=0"
+      },
+      {
+        "id": "notes-loading",
+        "path": "",
+        "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=notes-loading#/notes?state=loading&demo=0"
+      },
+      {
+        "id": "notes-error",
+        "path": "",
+        "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=notes-error#/notes?state=error&demo=0"
+      },
+      {
+        "id": "settings",
+        "path": "",
+        "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=settings#/settings?demo=0"
+      },
+      {
+        "id": "settings-form-error",
+        "path": "",
+        "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=settings-form-error#/settings?state=form-error&demo=0"
+      },
+      {
+        "id": "settings-modal",
+        "path": "",
+        "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=settings-modal#/settings?modal=1&demo=0"
+      }
+    ],
+    "states": [
+      {
+        "id": "default",
+        "actions": []
+      }
+    ],
+    "freezeAnimations": true,
+    "waitMs": 450,
+    "fullPage": false,
+    "format": "png"
+  },
+  "browser": {
+    "name": "attached",
+    "path": "ws://127.0.0.1:64818/devtools/browser/84a140ea-32f0-41a4-8591-daf6d68d6f29",
+    "version": null
+  },
+  "summary": {
+    "total": 24,
+    "ok": 24,
+    "failed": 0,
+    "bytes": 1309809,
+    "byTheme": {
+      "dark": 24
+    },
+    "byRoute": {
+      "home": 3,
+      "notes": 3,
+      "notes-empty": 3,
+      "notes-loading": 3,
+      "notes-error": 3,
+      "settings": 3,
+      "settings-form-error": 3,
+      "settings-modal": 3
+    }
+  },
+  "captures": [
+    {
+      "index": 0,
+      "route": "home",
+      "state": "default",
+      "theme": "dark",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 1
+      },
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=home#/home?demo=0",
+      "file": "home/default--1440x900--dark.png",
+      "ok": true,
+      "durationMs": 654,
+      "sha256": "7632b292c6ef6e9b2b816b0c48f0b22c10ce8a8e9d81fd865b9a1cdd8009780d",
+      "bytes": 95925,
+      "width": 1440,
+      "height": 900,
+      "error": null
+    },
+    {
+      "index": 1,
+      "route": "home",
+      "state": "default",
+      "theme": "dark",
+      "viewport": {
+        "width": 768,
+        "height": 1024,
+        "deviceScaleFactor": 1
+      },
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=home#/home?demo=0",
+      "file": "home/default--768x1024--dark.png",
+      "ok": true,
+      "durationMs": 642,
+      "sha256": "6295e686a772ee001e7061c3a761a83a30a04d453bf4f0f363570c0a98f0665c",
+      "bytes": 73131,
+      "width": 768,
+      "height": 1024,
+      "error": null
+    },
+    {
+      "index": 2,
+      "route": "home",
+      "state": "default",
+      "theme": "dark",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1
+      },
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=home#/home?demo=0",
+      "file": "home/default--390x844--dark.png",
+      "ok": true,
+      "durationMs": 630,
+      "sha256": "1456e66b381225805f83a0b2dfc082d3dfc3a9f769e14c759d37a3337b770d18",
+      "bytes": 50624,
+      "width": 390,
+      "height": 844,
+      "error": null
+    },
+    {
+      "index": 3,
+      "route": "notes",
+      "state": "default",
+      "theme": "dark",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 1
+      },
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=notes#/notes?demo=0",
+      "file": "notes/default--1440x900--dark.png",
+      "ok": true,
+      "durationMs": 643,
+      "sha256": "2d5bdfa3044ac64ab14a62b89ac75bbda417d6c71a9e816247aa3708a0af74da",
+      "bytes": 89043,
+      "width": 1440,
+      "height": 900,
+      "error": null
+    },
+    {
+      "index": 4,
+      "route": "notes",
+      "state": "default",
+      "theme": "dark",
+      "viewport": {
+        "width": 768,
+        "height": 1024,
+        "deviceScaleFactor": 1
+      },
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=notes#/notes?demo=0",
+      "file": "notes/default--768x1024--dark.png",
+      "ok": true,
+      "durationMs": 612,
+      "sha256": "27b83d97503141448d11c2345d54e777b076171357a93e881ffab32b0cc8515c",
+      "bytes": 82104,
+      "width": 768,
+      "height": 1024,
+      "error": null
+    },
+    {
+      "index": 5,
+      "route": "notes",
+      "state": "default",
+      "theme": "dark",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1
+      },
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=notes#/notes?demo=0",
+      "file": "notes/default--390x844--dark.png",
+      "ok": true,
+      "durationMs": 639,
+      "sha256": "869915dfbdb9527c77f4303c1f84f9be637b0b13de7cb526b0864d393a1ece8f",
+      "bytes": 57117,
+      "width": 390,
+      "height": 844,
+      "error": null
+    },
+    {
+      "index": 6,
+      "route": "notes-empty",
+      "state": "default",
+      "theme": "dark",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 1
+      },
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=notes-empty#/notes?state=empty&demo=0",
+      "file": "notes-empty/default--1440x900--dark.png",
+      "ok": true,
+      "durationMs": 623,
+      "sha256": "b079998818ecf0485e323035f1faa9b1cfabe40136a71d5887d868d8265d1ce1",
+      "bytes": 42619,
+      "width": 1440,
+      "height": 900,
+      "error": null
+    },
+    {
+      "index": 7,
+      "route": "notes-empty",
+      "state": "default",
+      "theme": "dark",
+      "viewport": {
+        "width": 768,
+        "height": 1024,
+        "deviceScaleFactor": 1
+      },
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=notes-empty#/notes?state=empty&demo=0",
+      "file": "notes-empty/default--768x1024--dark.png",
+      "ok": true,
+      "durationMs": 606,
+      "sha256": "f637da1d071fdf8239fe2ccf83d7a791bbeca2addbb9fbcd41dc73f0654ca4f0",
+      "bytes": 37780,
+      "width": 768,
+      "height": 1024,
+      "error": null
+    },
+    {
+      "index": 8,
+      "route": "notes-empty",
+      "state": "default",
+      "theme": "dark",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1
+      },
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=notes-empty#/notes?state=empty&demo=0",
+      "file": "notes-empty/default--390x844--dark.png",
+      "ok": true,
+      "durationMs": 596,
+      "sha256": "7eb019c57e8945af51d51c6cfaa1e079ec75b3f37406116f24c4da1bb508f680",
+      "bytes": 30022,
+      "width": 390,
+      "height": 844,
+      "error": null
+    },
+    {
+      "index": 9,
+      "route": "notes-loading",
+      "state": "default",
+      "theme": "dark",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 1
+      },
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=notes-loading#/notes?state=loading&demo=0",
+      "file": "notes-loading/default--1440x900--dark.png",
+      "ok": true,
+      "durationMs": 618,
+      "sha256": "c586c2e986a29c96f64c0bc781d7e61d5c985808a2f26292ea1c5ada8c98eaa8",
+      "bytes": 31605,
+      "width": 1440,
+      "height": 900,
+      "error": null
+    },
+    {
+      "index": 10,
+      "route": "notes-loading",
+      "state": "default",
+      "theme": "dark",
+      "viewport": {
+        "width": 768,
+        "height": 1024,
+        "deviceScaleFactor": 1
+      },
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=notes-loading#/notes?state=loading&demo=0",
+      "file": "notes-loading/default--768x1024--dark.png",
+      "ok": true,
+      "durationMs": 634,
+      "sha256": "61e16476427adf01eaa80532955482c1029ad7ebc7ba1e13a860ca7cad88596b",
+      "bytes": 26253,
+      "width": 768,
+      "height": 1024,
+      "error": null
+    },
+    {
+      "index": 11,
+      "route": "notes-loading",
+      "state": "default",
+      "theme": "dark",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1
+      },
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=notes-loading#/notes?state=loading&demo=0",
+      "file": "notes-loading/default--390x844--dark.png",
+      "ok": true,
+      "durationMs": 618,
+      "sha256": "6d22aa487a6d10bac7837211e8ff901676f4e2419d24d44d06a795cdbe2dd163",
+      "bytes": 18797,
+      "width": 390,
+      "height": 844,
+      "error": null
+    },
+    {
+      "index": 12,
+      "route": "notes-error",
+      "state": "default",
+      "theme": "dark",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 1
+      },
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=notes-error#/notes?state=error&demo=0",
+      "file": "notes-error/default--1440x900--dark.png",
+      "ok": true,
+      "durationMs": 613,
+      "sha256": "dce11cb19143b5faa1ced195e883dc5fa106763352c82c8de25f433214a2172c",
+      "bytes": 44203,
+      "width": 1440,
+      "height": 900,
+      "error": null
+    },
+    {
+      "index": 13,
+      "route": "notes-error",
+      "state": "default",
+      "theme": "dark",
+      "viewport": {
+        "width": 768,
+        "height": 1024,
+        "deviceScaleFactor": 1
+      },
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=notes-error#/notes?state=error&demo=0",
+      "file": "notes-error/default--768x1024--dark.png",
+      "ok": true,
+      "durationMs": 598,
+      "sha256": "bc056ba9fadf17ba68319dd2414889d66eba82f37afe102c05ab5877e01f1d0f",
+      "bytes": 39443,
+      "width": 768,
+      "height": 1024,
+      "error": null
+    },
+    {
+      "index": 14,
+      "route": "notes-error",
+      "state": "default",
+      "theme": "dark",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1
+      },
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=notes-error#/notes?state=error&demo=0",
+      "file": "notes-error/default--390x844--dark.png",
+      "ok": true,
+      "durationMs": 598,
+      "sha256": "b3577842054a25bdabce590e199d57c5eb5b4e18b420c5696370b5cdb1a81793",
+      "bytes": 30476,
+      "width": 390,
+      "height": 844,
+      "error": null
+    },
+    {
+      "index": 15,
+      "route": "settings",
+      "state": "default",
+      "theme": "dark",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 1
+      },
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=settings#/settings?demo=0",
+      "file": "settings/default--1440x900--dark.png",
+      "ok": true,
+      "durationMs": 702,
+      "sha256": "9d6e375aa158ccb6fb98875feb352bf2da169fe8dbfc4cad7fa5d8bf49e183db",
+      "bytes": 74565,
+      "width": 1440,
+      "height": 900,
+      "error": null
+    },
+    {
+      "index": 16,
+      "route": "settings",
+      "state": "default",
+      "theme": "dark",
+      "viewport": {
+        "width": 768,
+        "height": 1024,
+        "deviceScaleFactor": 1
+      },
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=settings#/settings?demo=0",
+      "file": "settings/default--768x1024--dark.png",
+      "ok": true,
+      "durationMs": 649,
+      "sha256": "7310b9e34bd26dc06281bc1e88f7f5782aafb52e03e7c284550d43e8970c674a",
+      "bytes": 69961,
+      "width": 768,
+      "height": 1024,
+      "error": null
+    },
+    {
+      "index": 17,
+      "route": "settings",
+      "state": "default",
+      "theme": "dark",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1
+      },
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=settings#/settings?demo=0",
+      "file": "settings/default--390x844--dark.png",
+      "ok": true,
+      "durationMs": 619,
+      "sha256": "4d345eba7add1093ecaedb5b1c43aae9a12fd9c61224347e26837366afffe02a",
+      "bytes": 39968,
+      "width": 390,
+      "height": 844,
+      "error": null
+    },
+    {
+      "index": 18,
+      "route": "settings-form-error",
+      "state": "default",
+      "theme": "dark",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 1
+      },
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=settings-form-error#/settings?state=form-error&demo=0",
+      "file": "settings-form-error/default--1440x900--dark.png",
+      "ok": true,
+      "durationMs": 620,
+      "sha256": "151d0d5fb2620091de6fda26241eae2316cb80f7931b11c5ceb57e2e2ccfcfbb",
+      "bytes": 76552,
+      "width": 1440,
+      "height": 900,
+      "error": null
+    },
+    {
+      "index": 19,
+      "route": "settings-form-error",
+      "state": "default",
+      "theme": "dark",
+      "viewport": {
+        "width": 768,
+        "height": 1024,
+        "deviceScaleFactor": 1
+      },
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=settings-form-error#/settings?state=form-error&demo=0",
+      "file": "settings-form-error/default--768x1024--dark.png",
+      "ok": true,
+      "durationMs": 608,
+      "sha256": "8477f65be9862eaf271139c354bee11c10050ed82a6b96cb7bf35b339a8db3ad",
+      "bytes": 68655,
+      "width": 768,
+      "height": 1024,
+      "error": null
+    },
+    {
+      "index": 20,
+      "route": "settings-form-error",
+      "state": "default",
+      "theme": "dark",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1
+      },
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=settings-form-error#/settings?state=form-error&demo=0",
+      "file": "settings-form-error/default--390x844--dark.png",
+      "ok": true,
+      "durationMs": 595,
+      "sha256": "4d53c7c584c7e0cd095029c05d564336332c4748a63f3dab6eccaf537fe7b992",
+      "bytes": 41907,
+      "width": 390,
+      "height": 844,
+      "error": null
+    },
+    {
+      "index": 21,
+      "route": "settings-modal",
+      "state": "default",
+      "theme": "dark",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "deviceScaleFactor": 1
+      },
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=settings-modal#/settings?modal=1&demo=0",
+      "file": "settings-modal/default--1440x900--dark.png",
+      "ok": true,
+      "durationMs": 635,
+      "sha256": "7dde248e18ed50ca6ee3e785da79dbf3bb60005fc0374fefdda02361423079eb",
+      "bytes": 79014,
+      "width": 1440,
+      "height": 900,
+      "error": null
+    },
+    {
+      "index": 22,
+      "route": "settings-modal",
+      "state": "default",
+      "theme": "dark",
+      "viewport": {
+        "width": 768,
+        "height": 1024,
+        "deviceScaleFactor": 1
+      },
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=settings-modal#/settings?modal=1&demo=0",
+      "file": "settings-modal/default--768x1024--dark.png",
+      "ok": true,
+      "durationMs": 627,
+      "sha256": "3cb00f58f4e19df686a0714b12b2da73b83b1a6ce89789b7c65a8eb9097ea6c6",
+      "bytes": 74023,
+      "width": 768,
+      "height": 1024,
+      "error": null
+    },
+    {
+      "index": 23,
+      "route": "settings-modal",
+      "state": "default",
+      "theme": "dark",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1
+      },
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=settings-modal#/settings?modal=1&demo=0",
+      "file": "settings-modal/default--390x844--dark.png",
+      "ok": true,
+      "durationMs": 617,
+      "sha256": "96883f9d03859019a88c8c65e84dfb8fe50624e6e0b6f8e26753efedf1d063a5",
+      "bytes": 36022,
+      "width": 390,
+      "height": 844,
+      "error": null
+    }
+  ],
+  "failed": []
+}

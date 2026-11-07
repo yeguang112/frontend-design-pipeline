@@ -1,0 +1,46 @@
+# NOTICE
+
+本仓库包含第三方内容与受启发的设计，说明如下。
+
+## 1. 品牌设计规范（brand-specs/）
+
+`brand-specs/` 下的 58 个品牌 `DESIGN.md`、`preview.html`、`preview-dark.html`、`README.md`
+来自 **VoltAgent/awesome-design-md**（https://github.com/VoltAgent/awesome-design-md），
+原仓库以 **MIT License** 发布，许可证全文见 `THIRD_PARTY/awesome-design-md-LICENSE`。
+
+这些文档是对公开网站设计语言的**近似提取与整理**：
+
+- **不是**任何品牌的官方设计系统；
+- 颜色、字体、间距、组件规则可能与官方存在偏差，且会随官网改版而过时；
+- 所有品牌名称、商标、logo、产品截图、版权素材归各自所有者；
+- 本仓库仅以描述性方式引用这些品牌作为风格参考，与任何品牌方**无关联、无背书**；
+- 使用时应遵守原品牌的权利要求，不得复制其 logo、版权图片、原文案或冒充官方。
+
+`data/brand-index.json` 与 `references/01-brand-taxonomy.md` 是在上述文档基础上的
+分类与索引（本仓库新增，MIT）。
+
+## 2. 规则设计参考（open-design）
+
+本仓库的「设计系统包结构」（manifest + DESIGN.md + tokens.css）、
+「anti-AI-slop 可检测规则」与「craft 分层」思路，参考了
+**nexu-io/open-design**（https://github.com/nexu-io/open-design，**Apache License 2.0**）。
+
+- 本仓库**未复制**其源代码文件；
+- 相关规则为重新撰写与扩展（中文、面向本流程），并非原文档翻译；
+- 如需复用其实现，请遵守 Apache-2.0 并保留其 NOTICE。
+
+## 3. 本仓库原创内容
+
+`SKILL.md`、`references/00–09`、`templates/`、`prompt-stub.md`、`scripts/`、
+`examples/demo-notes-app/` 为原创，按 MIT License 发布（见 `LICENSE`）。
+
+## 4. 字体
+
+`examples/demo-notes-app/` 内置的 Inter 字体子集来自
+**Inter**（https://github.com/rsms/inter），**SIL Open Font License 1.1**。
+仅用于演示截图的可复现渲染。
+
+## 5. 免责声明
+
+本仓库提供的是一套**流程与规则**，不构成法律、品牌或无障碍合规建议。
+正式项目上线前，请自行确认字体、图片、商标授权与目标平台规范。

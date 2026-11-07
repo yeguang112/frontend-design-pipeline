@@ -1,0 +1,2608 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>DevNotes — notes that sit next to your code</title>
+<!--
+  DevNotes · P3 HTML prototype (single file, hash routing, no external deps)
+  Design authority: design/frontend-guidelines.md v1.0 (signed)
+  Style reference: Linear (keep: near-black canvas, 5%/8% hairlines, single flat indigo,
+  negative display tracking, 400/510/590 weights). Original copy + original product UI.
+  Theme: dark (native) / light (companion). Viewports: 1440 / 768 / 390.
+-->
+<style>
+/* ============================================================
+   TOKENS — the only source of visual values.
+   Mirror of design/tokens/tokens.css (extracted after P4 freeze).
+   Components below MUST reference semantic tokens only.
+   ============================================================ */
+:root {
+  /* ── Primitive (internal mapping only) ── */
+  --ink-0: #08090a;
+  --ink-1: #0f1011;
+  --ink-2: #101112;
+  --ink-3: #16171a;
+  --ink-4: #1d1f22;
+  --ink-5: #0c0d0e;
+  --snow-0: #f7f8f8;
+  --snow-1: #d0d6e0;
+  --snow-2: #8a8f98;
+  --snow-3: #7d828b;
+  --indigo-9: #5e6ad2;
+  --indigo-7: #4f5ac0;
+  --indigo-6: #434cae;
+  --indigo-4: #828fff;
+  --red-9: #c93a3f;
+  --red-4: #ff9a9e;
+  --green-9: #10b981;
+  --amber-9: #e8a33d;
+  --white: #ffffff;
+
+  /* ── Surface ── */
+  --bg: var(--ink-0);
+  --bg-elevated: var(--ink-1);
+  --surface: var(--ink-2);
+  --surface-2: var(--ink-3);
+  --surface-3: var(--ink-4);
+  --code-bg: var(--ink-5);
+  --overlay: rgb(0 0 0 / .72);
+
+  /* ── Foreground ── */
+  --fg: var(--snow-0);
+  --fg-2: var(--snow-1);
+  --muted: var(--snow-2);
+  --meta: var(--snow-3);
+
+  /* ── Border ── */
+  --border-subtle: rgb(255 255 255 / .05);
+  --border: rgb(255 255 255 / .08);
+  --border-strong: rgb(255 255 255 / .14);
+
+  /* ── Accent (single chromatic system) ── */
+  --accent: var(--indigo-9);
+  --accent-hover: var(--indigo-7);
+  --accent-active: var(--indigo-6);
+  --accent-on: var(--white);
+  --accent-ring: rgb(94 106 210 / .30);
+  --link: var(--indigo-4);
+
+  /* ── Status (semantic only, never decorative) ── */
+  --success: var(--green-9);
+  --success-text: var(--green-9);
+  --warn: var(--amber-9);
+  --danger: var(--red-9);
+  --danger-text: var(--red-4);
+  --danger-bg: rgb(201 58 63 / .14);
+
+  /* ── Typography ── */
+  --font-display: "InterVar", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: "InterVar", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Berkeley Mono", Menlo, Consolas, monospace;
+
+  --text-xs: 12px;
+  --text-sm: 13px;
+  --text-md: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 24px;
+  --text-2xl: 32px;
+  --text-3xl: 48px;
+
+  --leading-display: 1.02;
+  --leading-heading: 1.2;
+  --leading-body: 1.55;
+  --leading-ui: 1.4;
+
+  --tracking-display: -0.022em;
+  --tracking-heading: -0.011em;
+  --tracking-normal: 0;
+
+  --weight-regular: 400;
+  --weight-ui: 510;
+  --weight-strong: 590;
+
+  /* ── Spacing (4pt base) ── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* ── Radius (5-step system) ── */
+  --radius-xs: 2px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 999px;
+
+  /* ── Elevation (dark = luminance steps, not shadows) ── */
+  --shadow-card: none;
+  --shadow-1: 0 1px 2px rgb(0 0 0 / .30);
+  --shadow-2: 0 12px 32px rgb(0 0 0 / .45);
+
+  /* ── Motion ── */
+  --ease-standard: cubic-bezier(.23, 1, .32, 1);
+  --dur-enter: 200ms;
+  --dur-exit: 140ms;
+  --dur-spin: 700ms;
+
+  /* ── Layer ── */
+  --z-sticky: 10;
+  --z-dropdown: 100;
+  --z-modal: 1000;
+
+  /* ── Layout & control sizes ── */
+  --container: 1200px;
+  --container-text: 680px;
+  --gutter: var(--space-6);
+  --nav-h: 56px;
+  --sidebar-w: 240px;
+  --control-h-sm: 32px;
+  --control-h-md: 40px;
+  --control-h-lg: 48px;
+  --row-h: 64px;
+  --nav-item-h: 32px;
+  --badge-h: 20px;
+  --icon-sm: 16px;
+  --icon-md: 20px;
+  --switch-w: 36px;
+  --switch-h: 20px;
+  --switch-knob: 14px;
+  --switch-inset: 2px;
+  --modal-w: 480px;
+
+  color-scheme: dark;
+}
+
+/* ── Light companion theme: semantic overrides only ── */
+[data-theme="light"] {
+  --bg: #f7f8f8;
+  --bg-elevated: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f2f3f4;
+  --surface-3: #e9ebee;
+  --code-bg: #f2f3f4;
+  --overlay: rgb(8 9 10 / .45);
+
+  --fg: var(--ink-0);
+  --fg-2: #3b3f45;
+  --muted: #5f646c;
+  --meta: #666b72;
+
+  --border-subtle: rgb(8 9 10 / .06);
+  --border: rgb(8 9 10 / .10);
+  --border-strong: rgb(8 9 10 / .18);
+
+  --accent: var(--indigo-9);
+  --accent-hover: var(--indigo-7);
+  --accent-active: var(--indigo-6);
+  --accent-on: var(--white);
+  --accent-ring: rgb(94 106 210 / .22);
+  --link: #4b56bd;
+
+  --success: #0e7a55;
+  --success-text: #0e7a55;
+  --warn: #9a6512;
+  --danger: #c62f34;
+  --danger-text: #a51f24;
+  --danger-bg: rgb(198 47 52 / .08);
+
+  --shadow-card: 0 1px 2px rgb(8 9 10 / .06);
+  --shadow-1: 0 1px 2px rgb(8 9 10 / .08);
+  --shadow-2: 0 16px 40px rgb(8 9 10 / .16);
+
+  color-scheme: light;
+}
+
+/* ============================================================
+   FONT (local woff2, variable 100–900 — no CDN)
+   ============================================================ */
+@font-face {
+  font-family: "InterVar";
+  src: url("assets/fonts/Inter-roman-latin.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: "InterVar";
+  src: url("assets/fonts/Inter-roman-latin-ext.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: block;
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+2020, U+20A0-20AB;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { background: var(--bg); }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-body);
+  letter-spacing: var(--tracking-normal);
+  font-feature-settings: "cv01", "ss03";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3 { font-family: var(--font-display); }
+h1, h2, h3, h4, p, ul, ol, figure { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; }
+svg { display: block; flex: none; }
+img { max-width: 100%; }
+
+::selection { background: var(--accent); color: var(--accent-on); }
+
+.skip-link {
+  position: absolute;
+  left: var(--space-4);
+  top: calc(-1 * var(--space-12));
+  z-index: var(--z-modal);
+  padding: var(--space-2) var(--space-4);
+  background: var(--surface-2);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  transition: top var(--dur-enter) var(--ease-standard);
+}
+.skip-link:focus-visible { top: var(--space-4); outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-normal);
+  color: var(--meta);
+}
+
+.eyebrow { display: none; } /* decorative eyebrows are banned in this project */
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ============================================================
+   BUTTON  (contract: design/components.md#button)
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  height: var(--control-h-md);
+  padding-block: 0;
+  padding-inline: var(--space-4);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--fg-2);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-ui);
+  line-height: var(--leading-ui);
+  letter-spacing: var(--tracking-normal);
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-enter) var(--ease-standard),
+    border-color var(--dur-enter) var(--ease-standard),
+    color var(--dur-enter) var(--ease-standard),
+    transform var(--dur-exit) var(--ease-standard);
+}
+.btn:hover { background: var(--surface-2); color: var(--fg); }
+.btn:active { transform: translateY(1px); }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.btn:disabled, .btn[aria-disabled="true"] { opacity: .45; cursor: not-allowed; transform: none; }
+.btn:disabled:hover, .btn[aria-disabled="true"]:hover { background: transparent; color: var(--fg-2); }
+
+.btn-sm { height: var(--control-h-sm); padding-inline: var(--space-3); font-size: var(--text-xs); }
+.btn-lg { height: var(--control-h-lg); padding-inline: var(--space-5); font-size: var(--text-md); }
+
+.btn-primary { background: var(--accent); color: var(--accent-on); }
+.btn-primary:hover { background: var(--accent-hover); color: var(--accent-on); }
+.btn-primary:active { background: var(--accent-active); color: var(--accent-on); }
+.btn-primary:disabled:hover { background: var(--accent); color: var(--accent-on); }
+
+.btn-secondary {
+  background: var(--surface-2);
+  border-color: var(--border);
+  color: var(--fg);
+}
+.btn-secondary:hover { background: var(--surface-3); border-color: var(--border-strong); color: var(--fg); }
+.btn-secondary:disabled:hover { background: var(--surface-2); border-color: var(--border); color: var(--fg); }
+
+.btn-ghost { background: transparent; color: var(--fg-2); }
+.btn-ghost:hover { background: var(--surface-2); color: var(--fg); }
+
+.btn-danger { background: var(--danger); color: var(--accent-on); }
+.btn-danger:hover { background: var(--danger); color: var(--accent-on); filter: brightness(1.08); }
+.btn-danger:active { filter: brightness(.94); }
+
+.btn-icon {
+  width: var(--control-h-sm);
+  height: var(--control-h-sm);
+  padding-inline: 0;
+  border-radius: var(--radius-sm);
+  color: var(--muted);
+}
+.btn-icon:hover { color: var(--fg); }
+.btn-icon svg { width: var(--icon-sm); height: var(--icon-sm); }
+
+.btn .icon { width: var(--icon-sm); height: var(--icon-sm); }
+.btn-lg .icon { width: var(--icon-md); height: var(--icon-md); }
+
+/* Button loading state: same label, spinner + disabled, no layout reflow */
+.btn[data-loading] { pointer-events: none; opacity: .8; }
+.btn .spinner { display: none; width: var(--icon-sm); height: var(--icon-sm); }
+.btn[data-loading] .spinner { display: inline-block; }
+
+.spinner {
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: var(--radius-full);
+  animation: spin var(--dur-spin) linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ============================================================
+   INPUT / FIELD  (contract: components.md#input)
+   ============================================================ */
+.field { display: flex; flex-direction: column; gap: var(--space-2); min-width: 0; }
+.field-label {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-ui);
+  line-height: var(--leading-ui);
+  color: var(--fg-2);
+}
+.field-helper { font-size: var(--text-xs); line-height: var(--leading-ui); color: var(--meta); }
+.field-error {
+  display: none;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--text-xs);
+  line-height: var(--leading-ui);
+  color: var(--danger-text);
+}
+.field-error svg { width: var(--icon-sm); height: var(--icon-sm); }
+.field[data-invalid="true"] .field-error { display: flex; }
+.field[data-invalid="true"] .field-helper { display: none; }
+
+.input {
+  width: 100%;
+  height: var(--control-h-md);
+  padding-inline: var(--space-3);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-ui);
+  transition:
+    border-color var(--dur-enter) var(--ease-standard),
+    background-color var(--dur-enter) var(--ease-standard),
+    box-shadow var(--dur-enter) var(--ease-standard);
+}
+.input::placeholder { color: var(--muted); }
+.input:hover { border-color: var(--border-strong); }
+.input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-ring);
+}
+.input[aria-invalid="true"] { border-color: var(--danger); }
+.input[aria-invalid="true"]:focus { box-shadow: 0 0 0 3px var(--danger-bg); }
+.input:disabled { opacity: .45; cursor: not-allowed; }
+.input[readonly] { color: var(--fg-2); }
+
+.input-with-icon { position: relative; }
+.input-with-icon .input { padding-left: var(--space-10); }
+.input-with-icon .input-icon {
+  position: absolute;
+  left: var(--space-3);
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.select { position: relative; }
+.select select {
+  appearance: none;
+  width: 100%;
+  height: var(--control-h-md);
+  padding-inline: var(--space-3) var(--space-10);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  font-weight: var(--weight-regular);
+  cursor: pointer;
+  transition: border-color var(--dur-enter) var(--ease-standard), box-shadow var(--dur-enter) var(--ease-standard);
+}
+.select select:hover { border-color: var(--border-strong); }
+.select select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-ring); }
+.select svg {
+  position: absolute;
+  right: var(--space-3);
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+  color: var(--muted);
+  pointer-events: none;
+}
+
+/* Switch (contract: components.md#switch) */
+.switch {
+  appearance: none;
+  flex: none;
+  font-size: var(--text-xs);
+  color: var(--fg-2);
+  width: var(--switch-w);
+  height: var(--switch-h);
+  background: var(--surface-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  position: relative;
+  transition: background-color var(--dur-enter) var(--ease-standard), border-color var(--dur-enter) var(--ease-standard);
+}
+.switch::after {
+  content: "";
+  position: absolute;
+  top: var(--switch-inset);
+  left: var(--switch-inset);
+  width: var(--switch-knob);
+  height: var(--switch-knob);
+  border-radius: var(--radius-full);
+  background: var(--fg-2);
+  transition: transform var(--dur-enter) var(--ease-standard), background-color var(--dur-enter) var(--ease-standard);
+}
+.switch:checked { background: var(--accent); border-color: var(--accent); }
+.switch:checked::after { transform: translateX(var(--switch-knob)); background: var(--accent-on); }
+.switch:hover { border-color: var(--border-strong); }
+.switch:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ============================================================
+   CARD  (contract: components.md#card)
+   ============================================================ */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+.card-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-6) 0;
+}
+.card-title { font-size: var(--text-base); font-weight: var(--weight-ui); }
+.card-desc { margin-top: var(--space-1); font-size: var(--text-sm); color: var(--muted); }
+.card-body { padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-5); }
+.card-body + .card-body { border-top: 1px solid var(--border-subtle); }
+
+/* Badge / tag (contract: components.md#badge) */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  height: var(--badge-h);
+  padding-inline: var(--space-2);
+  background: var(--surface-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  color: var(--fg-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  line-height: var(--leading-ui);
+  white-space: nowrap;
+}
+.badge-dot { width: var(--space-1); height: var(--space-1); border-radius: var(--radius-full); background: var(--success); }
+
+/* ============================================================
+   TABS  (contract: components.md#tabs)
+   ============================================================ */
+.tabs {
+  display: flex;
+  gap: var(--space-6);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.tab {
+  height: var(--control-h-md);
+  padding-inline: 0;
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-ui);
+  letter-spacing: var(--tracking-normal);
+  cursor: pointer;
+  transition: color var(--dur-enter) var(--ease-standard), border-color var(--dur-enter) var(--ease-standard);
+}
+.tab:hover { color: var(--fg-2); }
+.tab[aria-selected="true"] { color: var(--fg); border-bottom-color: var(--accent); }
+.tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: var(--radius-xs); }
+.tab:disabled { opacity: .45; cursor: not-allowed; }
+.tab-panel[hidden] { display: none; }
+
+/* ============================================================
+   MODAL  (contract: components.md#modal)
+   ============================================================ */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  background: var(--overlay);
+  opacity: 0;
+  transition: opacity var(--dur-enter) var(--ease-standard);
+}
+.modal-backdrop[hidden] { display: none; }
+.modal-backdrop.is-open { opacity: 1; }
+.modal {
+  width: 100%;
+  max-width: var(--modal-w);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-2);
+  transform: translateY(var(--space-2));
+  transition: transform var(--dur-enter) var(--ease-standard);
+}
+.modal-backdrop.is-open .modal { transform: translateY(0); }
+.modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-6) var(--space-6) 0;
+}
+.modal-title { font-size: var(--text-lg); font-weight: var(--weight-ui); }
+.modal-body { padding: var(--space-4) var(--space-6); color: var(--muted); font-size: var(--text-sm); }
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-6) var(--space-6);
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  height: var(--nav-h);
+  background: var(--bg);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.site-header .container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--fg);
+  flex: none;
+}
+[data-theme="dark"] .icon-sun { display: none; }
+[data-theme="light"] .icon-moon { display: none; }
+.brand-mark { color: var(--fg-2); }
+.brand-mark svg { width: var(--icon-md); height: var(--icon-md); }
+.brand-name {
+  font-size: var(--text-base);
+  font-weight: var(--weight-strong);
+}
+.nav { display: flex; align-items: center; gap: var(--space-1); }
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  height: var(--nav-item-h);
+  padding-inline: var(--space-3);
+  border-radius: var(--radius-sm);
+  color: var(--fg-2);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-ui);
+  transition: color var(--dur-enter) var(--ease-standard), background-color var(--dur-enter) var(--ease-standard);
+}
+.nav-link:hover { color: var(--fg); background: var(--surface-2); }
+.nav-link[aria-current="page"] { color: var(--fg); background: var(--surface-2); }
+.header-actions { margin-left: auto; display: flex; align-items: center; gap: var(--space-2); }
+.header-actions .btn-secondary { height: var(--control-h-sm); padding-inline: var(--space-3); font-size: var(--text-xs); }
+.nav-toggle { display: none; }
+
+/* Mobile nav sheet */
+.mobile-nav {
+  display: none;
+  z-index: var(--z-dropdown);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: var(--nav-h);
+  padding: var(--space-3);
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-2);
+}
+.mobile-nav.is-open { display: flex; flex-direction: column; gap: var(--space-1); }
+.mobile-nav .nav-link { height: var(--control-h-md); }
+
+/* ============================================================
+   APP SHELL (notes / settings)
+   ============================================================ */
+.app-shell {
+  display: grid;
+  grid-template-columns: var(--sidebar-w) minmax(0, 1fr);
+  min-height: calc(100vh - var(--nav-h));
+}
+.app-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background: var(--bg-elevated);
+  border-right: 1px solid var(--border-subtle);
+  min-width: 0;
+}
+.sidebar-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); }
+.sidebar-title {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-ui);
+  letter-spacing: var(--tracking-normal);
+  color: var(--meta);
+  text-transform: uppercase;
+}
+.sidebar-nav { display: flex; flex-direction: column; gap: var(--space-1); }
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  height: var(--nav-item-h);
+  padding-inline: var(--space-2);
+  background: none;
+  border: 0;
+  border-radius: var(--radius-sm);
+  color: var(--fg-2);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-ui);
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--dur-enter) var(--ease-standard), color var(--dur-enter) var(--ease-standard);
+}
+.sidebar-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.sidebar-item .count { margin-left: auto; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--meta); }
+.sidebar-item:hover { background: var(--surface); color: var(--fg); }
+.sidebar-item[aria-current="true"] { background: var(--surface-2); color: var(--fg); }
+.sidebar-item svg { width: var(--icon-sm); height: var(--icon-sm); color: var(--muted); }
+.sidebar-foot { margin-top: auto; padding-top: var(--space-4); border-top: 1px solid var(--border-subtle); }
+.sidebar-path { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--meta); word-break: break-all; }
+
+.app-main { min-width: 0; display: flex; flex-direction: column; }
+.app-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-6);
+  border-bottom: 1px solid var(--border-subtle);
+  flex-wrap: wrap;
+}
+.breadcrumb { display: flex; align-items: center; gap: var(--space-2); color: var(--meta); font-size: var(--text-sm); }
+.breadcrumb .sep { color: var(--border-strong); }
+.breadcrumb .current { color: var(--fg-2); font-weight: var(--weight-ui); }
+.breadcrumb a:hover { color: var(--fg); }
+.toolbar-search { flex: 1 1 220px; max-width: 360px; min-width: 0; }
+.toolbar-search .input { height: var(--control-h-sm); font-size: var(--text-sm); }
+.toolbar-search.input-with-icon .input { padding-left: var(--space-8); }
+.toolbar-search.input-with-icon .input-icon { left: var(--space-2); }
+.toolbar-actions { margin-left: auto; display: flex; align-items: center; gap: var(--space-2); }
+
+/* Demo state rail (documented in README; hidden with ?demo=0) */
+.demo-rail {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1);
+  background: var(--surface-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+}
+.demo-rail-label { padding-inline: var(--space-2); font-family: var(--font-mono); font-size: var(--text-xs); color: var(--meta); }
+.demo-rail .btn { height: var(--control-h-sm); padding-inline: var(--space-2); font-size: var(--text-xs); font-family: var(--font-mono); }
+.demo-rail .btn[aria-pressed="true"] { background: var(--surface-3); color: var(--fg); }
+body[data-demo="off"] .demo-rail { display: none; }
+
+/* ============================================================
+   NOTES LIST
+   ============================================================ */
+.list-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-6) var(--space-6) var(--space-3);
+}
+.list-title { font-size: var(--text-lg); font-weight: var(--weight-ui); }
+.list-count { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--meta); }
+
+.notes { border-top: 1px solid var(--border-subtle); }
+.note-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-4);
+  width: 100%;
+  min-height: var(--row-h);
+  padding: var(--space-3) var(--space-6);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--border-subtle);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--dur-enter) var(--ease-standard);
+}
+.note-row:hover { background: var(--surface); }
+.note-row:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.note-row[aria-current="true"] { background: var(--surface-3); }
+.note-row[aria-current="true"] .note-date { color: var(--muted); }
+.note-main { min-width: 0; display: flex; flex-direction: column; gap: var(--space-1); }
+.note-title {
+  font-size: var(--text-base);
+  font-weight: var(--weight-ui);
+  color: var(--fg);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.note-excerpt {
+  font-size: var(--text-sm);
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.note-side { display: flex; align-items: center; gap: var(--space-3); }
+.note-date { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--meta); white-space: nowrap; }
+
+/* Skeleton (static: no infinite animation) */
+.skeleton-row { display: grid; gap: var(--space-2); padding: var(--space-4) var(--space-6); border-bottom: 1px solid var(--border-subtle); }
+.skeleton { background: var(--surface-3); border-radius: var(--radius-xs); height: var(--text-sm); }
+.skeleton.w-40 { width: 40%; }
+.skeleton.w-60 { width: 60%; }
+.skeleton.w-20 { width: 20%; }
+
+/* Empty / error states */
+.state-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  max-width: var(--container-text);
+  padding: var(--space-16) var(--space-6);
+}
+.state-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-10);
+  height: var(--space-10);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--muted);
+}
+.state-icon svg { width: var(--icon-md); height: var(--icon-md); }
+.state-title { font-size: var(--text-lg); font-weight: var(--weight-ui); }
+.state-desc { font-size: var(--text-sm); color: var(--muted); max-width: 52ch; }
+.state-actions { display: flex; gap: var(--space-2); margin-top: var(--space-1); }
+
+[hidden] { display: none !important; }
+
+/* ============================================================
+   SETTINGS
+   ============================================================ */
+.settings-wrap { padding: var(--space-8) var(--space-6) var(--space-24); max-width: 760px; }
+.settings-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-6);
+}
+.settings-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  padding-bottom: var(--space-4);
+  margin-bottom: var(--space-6);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.settings-actions .save-status { margin-right: auto; }
+.settings-title { font-size: var(--text-xl); font-weight: var(--weight-ui); letter-spacing: var(--tracking-heading); }
+.settings-desc { margin-top: var(--space-2); font-size: var(--text-sm); color: var(--muted); }
+.settings-stack { display: flex; flex-direction: column; gap: var(--space-4); }
+.toggle-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-6);
+}
+.toggle-copy { min-width: 0; display: flex; flex-direction: column; gap: var(--space-1); }
+.toggle-title { font-size: var(--text-sm); font-weight: var(--weight-ui); color: var(--fg); }
+.toggle-desc { font-size: var(--text-xs); color: var(--muted); }
+.form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); }
+
+.form-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  background: var(--danger-bg);
+  border: 1px solid var(--danger);
+  border-radius: var(--radius-sm);
+  color: var(--danger-text);
+  font-size: var(--text-sm);
+}
+.form-alert svg { width: var(--icon-sm); height: var(--icon-sm); margin-top: var(--space-1); }
+
+.save-status { display: flex; align-items: center; gap: var(--space-2); font-size: var(--text-sm); color: var(--muted); }
+.save-status .dot { width: var(--space-1); height: var(--space-1); border-radius: var(--radius-full); background: var(--meta); }
+.save-status[data-state="dirty"] .dot { background: var(--warn); }
+.save-status[data-state="saved"] .dot { background: var(--success); }
+
+
+.danger-zone { border-color: var(--border); }
+.danger-zone .card-body { flex-direction: row; align-items: center; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap; }
+
+/* ============================================================
+   HOME
+   ============================================================ */
+.hero { padding-block: var(--space-24) var(--space-20); }
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: var(--space-16);
+  align-items: center;
+}
+.hero-copy { min-width: 0; }
+.hero-title {
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-ui);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  max-width: 22ch;
+}
+.hero-lede {
+  margin-top: var(--space-5);
+  max-width: 46ch;
+  font-size: var(--text-lg);
+  line-height: var(--leading-body);
+  color: var(--muted);
+}
+.hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-8); }
+.hero-facts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+  margin-top: var(--space-8);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border-subtle);
+  font-size: var(--text-sm);
+  color: var(--fg-2);
+}
+.hero-fact { display: inline-flex; align-items: center; gap: var(--space-2); }
+.hero-fact svg { width: var(--icon-sm); height: var(--icon-sm); color: var(--muted); }
+
+/* Product preview panel — real DOM, not an image (see NEVER-14 exception) */
+.preview {
+  min-width: 0;
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.preview-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: var(--space-10);
+  padding-inline: var(--space-3);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.preview-dots { display: flex; gap: var(--space-1); }
+.preview-dots i { width: var(--space-2); height: var(--space-2); border-radius: var(--radius-full); background: var(--surface-3); }
+.preview-path { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--meta); margin-inline: auto; }
+.preview-body { padding: var(--space-3); display: flex; flex-direction: column; gap: var(--space-2); }
+.preview-search {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: var(--control-h-sm);
+  padding-inline: var(--space-2);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--muted);
+  font-size: var(--text-xs);
+}
+.preview-search svg { width: var(--icon-sm); height: var(--icon-sm); }
+.preview-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: var(--space-10);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+}
+.preview-row.is-active { background: var(--surface-2); border-color: var(--border-subtle); }
+.preview-row-main { min-width: 0; display: flex; flex-direction: column; gap: var(--space-1); }
+.preview-row-title { font-size: var(--text-sm); font-weight: var(--weight-ui); color: var(--fg); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.preview-row-meta { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--meta); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.preview-row .badge { margin-left: auto; }
+.preview-kbd { margin-left: auto; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--meta); }
+.preview-foot {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-top: 1px solid var(--border-subtle);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--meta);
+}
+.preview-foot .ok { color: var(--success-text); }
+
+/* Feature section */
+.section { padding-block: var(--space-20); }
+.section-head { max-width: var(--container-text); }
+.section-title {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-ui);
+  line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-display);
+}
+.section-lede { margin-top: var(--space-3); font-size: var(--text-base); color: var(--muted); max-width: 52ch; }
+
+.feature-surface { margin-top: var(--space-8); border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--bg-elevated); overflow: hidden; }
+.feature-tabs { padding-inline: var(--space-6); }
+.feature-panel { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--space-8); padding: var(--space-6); align-items: center; }
+.feature-copy { min-width: 0; display: flex; flex-direction: column; gap: var(--space-3); }
+.feature-title { font-size: var(--text-xl); font-weight: var(--weight-ui); letter-spacing: var(--tracking-heading); }
+.feature-desc { font-size: var(--text-sm); color: var(--muted); }
+.feature-list { display: flex; flex-direction: column; gap: var(--space-2); margin-top: var(--space-1); }
+.feature-list li { display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--text-sm); color: var(--fg-2); }
+.feature-list svg { width: var(--icon-sm); height: var(--icon-sm); margin-top: var(--space-1); color: var(--muted); }
+.feature-visual { min-width: 0; }
+.panel {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  overflow: hidden;
+}
+.panel-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--border-subtle);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--meta);
+}
+.panel-body { padding: var(--space-3); display: flex; flex-direction: column; gap: var(--space-2); }
+.search-hit { display: flex; flex-direction: column; gap: var(--space-1); padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); }
+.search-hit.is-active { background: var(--surface-2); }
+.search-hit-title { font-size: var(--text-sm); font-weight: var(--weight-ui); }
+.search-hit-path { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--meta); }
+.search-hit mark { background: var(--surface-3); color: var(--fg); border-radius: var(--radius-xs); padding-inline: var(--space-1); }
+
+/* Code sample */
+.code-sample {
+  margin: 0;
+  max-width: var(--container-text);
+  padding: var(--space-4);
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: 1.7;
+  color: var(--fg-2);
+}
+.code-sample .k { color: var(--link); }
+.code-sample .s { color: var(--fg); }
+.code-sample .c { color: var(--meta); }
+.code-actions { display: flex; align-items: center; gap: var(--space-2); max-width: var(--container-text); margin-bottom: var(--space-3); }
+.code-actions .path { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--meta); }
+.code-copy { margin-left: auto; }
+.curve { display: flex; flex-direction: column; gap: var(--space-4); }
+.curve-item { display: flex; flex-direction: column; gap: var(--space-1); }
+.curve-title { font-size: var(--text-base); font-weight: var(--weight-ui); }
+.curve-desc { font-size: var(--text-sm); color: var(--muted); }
+
+/* Pricing */
+.price-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-4); margin-top: var(--space-8); align-items: stretch; }
+.price-card { display: flex; flex-direction: column; gap: var(--space-4); padding: var(--space-6); min-width: 0; }
+.price-card.is-featured { background: var(--surface-2); border-color: var(--border-strong); border-top: 2px solid var(--accent); }
+.price-head { display: flex; flex-direction: column; gap: var(--space-1); }
+.price-name { font-size: var(--text-base); font-weight: var(--weight-ui); }
+.price-flag { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--fg-2); }
+.price-amount { display: flex; align-items: baseline; gap: var(--space-1); }
+.price-value { font-size: var(--text-2xl); font-weight: var(--weight-ui); letter-spacing: var(--tracking-display); }
+.price-unit { font-size: var(--text-sm); color: var(--meta); }
+.price-desc { font-size: var(--text-sm); color: var(--muted); min-height: var(--space-10); }
+.price-list { display: flex; flex-direction: column; gap: var(--space-2); margin-top: var(--space-1); }
+.price-list li { display: flex; gap: var(--space-2); font-size: var(--text-sm); color: var(--fg-2); }
+.price-list svg { width: var(--icon-sm); height: var(--icon-sm); margin-top: var(--space-1); color: var(--muted); }
+.price-card .btn { margin-top: auto; width: 100%; }
+
+/* Footer */
+.site-footer { border-top: 1px solid var(--border-subtle); padding-block: var(--space-12) var(--space-8); }
+body[data-route="notes"] .site-footer,
+body[data-route="settings"] .site-footer { display: none; }
+.footer-grid { display: flex; flex-wrap: wrap; gap: var(--space-8); justify-content: space-between; }
+.footer-brand { max-width: 34ch; display: flex; flex-direction: column; gap: var(--space-3); }
+.footer-note { font-size: var(--text-sm); color: var(--muted); }
+.footer-nav { display: flex; gap: var(--space-8); flex-wrap: wrap; }
+.footer-col { display: flex; flex-direction: column; gap: var(--space-2); }
+.footer-col h4 { font-size: var(--text-xs); font-weight: var(--weight-ui); color: var(--meta); }
+.footer-link { font-size: var(--text-sm); color: var(--fg-2); }
+.footer-link:hover { color: var(--fg); }
+.footer-legal { margin-top: var(--space-8); padding-top: var(--space-4); border-top: 1px solid var(--border-subtle); font-size: var(--text-xs); color: var(--meta); }
+
+/* ============================================================
+   RESPONSIVE — three approved tiers
+   ============================================================ */
+@media (max-width: 1023px) {
+  .hero { padding-block: var(--space-16) var(--space-12); }
+  .hero-grid { grid-template-columns: minmax(0, 1fr); gap: var(--space-10); }
+  .hero-title { font-size: var(--text-2xl); max-width: 24ch; }
+  .hero-lede { max-width: 56ch; }
+  .feature-panel { grid-template-columns: minmax(0, 1fr); gap: var(--space-6); }
+  .price-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .app-shell { grid-template-columns: minmax(0, 1fr); }
+  .app-sidebar { flex-direction: row; align-items: center; gap: var(--space-3); flex-wrap: wrap; border-right: 0; border-bottom: 1px solid var(--border-subtle); padding: var(--space-2) var(--space-4); }
+  .sidebar-head, .sidebar-foot { display: none; }
+  .sidebar-nav { flex-direction: row; flex-wrap: wrap; gap: var(--space-1); }
+  .sidebar-item { padding-inline: var(--space-3); white-space: nowrap; }
+  .sidebar-item .count { display: none; }
+}
+
+@media (max-width: 767px) {
+  :root { --gutter: var(--space-4); }
+  .nav, .header-actions .btn-secondary { display: none; }
+  .nav-toggle { display: inline-flex; }
+  .header-actions { gap: var(--space-1); }
+  .hero-title { font-size: var(--text-xl); max-width: 24ch; }
+  .hero-lede { font-size: var(--text-base); }
+  .section { padding-block: var(--space-12); }
+  .section-title { font-size: var(--text-xl); }
+  .price-grid { grid-template-columns: minmax(0, 1fr); }
+  .feature-tabs { padding-inline: var(--space-4); }
+  .feature-panel { padding: var(--space-4); }
+  .form-grid { grid-template-columns: minmax(0, 1fr); }
+  .settings-wrap { padding: var(--space-6) var(--space-4) var(--space-20); }
+  .app-toolbar, .list-head, .save-bar { padding-inline: var(--space-4); }
+  .note-row { padding-inline: var(--space-4); }
+  .state-block { padding: var(--space-12) var(--space-4); }
+  .footer-grid { flex-direction: column; gap: var(--space-6); }
+  .modal-footer { flex-direction: column-reverse; }
+  .modal-footer .btn { width: 100%; }
+  .danger-zone .card-body { flex-direction: column; align-items: flex-start; }
+  .toolbar-search { flex-basis: 100%; max-width: none; order: 3; }
+}
+
+@media (max-width: 420px) {
+  .hero-actions .btn { width: 100%; }
+  .demo-rail { width: 100%; justify-content: space-between; }
+  .demo-rail-label { display: none; }
+}
+
+/* Reduced motion: kill movement, keep state changes */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+<body data-demo="on">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="#/home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3.5h7.5L16 7v9.5H5z"/><path d="M8 3.5V7h4"/><path d="M7.5 11h6M7.5 14h4"/></svg>
+      </span>
+      <span class="brand-name">DevNotes</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a class="nav-link" href="#/home" data-nav="home">Overview</a>
+      <a class="nav-link" href="#/notes" data-nav="notes">Notes</a>
+      <a class="nav-link" href="#/settings" data-nav="settings">Settings</a>
+    </nav>
+    <div class="header-actions">
+      <button class="btn btn-icon" type="button" data-action="toggle-theme" aria-label="Switch to light theme">
+        <svg class="icon-moon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 11.5A6.5 6.5 0 1 1 8.5 4a5 5 0 0 0 7.5 7.5z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="3.5"/><path d="M10 2.5v2M10 15.5v2M2.5 10h2M15.5 10h2M4.7 4.7l1.4 1.4M13.9 13.9l1.4 1.4M15.3 4.7l-1.4 1.4M6.1 13.9l-1.4 1.4"/></svg>
+      </button>
+      <a class="btn btn-secondary btn-sm" href="#/notes">Open the app</a>
+      <button class="btn btn-icon nav-toggle" type="button" data-action="toggle-nav" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-nav" id="mobile-nav" data-open="false">
+    <a class="nav-link" href="#/home" data-nav="home">Overview</a>
+    <a class="nav-link" href="#/notes" data-nav="notes">Notes</a>
+    <a class="nav-link" href="#/settings" data-nav="settings">Settings</a>
+  </div>
+</header>
+
+<main id="main">
+  <!-- ============================================================
+       ROUTE #/home
+       ============================================================ -->
+  <section class="route" data-route="home" aria-labelledby="home-title">
+    <div class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <h1 class="hero-title" id="home-title">Notes that sit next to your code.</h1>
+            <p class="hero-lede">DevNotes keeps snippets, runbooks and half-written thoughts as plain Markdown in a folder you own. Full-text search runs offline. Sync is a git remote you already have.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary btn-lg" href="#/notes">Open the app</a>
+              <button class="btn btn-secondary btn-lg" type="button" data-action="scroll-features">See how it works</button>
+            </div>
+            <ul class="hero-facts">
+              <li class="hero-fact">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>
+                <span>Plain Markdown files</span>
+              </li>
+              <li class="hero-fact">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>
+                <span>No account, no telemetry</span>
+              </li>
+              <li class="hero-fact">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>
+                <span>Search works offline</span>
+              </li>
+            </ul>
+          </div>
+
+          <figure class="preview" data-placeholder="product-preview">
+            <figcaption class="sr-only">Preview of the DevNotes window showing four notes in a folder called devnotes.</figcaption>
+            <div class="preview-bar">
+              <span class="preview-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="preview-path">~/devnotes</span>
+            </div>
+            <div class="preview-body">
+              <div class="preview-search">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="9" r="5"/><path d="M13 13l4 4"/></svg>
+                <span>Search notes</span>
+                <span class="preview-kbd">Cmd K</span>
+              </div>
+              <div class="preview-row is-active">
+                <div class="preview-row-main">
+                  <span class="preview-row-title">Debounce a callback</span>
+                  <span class="preview-row-meta">snippets/react.md</span>
+                </div>
+                <span class="badge">react</span>
+              </div>
+              <div class="preview-row">
+                <div class="preview-row-main">
+                  <span class="preview-row-title">Postgres: find slow queries</span>
+                  <span class="preview-row-meta">runbooks/pg-slow.md</span>
+                </div>
+                <span class="badge">sql</span>
+              </div>
+              <div class="preview-row">
+                <div class="preview-row-main">
+                  <span class="preview-row-title">SSH config for staging</span>
+                  <span class="preview-row-meta">snippets/ssh-staging.md</span>
+                </div>
+                <span class="badge">infra</span>
+              </div>
+              <div class="preview-row">
+                <div class="preview-row-main">
+                  <span class="preview-row-title">Migration postmortem</span>
+                  <span class="preview-row-meta">notes/2026-10-04-migration.md</span>
+                </div>
+                <span class="badge">postmortem</span>
+              </div>
+            </div>
+            <div class="preview-foot">
+              <span>4 notes</span>
+              <span aria-hidden="true">·</span>
+              <span class="ok">index up to date</span>
+            </div>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Features (tabs, not three equal cards) ── -->
+    <section class="section" id="features" aria-labelledby="features-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title" id="features-title">Three things it does, none of them clever</h2>
+          <p class="section-lede">Everything works from a folder, a terminal and the editor you already use. Nothing is stored in a place you cannot open with <span class="mono">cat</span>.</p>
+        </div>
+
+        <div class="feature-surface">
+          <div class="tabs feature-tabs" role="tablist" aria-label="What DevNotes does">
+            <button class="tab" type="button" role="tab" id="tab-search" aria-controls="panel-search" aria-selected="true" data-tab="search">Search</button>
+            <button class="tab" type="button" role="tab" id="tab-snippets" aria-controls="panel-snippets" aria-selected="false" data-tab="snippets" tabindex="-1">Snippets</button>
+            <button class="tab" type="button" role="tab" id="tab-sync" aria-controls="panel-sync" aria-selected="false" data-tab="sync" tabindex="-1">Sync</button>
+          </div>
+
+          <div class="feature-panel tab-panel" role="tabpanel" id="panel-search" aria-labelledby="tab-search" data-panel="search">
+            <div class="feature-copy">
+              <h3 class="feature-title">One keystroke, one index, no requests</h3>
+              <p class="feature-desc">DevNotes builds an index over your folder the first time you open it, then updates it when a file changes on disk.</p>
+              <ul class="feature-list">
+                <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Ranked by title, path and recency. Not by engagement.</span></li>
+                <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Opens the file at the line that matched.</span></li>
+                <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Works on a plane, in a tunnel, behind a proxy.</span></li>
+              </ul>
+            </div>
+            <div class="feature-visual">
+              <div class="panel">
+                <div class="panel-head"><span>Search: slow query</span><span>/</span></div>
+                <div class="panel-body">
+                  <div class="search-hit is-active">
+                    <span class="search-hit-title">Postgres: find <mark>slow</mark> <mark>query</mark>s</span>
+                    <span class="search-hit-path">runbooks/pg-slow.md · line 4</span>
+                  </div>
+                  <div class="search-hit">
+                    <span class="search-hit-title">Read replica lag after the <mark>query</mark> rewrite</span>
+                    <span class="search-hit-path">notes/2026-09-18-replica.md · line 12</span>
+                  </div>
+                  <div class="search-hit">
+                    <span class="search-hit-title">Vacuum settings for <mark>slow</mark> tables</span>
+                    <span class="search-hit-path">snippets/postgres-vacuum.md · line 2</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-panel tab-panel" role="tabpanel" id="panel-snippets" aria-labelledby="tab-snippets" data-panel="snippets" hidden>
+            <div class="feature-copy">
+              <h3 class="feature-title">A snippet is a file, not a row</h3>
+              <p class="feature-desc">Snippets are Markdown with front matter. Copy one into a project, commit it, `grep` it, delete it. Nothing is locked inside DevNotes.</p>
+              <ul class="feature-list">
+                <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Front matter carries tags, language and the date you wrote it.</span></li>
+                <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Fenced code blocks keep syntax highlighting in any editor.</span></li>
+                <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>An index line links a snippet back to the file that needed it.</span></li>
+              </ul>
+            </div>
+            <div class="feature-visual">
+              <div class="panel">
+                <div class="panel-head"><span>snippets/postgres.md</span><span>markdown</span></div>
+                <div class="panel-body">
+                  <pre class="code-sample"><span class="c">---</span>
+<span class="k">title:</span> Find slow queries
+<span class="k">tags:</span> [postgres, perf]
+<span class="c">---</span>
+<span class="s">SELECT query, calls, mean_exec_time</span>
+<span class="s">FROM pg_stat_statements</span>
+<span class="s">ORDER BY mean_exec_time DESC</span>
+<span class="s">LIMIT 20;</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-panel tab-panel" role="tabpanel" id="panel-sync" aria-labelledby="tab-sync" data-panel="sync" hidden>
+            <div class="feature-copy">
+              <h3 class="feature-title">Sync is a remote you already own</h3>
+              <p class="feature-desc">Point DevNotes at a git remote and it commits on a schedule. Conflicts are plain files, resolved in your editor, not in a proprietary merge screen.</p>
+              <ul class="feature-list">
+                <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>One commit per sync, message written from the changed files.</span></li>
+                <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Read-only mode when the remote is unreachable.</span></li>
+                <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>History lives in git, so it outlives this app.</span></li>
+              </ul>
+            </div>
+            <div class="feature-visual">
+              <div class="panel">
+                <div class="panel-head"><span>git log --oneline</span><span>origin/main</span></div>
+                <div class="panel-body">
+                  <div class="search-hit is-active">
+                    <span class="search-hit-path">a1f3c9d · notes: add postgres slow query runbook</span>
+                  </div>
+                  <div class="search-hit">
+                    <span class="search-hit-path">7c02b41 · snippets: debounce hook, ssh staging</span>
+                  </div>
+                  <div class="search-hit">
+                    <span class="search-hit-path">41de8aa · notes: migration postmortem</span>
+                  </div>
+                  <div class="search-hit">
+                    <span class="search-hit-path">b0e51f2 · init: 38 files</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Code / editorial section ── -->
+    <section class="section" aria-labelledby="code-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title" id="code-title">What leaves the app is the same file you wrote</h2>
+          <p class="section-lede">Copy a snippet into a project and it still reads the same. No export step, no proprietary format, no migration page when you leave.</p>
+        </div>
+        <div class="code-actions">
+          <span class="path">~/devnotes/snippets/react.md</span>
+          <button class="btn btn-ghost btn-sm code-copy" type="button" data-action="copy-code" aria-label="Copy snippet to clipboard">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="7" width="9" height="9" rx="2"/><path d="M13 4.5H5.5A1 1 0 0 0 4.5 5.5V13"/></svg>
+            <span class="btn-label">Copy</span>
+          </button>
+        </div>
+        <pre class="code-sample" id="code-sample"><span class="c">---</span>
+<span class="k">title:</span> Debounce a value in React
+<span class="k">tags:</span> [react, hooks]
+<span class="k">written:</span> 2026-10-14
+<span class="c">---</span>
+
+<span class="k">import</span> { useEffect, useState } <span class="k">from</span> <span class="s">"react"</span>;
+
+<span class="k">export function</span> useDebounced&lt;T&gt;(value: T, ms = 250): T {
+  <span class="k">const</span> [settled, setSettled] = useState(value);
+
+  useEffect(() =&gt; {
+    <span class="k">const</span> id = setTimeout(() =&gt; setSettled(value), ms);
+    <span class="k">return</span> () =&gt; clearTimeout(id);
+  }, [value, ms]);
+
+  <span class="k">return</span> settled;
+}</pre>
+      </div>
+    </section>
+
+    <!-- ── Pricing ── -->
+    <section class="section" id="pricing" aria-labelledby="pricing-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title" id="pricing-title">Pricing without a sales call</h2>
+          <p class="section-lede">The local app is free forever. You pay when you want the folder on more than one machine, or when a team wants shared folders.</p>
+        </div>
+        <div class="price-grid">
+          <div class="card price-card">
+            <div class="price-head">
+              <span class="price-name">Local</span>
+              <span class="price-flag">forever</span>
+            </div>
+            <div class="price-amount">
+              <span class="price-value">$0</span>
+              <span class="price-unit">/ one machine</span>
+            </div>
+            <p class="price-desc">For one folder on one machine. Every feature that does not need a network.</p>
+            <ul class="price-list">
+              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Unlimited notes and snippets</span></li>
+              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Offline full-text search</span></li>
+              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Plain Markdown, no export step</span></li>
+            </ul>
+            <a class="btn btn-secondary" href="#/notes">Open the app</a>
+          </div>
+
+          <div class="card price-card is-featured">
+            <div class="price-head">
+              <span class="price-name">Pro</span>
+              <span class="price-flag">recommended</span>
+            </div>
+            <div class="price-amount">
+              <span class="price-value">$8</span>
+              <span class="price-unit">/ month</span>
+            </div>
+            <p class="price-desc">For the same folder on the laptop, the desktop and the box under the desk.</p>
+            <ul class="price-list">
+              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Everything in Local</span></li>
+              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Sync through your own git remote</span></li>
+              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Conflict history kept for 90 days</span></li>
+            </ul>
+            <a class="btn btn-primary" href="#/settings">Start the trial</a>
+          </div>
+
+          <div class="card price-card">
+            <div class="price-head">
+              <span class="price-name">Team</span>
+              <span class="price-flag">per seat</span>
+            </div>
+            <div class="price-amount">
+              <span class="price-value">$12</span>
+              <span class="price-unit">/ user / month</span>
+            </div>
+            <p class="price-desc">For groups that keep runbooks in one place and want them reviewed like code.</p>
+            <ul class="price-list">
+              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Everything in Pro</span></li>
+              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Shared folders with review on snippets</span></li>
+              <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>SSO and audit log</span></li>
+            </ul>
+            <a class="btn btn-secondary" href="#/settings">Contact us</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+  <!-- ============================================================
+       ROUTE #/notes
+       ============================================================ -->
+  <section class="route" data-route="notes" aria-labelledby="notes-title" hidden>
+    <div class="app-shell">
+      <aside class="app-sidebar" aria-label="Collections">
+        <div class="sidebar-head">
+          <span class="sidebar-title">Collections</span>
+          <button class="btn btn-icon" type="button" data-action="new-note" aria-label="New note in this collection">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M10 4v12M4 10h12"/></svg>
+          </button>
+        </div>
+        <nav class="sidebar-nav" aria-label="Collections">
+          <a class="sidebar-item" href="#/notes" aria-current="true">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5h12M4 10h12M4 14.5h7"/></svg>
+            <span>All notes</span><span class="count">6</span>
+          </a>
+          <a class="sidebar-item" href="#/notes">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4.5h6l2 3v8H5v-8z"/><path d="M8 11h4M8 13.5h3"/></svg>
+            <span>Snippets</span><span class="count">3</span>
+          </a>
+          <a class="sidebar-item" href="#/notes">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h12M4 10h12M4 14h12"/></svg>
+            <span>Runbooks</span><span class="count">1</span>
+          </a>
+          <a class="sidebar-item" href="#/notes">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 4l6 3v6l-6 3-6-3V7z"/></svg>
+            <span>Postmortems</span><span class="count">1</span>
+          </a>
+          <a class="sidebar-item" href="#/notes">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h12v9H4z"/><path d="M4 9h12"/></svg>
+            <span>Archive</span><span class="count">1</span>
+          </a>
+        </nav>
+        <div class="sidebar-foot">
+          <div class="sidebar-path">~/devnotes</div>
+          <div class="sidebar-path">index: 38 files</div>
+        </div>
+      </aside>
+
+      <div class="app-main">
+        <div class="app-toolbar">
+          <div class="breadcrumb">
+            <span>Notes</span>
+            <span class="sep" aria-hidden="true">/</span>
+            <span class="current">All notes</span>
+          </div>
+          <div class="input-with-icon toolbar-search">
+            <svg class="input-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="9" r="5"/><path d="M13 13l4 4"/></svg>
+            <input class="input" id="notes-search" type="search" placeholder="Filter notes" aria-label="Filter notes by title">
+          </div>
+          <div class="toolbar-actions">
+            <div class="demo-rail" role="group" aria-label="Prototype state">
+              <span class="demo-rail-label">state</span>
+              <button class="btn btn-ghost" type="button" data-note-state="default" aria-pressed="true">default</button>
+              <button class="btn btn-ghost" type="button" data-note-state="empty" aria-pressed="false">empty</button>
+              <button class="btn btn-ghost" type="button" data-note-state="loading" aria-pressed="false">loading</button>
+              <button class="btn btn-ghost" type="button" data-note-state="error" aria-pressed="false">error</button>
+            </div>
+            <button class="btn btn-primary btn-sm" type="button" data-action="new-note">
+              <svg class="icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M10 4v12M4 10h12"/></svg>
+              <span>New note</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="list-head">
+          <h1 class="list-title" id="notes-title">All notes</h1>
+          <span class="list-count" id="notes-count">6 notes</span>
+        </div>
+
+        <div class="notes" id="notes-list" aria-busy="false">
+          <button class="note-row" type="button" data-note="1" aria-current="true">
+            <span class="note-main">
+              <span class="note-title">Debounce a callback</span>
+              <span class="note-excerpt">export function useDebounced&lt;T&gt;(value: T, ms = 250): T</span>
+            </span>
+            <span class="note-side"><span class="badge">react</span><span class="note-date">Oct 14</span></span>
+          </button>
+          <button class="note-row" type="button" data-note="2" aria-current="false">
+            <span class="note-main">
+              <span class="note-title">Postgres: find slow queries</span>
+              <span class="note-excerpt">SELECT query, calls, mean_exec_time FROM pg_stat_statements ORDER BY mean_exec_time DESC</span>
+            </span>
+            <span class="note-side"><span class="badge">postgres</span><span class="note-date">Oct 12</span></span>
+          </button>
+          <button class="note-row" type="button" data-note="3" aria-current="false">
+            <span class="note-main">
+              <span class="note-title">SSH config for staging</span>
+              <span class="note-excerpt">Host staging / HostName 10.0.4.12 / User deploy / ForwardAgent no</span>
+            </span>
+            <span class="note-side"><span class="badge">infra</span><span class="note-date">Oct 09</span></span>
+          </button>
+          <button class="note-row" type="button" data-note="4" aria-current="false">
+            <span class="note-main">
+              <span class="note-title">Migration postmortem, Oct 2026</span>
+              <span class="note-excerpt">The 2.4 migration ran 41 minutes longer than planned. Root cause: lock held by a backfill job.</span>
+            </span>
+            <span class="note-side"><span class="badge">postmortem</span><span class="note-date">Oct 04</span></span>
+          </button>
+          <button class="note-row" type="button" data-note="5" aria-current="false">
+            <span class="note-main">
+              <span class="note-title">ffmpeg presets for screen recordings</span>
+              <span class="note-excerpt">ffmpeg -i in.mov -vcodec libx264 -crf 22 -preset slow out.mp4</span>
+            </span>
+            <span class="note-side"><span class="badge">media</span><span class="note-date">Sep 28</span></span>
+          </button>
+          <button class="note-row" type="button" data-note="6" aria-current="false">
+            <span class="note-main">
+              <span class="note-title">Reading list: storage engines</span>
+              <span class="note-excerpt">B-trees versus LSM trees, write amplification, compaction strategies worth reading.</span>
+            </span>
+            <span class="note-side"><span class="badge">reading</span><span class="note-date">Sep 21</span></span>
+          </button>
+        </div>
+
+        <div class="notes" id="notes-skeleton" hidden aria-hidden="true">
+          <div class="skeleton-row"><div class="skeleton w-40"></div><div class="skeleton w-60"></div></div>
+          <div class="skeleton-row"><div class="skeleton w-60"></div><div class="skeleton w-40"></div></div>
+          <div class="skeleton-row"><div class="skeleton w-40"></div><div class="skeleton w-60"></div></div>
+          <div class="skeleton-row"><div class="skeleton w-60"></div><div class="skeleton w-40"></div></div>
+          <div class="skeleton-row"><div class="skeleton w-40"></div><div class="skeleton w-60"></div></div>
+        </div>
+        <p class="sr-only" id="notes-loading-text" hidden>Loading notes from ~/devnotes</p>
+
+        <div class="state-block" id="notes-empty" hidden>
+          <span class="state-icon">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l2.2-6h9.6L17 11v4H3z"/><path d="M3 11h4l1 2h4l1-2h4"/></svg>
+          </span>
+          <h2 class="state-title">This collection is empty</h2>
+          <p class="state-desc">Nothing in <span class="mono">~/devnotes</span> yet. A new note is just a Markdown file in that folder.</p>
+          <div class="state-actions">
+            <button class="btn btn-primary" type="button" data-action="new-note">New note</button>
+            <button class="btn btn-secondary" type="button" data-action="restore-notes">Show all notes</button>
+          </div>
+        </div>
+
+        <div class="state-block" id="notes-error" hidden>
+          <span class="state-icon">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3.5L17 16H3z"/><path d="M10 8v3.5"/><path d="M10 13.5v.5"/></svg>
+          </span>
+          <h2 class="state-title">Could not read ~/devnotes</h2>
+          <p class="state-desc">The folder moved, or the process lost permission to read it. DevNotes only reads inside the notes folder.</p>
+          <div class="state-actions">
+            <button class="btn btn-secondary" type="button" data-action="retry-notes">Retry</button>
+            <a class="btn btn-ghost" href="#/settings">Open settings</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ROUTE #/settings
+       ============================================================ -->
+  <section class="route" data-route="settings" aria-labelledby="settings-title" hidden>
+    <div class="app-shell">
+      <aside class="app-sidebar" aria-label="Settings sections">
+        <div class="sidebar-head">
+          <span class="sidebar-title">Settings</span>
+        </div>
+        <nav class="sidebar-nav" aria-label="Settings sections">
+          <button class="sidebar-item" type="button" data-scroll="#settings-profile" aria-current="true">Profile</button>
+          <button class="sidebar-item" type="button" data-scroll="#settings-editor">Editor</button>
+          <button class="sidebar-item" type="button" data-scroll="#settings-storage">Storage</button>
+          <button class="sidebar-item" type="button" data-scroll="#settings-danger">Danger zone</button>
+        </nav>
+        <div class="sidebar-foot">
+          <div class="sidebar-path">~/.config/devnotes</div>
+          <div class="sidebar-path">config.toml</div>
+        </div>
+      </aside>
+
+      <div class="app-main">
+        <div class="app-toolbar">
+          <div class="breadcrumb">
+            <a href="#/notes">Notes</a>
+            <span class="sep" aria-hidden="true">/</span>
+            <span class="current">Settings</span>
+          </div>
+          <div class="toolbar-actions">
+            <div class="demo-rail" role="group" aria-label="Prototype state">
+              <span class="demo-rail-label">state</span>
+              <button class="btn btn-ghost" type="button" data-settings-state="default" aria-pressed="true">default</button>
+              <button class="btn btn-ghost" type="button" data-settings-state="dirty" aria-pressed="false">dirty</button>
+              <button class="btn btn-ghost" type="button" data-settings-state="form-error" aria-pressed="false">form-error</button>
+              <button class="btn btn-ghost" type="button" data-settings-state="modal" aria-pressed="false">modal</button>
+              <button class="btn btn-ghost" type="button" data-settings-state="saved" aria-pressed="false">saved</button>
+            </div>
+          </div>
+        </div>
+
+        <form class="settings-wrap" id="settings-form" novalidate>
+          <div class="settings-head">
+            <div>
+              <h1 class="settings-title" id="settings-title">Settings</h1>
+              <p class="settings-desc">Stored in <span class="mono">~/.config/devnotes/config.toml</span>. Nothing here is synced unless you turn on a git remote.</p>
+            </div>
+          </div>
+
+          <div class="settings-actions">
+            <span class="save-status" id="save-status" data-state="clean">
+              <span class="dot" aria-hidden="true"></span>
+              <span id="save-status-text">All changes saved</span>
+            </span>
+            <button class="btn btn-ghost" type="button" data-action="reset-form">Cancel</button>
+            <button class="btn btn-primary" type="submit" id="save-btn" disabled>
+              <span class="spinner" aria-hidden="true"></span>
+              <span class="btn-label">Save changes</span>
+            </button>
+          </div>
+
+          <div class="form-alert" id="form-alert" role="alert" hidden>
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3.5L17 16H3z"/><path d="M10 8v3.5"/><path d="M10 13.5v.5"/></svg>
+            <span id="form-alert-text">Check the highlighted fields before saving.</span>
+          </div>
+
+          <div class="settings-stack">
+            <section class="card" id="settings-profile" aria-labelledby="card-profile-title">
+              <div class="card-header">
+                <div>
+                  <h2 class="card-title" id="card-profile-title">Profile</h2>
+                  <p class="card-desc">Used for the commit message DevNotes writes when it syncs.</p>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="form-grid">
+                  <div class="field" data-field="name">
+                    <label class="field-label" for="name">Name</label>
+                    <input class="input" id="name" name="name" type="text" value="Ada Okonkwo" autocomplete="name">
+                    <span class="field-helper">Shown in sync commits.</span>
+                    <span class="field-error" id="name-error">
+                      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3.5L17 16H3z"/><path d="M10 8v3.5"/></svg>
+                      <span>Enter a name.</span>
+                    </span>
+                  </div>
+                  <div class="field" data-field="email">
+                    <label class="field-label" for="email">Email</label>
+                    <input class="input" id="email" name="email" type="email" value="ada@example.dev" autocomplete="email">
+                    <span class="field-helper">Only needed for a team seat.</span>
+                    <span class="field-error" id="email-error">
+                      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3.5L17 16H3z"/><path d="M10 8v3.5"/></svg>
+                      <span>Enter a valid address, like you@example.com</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="card" id="settings-editor" aria-labelledby="card-editor-title">
+              <div class="card-header">
+                <div>
+                  <h2 class="card-title" id="card-editor-title">Editor</h2>
+                  <p class="card-desc">Applies to the note editor and to snippets opened from the list.</p>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="field">
+                  <label class="field-label" for="font-size">Editor font size</label>
+                  <div class="select">
+                    <select id="font-size" name="font-size">
+                      <option value="12">12 px</option>
+                      <option value="13">13 px</option>
+                      <option value="14" selected>14 px</option>
+                      <option value="16">16 px</option>
+                    </select>
+                    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8l5 5 5-5"/></svg>
+                  </div>
+                  <span class="field-helper">Mono text only. The interface keeps its own scale.</span>
+                </div>
+                <div class="toggle-row">
+                  <div class="toggle-copy">
+                    <span class="toggle-title" id="vim-label">Vim keybindings</span>
+                    <span class="toggle-desc">Normal and insert modes in the editor. Escape returns to normal mode.</span>
+                  </div>
+                  <input class="switch" type="checkbox" id="vim" name="vim" aria-labelledby="vim-label" checked>
+                </div>
+                <div class="toggle-row">
+                  <div class="toggle-copy">
+                    <span class="toggle-title" id="autosave-label">Autosave on blur</span>
+                    <span class="toggle-desc">Writes the file when the editor loses focus. Off means you press Cmd S.</span>
+                  </div>
+                  <input class="switch" type="checkbox" id="autosave" name="autosave" aria-labelledby="autosave-label" checked>
+                </div>
+              </div>
+            </section>
+
+            <section class="card" id="settings-storage" aria-labelledby="card-storage-title">
+              <div class="card-header">
+                <div>
+                  <h2 class="card-title" id="card-storage-title">Storage</h2>
+                  <p class="card-desc">One folder holds everything. Move it and DevNotes reindexes on the next open.</p>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="field">
+                  <label class="field-label" for="notes-path">Notes folder</label>
+                  <input class="input" id="notes-path" name="notes-path" type="text" value="~/devnotes" readonly>
+                  <span class="field-helper">Read-only in this prototype. The desktop app opens a folder picker here.</span>
+                </div>
+                <div class="toggle-row">
+                  <div class="toggle-copy">
+                    <span class="toggle-title" id="offline-label">Read-only when the remote is unreachable</span>
+                    <span class="toggle-desc">Keeps edits local instead of failing the save. Conflicts are reported on the next sync.</span>
+                  </div>
+                  <input class="switch" type="checkbox" id="offline" name="offline" aria-labelledby="offline-label">
+                </div>
+              </div>
+            </section>
+
+            <section class="card danger-zone" id="settings-danger" aria-labelledby="card-danger-title">
+              <div class="card-header">
+                <div>
+                  <h2 class="card-title" id="card-danger-title">Danger zone</h2>
+                  <p class="card-desc">Resets preferences only. Notes and snippets are never deleted from here.</p>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="toggle-copy">
+                  <span class="toggle-title">Reset all settings</span>
+                  <span class="toggle-desc">Clears config.toml, including the sync remote.</span>
+                </div>
+                <button class="btn btn-secondary" type="button" data-action="open-modal">Reset settings</button>
+              </div>
+            </section>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="#/home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3.5h7.5L16 7v9.5H5z"/><path d="M8 3.5V7h4"/><path d="M7.5 11h6M7.5 14h4"/></svg>
+          </span>
+          <span class="brand-name">DevNotes</span>
+        </a>
+        <p class="footer-note">A notebook that keeps your files where you can still read them.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <div class="footer-col">
+          <h4>App</h4>
+          <a class="footer-link" href="#/home">Overview</a>
+          <a class="footer-link" href="#/notes">Notes</a>
+          <a class="footer-link" href="#/settings">Settings</a>
+        </div>
+        <div class="footer-col">
+          <h4>This build</h4>
+          <span class="footer-note">P3 prototype</span>
+          <span class="footer-note">Design pipeline demo</span>
+        </div>
+      </nav>
+    </div>
+    <p class="footer-legal">DevNotes is a fictional product. This page is the P3 prototype of a design pipeline demo, with original copy and original UI. Pricing and product claims are illustrative.</p>
+  </div>
+</footer>
+
+<!-- ============================================================
+     MODAL (contract: components.md#modal)
+     ============================================================ -->
+<div class="modal-backdrop" id="modal-backdrop" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-desc">
+    <div class="modal-header">
+      <h2 class="modal-title" id="modal-title">Reset all settings?</h2>
+      <button class="btn btn-icon" type="button" data-action="close-modal" aria-label="Close dialog">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15"/></svg>
+      </button>
+    </div>
+    <div class="modal-body" id="modal-desc">
+      <p>This clears every preference in <span class="mono">~/.config/devnotes/config.toml</span>, including the sync remote. Files in <span class="mono">~/devnotes</span> are not touched.</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" type="button" data-action="close-modal">Cancel</button>
+      <button class="btn btn-danger" type="button" data-action="confirm-reset">Reset settings</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ============================================================
+     State
+     ============================================================ */
+  var state = {
+    route: "home",
+    theme: "dark",
+    notes: "default",
+    settings: "default",
+    demo: true
+  };
+  var errors = [];
+  window.addEventListener("error", function (e) { errors.push(String(e.message)); });
+  window.addEventListener("unhandledrejection", function (e) { errors.push(String(e.reason)); });
+
+  var $ = function (sel, root) { return (root || document).querySelector(sel); };
+  var $$ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
+
+  /* ============================================================
+     Router: #/home | #/notes | #/settings  (+ ?state=&theme=&demo=&modal=1&freeze=1)
+     ============================================================ */
+  function parseHash() {
+    var raw = location.hash.replace(/^#/, "");
+    if (!raw) raw = "/home";
+    var parts = raw.split("?");
+    var path = parts[0] || "/home";
+    var params = new URLSearchParams(parts[1] || "");
+    return { path: path.replace(/\/+$/, "") || "/home", params: params };
+  }
+
+  var TITLES = {
+    home: "DevNotes: notes that sit next to your code",
+    notes: "Notes · DevNotes",
+    settings: "Settings · DevNotes"
+  };
+
+  function setRoute(name, opts) {
+    if (!TITLES[name]) name = "home";
+    state.route = name;
+    $$("[data-route]").forEach(function (el) {
+      el.hidden = el.getAttribute("data-route") !== name;
+    });
+    $$("[data-nav]").forEach(function (el) {
+      if (el.getAttribute("data-nav") === name) el.setAttribute("aria-current", "page");
+      else el.removeAttribute("aria-current");
+    });
+    document.title = TITLES[name];
+    document.body.setAttribute("data-route", name);
+    if (!(opts && opts.keepScroll === true)) window.scrollTo(0, 0);
+    closeNav();
+    if (name !== "settings") closeModal(true);
+  }
+
+  function onHashChange() {
+    var parsed = parseHash();
+    setRoute(parsed.path.replace(/^\//, ""), { keepScroll: false });
+    setTheme(parsed.params.has("theme") ? parsed.params.get("theme") : "dark");
+    if (parsed.params.has("demo")) setDemo(parsed.params.get("demo") !== "0");
+    if (parsed.params.get("modal") === "1") openModal();
+    if (parsed.params.has("state")) window.__setState(parsed.params.get("state"));
+    if (parsed.params.get("freeze") === "1") freezeMotion();
+  }
+
+  function freezeMotion() {
+    var style = document.createElement("style");
+    style.id = "freeze-motion";
+    style.textContent =
+      "*,*::before,*::after{animation:none !important;transition:none !important;scroll-behavior:auto !important;}" +
+      "html{scrollbar-width:none !important;}" +
+      "html::-webkit-scrollbar,body::-webkit-scrollbar{width:0 !important;height:0 !important;}";
+    document.head.appendChild(style);
+  }
+
+  /* ============================================================
+     Theme
+     ============================================================ */
+  function setTheme(theme) {
+    state.theme = theme === "light" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", state.theme);
+    var btn = $('[data-action="toggle-theme"]');
+    if (btn) btn.setAttribute("aria-label", state.theme === "dark" ? "Switch to light theme" : "Switch to dark theme");
+  }
+
+  /* ============================================================
+     Demo affordances
+     ============================================================ */
+  function setDemo(on) {
+    state.demo = !!on;
+    document.body.setAttribute("data-demo", state.demo ? "on" : "off");
+  }
+
+  function closeNav() {
+    var nav = $("#mobile-nav");
+    var btn = $('[data-action="toggle-nav"]');
+    if (!nav || !btn) return;
+    nav.classList.remove("is-open");
+    nav.setAttribute("data-open", "false");
+    btn.setAttribute("aria-expanded", "false");
+    btn.setAttribute("aria-label", "Open menu");
+  }
+
+  function toggleNav() {
+    var nav = $("#mobile-nav");
+    var btn = $('[data-action="toggle-nav"]');
+    var open = nav.classList.toggle("is-open");
+    nav.setAttribute("data-open", open ? "true" : "false");
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+    btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  }
+
+  /* ============================================================
+     Notes: states + filter + retry
+     ============================================================ */
+  var NOTES_VIEWS = {
+    default: ["#notes-list"],
+    empty: ["#notes-empty"],
+    loading: ["#notes-skeleton", "#notes-loading-text"],
+    error: ["#notes-error"]
+  };
+
+  function setNotesState(name) {
+    if (!NOTES_VIEWS[name]) name = "default";
+    state.notes = name;
+    Object.keys(NOTES_VIEWS).forEach(function (key) {
+      NOTES_VIEWS[key].forEach(function (sel) {
+        var el = $(sel);
+        if (el) el.hidden = key !== name;
+      });
+    });
+    var list = $("#notes-list");
+    if (list) list.setAttribute("aria-busy", name === "loading" ? "true" : "false");
+    $$("[data-note-state]").forEach(function (btn) {
+      btn.setAttribute("aria-pressed", btn.getAttribute("data-note-state") === name ? "true" : "false");
+    });
+    updateNotesCount();
+  }
+
+  function updateNotesCount() {
+    var countEl = $("#notes-count");
+    if (!countEl) return;
+    var rows = $$("#notes-list .note-row");
+    var visible = rows.filter(function (r) { return !r.hidden; }).length;
+    if (state.notes === "loading") { countEl.textContent = "loading"; return; }
+    if (state.notes === "error") { countEl.textContent = "unavailable"; return; }
+    if (state.notes === "empty" || visible === 0) { countEl.textContent = "0 notes"; return; }
+    countEl.textContent = visible + (visible === 1 ? " note" : " notes");
+  }
+
+  function filterNotes(term) {
+    var q = term.trim().toLowerCase();
+    var rows = $$("#notes-list .note-row");
+    var visible = 0;
+    rows.forEach(function (row) {
+      var hit = !q || row.textContent.toLowerCase().indexOf(q) !== -1;
+      row.hidden = !hit;
+      if (hit) visible += 1;
+    });
+    if (state.notes === "default") {
+      if (visible === 0 && q) {
+        setNotesState("empty");
+        var desc = $("#notes-empty .state-desc");
+        if (desc) desc.innerHTML = 'No note matches "' + term.replace(/[<>&]/g, "") + '". Try a shorter word or clear the filter.';
+      } else if (state.notes === "empty") {
+        setNotesState("default");
+      }
+      updateNotesCount();
+    }
+  }
+
+  function retryNotes() {
+    setNotesState("loading");
+    window.setTimeout(function () { setNotesState("default"); }, 700);
+  }
+
+  /* ============================================================
+     Settings: dirty / validation / save
+     ============================================================ */
+  var DEFAULTS = { name: "Ada Okonkwo", email: "ada@example.dev", fontSize: "14", vim: true, autosave: true, offline: false };
+
+  function formValues() {
+    return {
+      name: $("#name").value.trim(),
+      email: $("#email").value.trim(),
+      fontSize: $("#font-size").value,
+      vim: $("#vim").checked,
+      autosave: $("#autosave").checked,
+      offline: $("#offline").checked
+    };
+  }
+
+  function isDirty() {
+    var v = formValues();
+    return v.name !== DEFAULTS.name || v.email !== DEFAULTS.email || v.fontSize !== DEFAULTS.fontSize ||
+      v.vim !== DEFAULTS.vim || v.autosave !== DEFAULTS.autosave || v.offline !== DEFAULTS.offline;
+  }
+
+  function setSaveStatus(kind, text) {
+    var status = $("#save-status");
+    if (!status) return;
+    status.setAttribute("data-state", kind);
+    $("#save-status-text").textContent = text;
+  }
+
+  function setSettingsState(name) {
+    state.settings = name;
+    $$("[data-settings-state]").forEach(function (b) {
+      b.setAttribute("aria-pressed", b.getAttribute("data-settings-state") === name ? "true" : "false");
+    });
+  }
+
+  function refreshDirtyState() {
+    var dirty = isDirty();
+    var btn = $("#save-btn");
+    if (btn) btn.disabled = !dirty;
+    if (dirty) setSaveStatus("dirty", "Unsaved changes");
+    else setSaveStatus("clean", "All changes saved");
+    if (state.settings !== "form-error" && state.settings !== "saved") setSettingsState(dirty ? "dirty" : "default");
+  }
+
+  function fieldError(field, message) {
+    var wrap = $('[data-field="' + field + '"]');
+    if (!wrap) return;
+    var input = $(".input", wrap);
+    var err = $(".field-error span", wrap);
+    if (message) {
+      wrap.setAttribute("data-invalid", "true");
+      input.setAttribute("aria-invalid", "true");
+      input.setAttribute("aria-describedby", field + "-error");
+      if (err && message !== true) err.textContent = message;
+    } else {
+      wrap.removeAttribute("data-invalid");
+      input.removeAttribute("aria-invalid");
+      input.removeAttribute("aria-describedby");
+    }
+  }
+
+  function validate() {
+    var v = formValues();
+    var problems = [];
+    if (v.name.length < 2) { fieldError("name", "Enter a name."); problems.push("name"); }
+    else fieldError("name", null);
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.email)) { fieldError("email", "Enter a valid address, like you@example.com"); problems.push("email"); }
+    else fieldError("email", null);
+    var alert = $("#form-alert");
+    if (problems.length) {
+      alert.hidden = false;
+      $("#form-alert-text").textContent = problems.length === 1
+        ? "One field needs attention before saving."
+        : problems.length + " fields need attention before saving.";
+      var first = $('[data-field="' + problems[0] + '"] .input');
+      if (first) first.focus();
+    } else {
+      alert.hidden = true;
+    }
+    return problems.length === 0;
+  }
+
+  function saveSettings() {
+    if (!validate()) return;
+    var btn = $("#save-btn");
+    btn.setAttribute("data-loading", "true");
+    btn.disabled = true;
+    setSaveStatus("dirty", "Saving");
+    window.setTimeout(function () {
+      btn.removeAttribute("data-loading");
+      btn.disabled = !isDirty();
+      setSaveStatus("saved", "All changes saved");
+      setSettingsState("saved");
+    }, 700);
+  }
+
+  function resetForm() {
+    $("#name").value = DEFAULTS.name;
+    $("#email").value = DEFAULTS.email;
+    $("#font-size").value = DEFAULTS.fontSize;
+    $("#vim").checked = DEFAULTS.vim;
+    $("#autosave").checked = DEFAULTS.autosave;
+    $("#offline").checked = DEFAULTS.offline;
+    fieldError("name", null);
+    fieldError("email", null);
+    $("#form-alert").hidden = true;
+    refreshDirtyState();
+    setSettingsState("default");
+  }
+
+  /* ============================================================
+     Modal (focus trap + ESC + focus return)
+     ============================================================ */
+  var lastFocus = null;
+
+  function openModal() {
+    var backdrop = $("#modal-backdrop");
+    if (!backdrop || !backdrop.hidden) return;
+    lastFocus = document.activeElement;
+    backdrop.hidden = false;
+    void backdrop.offsetHeight; // force reflow so the enter transition runs without depending on rAF (background tabs pause rAF)
+    backdrop.classList.add("is-open");
+    var focusable = $$("button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])", backdrop)
+      .filter(function (el) { return !el.disabled && el.offsetParent !== null; });
+    if (focusable[1]) focusable[1].focus(); else if (focusable[0]) focusable[0].focus();
+    setSettingsState("modal");
+  }
+
+  function closeModal(silent) {
+    var backdrop = $("#modal-backdrop");
+    if (!backdrop || backdrop.hidden) return;
+    backdrop.classList.remove("is-open");
+    window.setTimeout(function () { backdrop.hidden = true; }, silent ? 0 : 160);
+    if (!silent) {
+      setSettingsState(isDirty() ? "dirty" : "default");
+      if (lastFocus && document.contains(lastFocus)) lastFocus.focus();
+    }
+  }
+
+  document.addEventListener("keydown", function (e) {
+    var backdrop = $("#modal-backdrop");
+    if (!backdrop || backdrop.hidden) return;
+    if (e.key === "Escape") { e.preventDefault(); closeModal(); return; }
+    if (e.key !== "Tab") return;
+    var focusable = $$("button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])", backdrop)
+      .filter(function (el) { return !el.disabled && el.offsetParent !== null; });
+    if (!focusable.length) return;
+    var first = focusable[0];
+    var last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+
+  /* ============================================================
+     Tabs
+     ============================================================ */
+  function selectTab(name, focus) {
+    $$(".feature-tabs .tab").forEach(function (tab) {
+      var on = tab.getAttribute("data-tab") === name;
+      tab.setAttribute("aria-selected", on ? "true" : "false");
+      tab.tabIndex = on ? 0 : -1;
+      if (on && focus) tab.focus();
+    });
+    $$("[data-panel]").forEach(function (panel) {
+      panel.hidden = panel.getAttribute("data-panel") !== name;
+    });
+  }
+
+  function onTabKeydown(e) {
+    var tabs = $$(".feature-tabs .tab");
+    var index = tabs.indexOf(document.activeElement);
+    if (index === -1) return;
+    var next = null;
+    if (e.key === "ArrowRight") next = tabs[(index + 1) % tabs.length];
+    if (e.key === "ArrowLeft") next = tabs[(index - 1 + tabs.length) % tabs.length];
+    if (e.key === "Home") next = tabs[0];
+    if (e.key === "End") next = tabs[tabs.length - 1];
+    if (!next) return;
+    e.preventDefault();
+    selectTab(next.getAttribute("data-tab"), true);
+  }
+
+  /* ============================================================
+     Copy snippet
+     ============================================================ */
+  function copyCode(btn) {
+    var pre = $("#code-sample");
+    if (!pre) return;
+    var text = pre.textContent;
+    var label = $(".btn-label", btn);
+    var done = function () {
+      if (label) label.textContent = "Copied";
+      btn.setAttribute("data-loading", "false");
+      window.setTimeout(function () { if (label) label.textContent = "Copy"; }, 1400);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, done);
+    } else { done(); }
+  }
+
+  /* ============================================================
+     Actions
+     ============================================================ */
+  document.addEventListener("click", function (e) {
+    var actionEl = e.target.closest("[data-action]");
+    if (actionEl) {
+      var action = actionEl.getAttribute("data-action");
+      if (action === "toggle-theme") setTheme(state.theme === "dark" ? "light" : "dark");
+      if (action === "toggle-nav") toggleNav();
+      if (action === "scroll-features") {
+        var features = $("#features");
+        if (features) features.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      if (action === "new-note") { setNotesState("default"); var search = $("#notes-search"); if (search) search.focus(); }
+      if (action === "restore-notes") { var s2 = $("#notes-search"); if (s2) s2.value = ""; filterNotes(""); setNotesState("default"); }
+      if (action === "retry-notes") retryNotes();
+      if (action === "copy-code") copyCode(actionEl);
+      if (action === "open-modal") openModal();
+      if (action === "close-modal") closeModal();
+      if (action === "reset-form") resetForm();
+      if (action === "confirm-reset") { closeModal(); resetForm(); setSaveStatus("saved", "Settings reset"); }
+      return;
+    }
+    var noteStateBtn = e.target.closest("[data-note-state]");
+    if (noteStateBtn) { setNotesState(noteStateBtn.getAttribute("data-note-state")); return; }
+    var settingsStateBtn = e.target.closest("[data-settings-state]");
+    if (settingsStateBtn) {
+      var s = settingsStateBtn.getAttribute("data-settings-state");
+      if (s === "modal") openModal();
+      else if (s === "form-error") { $("#email").value = "not-an-email"; $("#name").value = ""; validate(); refreshDirtyState(); setSettingsState("form-error"); }
+      else if (s === "dirty") { $("#name").value = "Ada O."; refreshDirtyState(); }
+      else if (s === "saved") { resetForm(); setSaveStatus("saved", "All changes saved"); }
+      else { resetForm(); }
+      return;
+    }
+    var tab = e.target.closest(".tab[data-tab]");
+    if (tab) { selectTab(tab.getAttribute("data-tab")); return; }
+    var scrollBtn = e.target.closest("[data-scroll]");
+    if (scrollBtn) {
+      var target = $(scrollBtn.getAttribute("data-scroll"));
+      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+      $$("[data-scroll]").forEach(function (b) { b.removeAttribute("aria-current"); });
+      scrollBtn.setAttribute("aria-current", "true");
+      return;
+    }
+    var row = e.target.closest(".note-row");
+    if (row) {
+      $$("#notes-list .note-row").forEach(function (r) { r.setAttribute("aria-current", "false"); });
+      row.setAttribute("aria-current", "true");
+      return;
+    }
+    if (e.target === $("#modal-backdrop")) closeModal();
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.target && e.target.classList && e.target.classList.contains("tab")) onTabKeydown(e);
+  });
+
+  var searchInput = $("#notes-search");
+  if (searchInput) searchInput.addEventListener("input", function () { filterNotes(searchInput.value); });
+
+  $$("#settings-form input, #settings-form select").forEach(function (el) {
+    el.addEventListener("input", refreshDirtyState);
+    el.addEventListener("change", refreshDirtyState);
+  });
+
+  var form = $("#settings-form");
+  if (form) form.addEventListener("submit", function (e) { e.preventDefault(); saveSettings(); });
+
+  /* ============================================================
+     Public debug hooks (used by acceptance capture scripts)
+     ============================================================ */
+  window.__setState = function (name) {
+    if (state.route === "notes") { setNotesState(name); return name; }
+    if (state.route === "settings") {
+      if (name === "modal") { openModal(); return name; }
+      if (name === "form-error") { $("#email").value = "not-an-email"; $("#name").value = ""; validate(); refreshDirtyState(); setSettingsState("form-error"); return name; }
+      if (name === "dirty") { $("#name").value = "Ada O."; refreshDirtyState(); return name; }
+      if (name === "saved") { resetForm(); setSaveStatus("saved", "All changes saved"); return name; }
+      resetForm(); return "default";
+    }
+    if (name === "tabs-snippets") { selectTab("snippets"); return name; }
+    if (name === "tabs-sync") { selectTab("sync"); return name; }
+    if (name === "tabs-search") { selectTab("search"); return name; }
+    return null;
+  };
+  window.__setTheme = setTheme;
+  window.__setDemo = setDemo;
+  window.__route = function () { return state.route; };
+
+  /* Measurement probe for A5 / A6 / A7 / A8 / A9 evidence.
+     Pass 1 — authored declarations: no naked visual values allowed in the stylesheet.
+     Pass 2 — computed styles after layout: catches UA defaults and inherited values.
+     Pass 3 — contrast pairs, horizontal overflow, console errors. */
+  window.__probe = function () {
+    var docEl = document.documentElement;
+    var rootStyle = getComputedStyle(docEl);
+
+    var authored = [];
+    var tokenNames = [];
+    var walkRules = function (rules) {
+      Array.prototype.forEach.call(rules, function (rule) {
+        if (rule.conditionText && /prefers-reduced-motion/.test(rule.conditionText)) return;
+        if (rule.cssRules && rule.cssRules.length) { walkRules(rule.cssRules); return; }
+        if (!rule.style || !rule.selectorText) return;
+        var isTokenRule = rule.selectorText.indexOf(":root") !== -1 || rule.selectorText.indexOf("data-theme") !== -1;
+        rule.style.cssText.split(";").forEach(function (decl) {
+          var idx = decl.indexOf(":");
+          if (idx === -1) return;
+          var prop = decl.slice(0, idx).trim().toLowerCase();
+          var value = decl.slice(idx + 1).trim();
+          if (!prop || !value) return;
+          if (prop.indexOf("--") === 0) { if (isTokenRule) tokenNames.push(prop); return; }
+          authored.push({ selector: rule.selectorText, prop: prop, value: value });
+        });
+      });
+    };
+    Array.prototype.forEach.call(document.styleSheets, function (sheet) {
+      if (sheet.ownerNode && sheet.ownerNode.id === "freeze-motion") return;
+      try { walkRules(sheet.cssRules); } catch (err) { /* cross-origin sheet, ignored */ }
+    });
+
+    var tokens = {};
+    tokenNames.filter(function (n, i) { return tokenNames.indexOf(n) === i; }).forEach(function (name) {
+      tokens[name] = rootStyle.getPropertyValue(name).trim();
+    });
+    var px = function (v) { var m = /^(-?[\d.]+)px$/.exec(String(v).trim()); return m ? parseFloat(m[1]) : null; };
+    var tokenSet = function (prefix) {
+      var out = {};
+      Object.keys(tokens).forEach(function (n) {
+        if (n.indexOf(prefix) !== 0) return;
+        var v = px(tokens[n]);
+        if (v !== null) out[v] = n;
+      });
+      return out;
+    };
+    var textSet = tokenSet("--text-");
+    var radiusSet = tokenSet("--radius-");
+    var weightSet = {};
+    Object.keys(tokens).forEach(function (n) {
+      if (n.indexOf("--weight-") !== 0) return;
+      var w = parseFloat(tokens[n]);
+      if (!isNaN(w)) weightSet[w] = n;
+    });
+    var colorKey = function (raw) {
+      if (raw === null || raw === undefined) return null;
+      var s = String(raw).trim().toLowerCase();
+      if (!s || s === "transparent" || s === "none") return "transparent";
+      var rgba = /^rgba?\(([^)]+)\)$/.exec(s);
+      if (rgba) {
+        var parts = rgba[1].replace(/\//g, " ").split(/[,\s]+/).filter(function (x) { return x !== ""; }).map(parseFloat);
+        if (parts.length >= 3) {
+          var a = parts.length > 3 ? Math.round(parts[3] * 1000) / 1000 : 1;
+          if (a === 0) return "transparent";
+          return "rgba(" + Math.round(parts[0]) + "," + Math.round(parts[1]) + "," + Math.round(parts[2]) + "," + a + ")";
+        }
+      }
+      var hex = /^#([0-9a-f]{3,8})$/.exec(s);
+      if (hex) {
+        var h = hex[1];
+        if (h.length === 3 || h.length === 4) h = h.split("").map(function (ch) { return ch + ch; }).join("");
+        var r = parseInt(h.slice(0, 2), 16), g = parseInt(h.slice(2, 4), 16), b = parseInt(h.slice(4, 6), 16);
+        var al = h.length === 8 ? Math.round((parseInt(h.slice(6, 8), 16) / 255) * 1000) / 1000 : 1;
+        return "rgba(" + r + "," + g + "," + b + "," + al + ")";
+      }
+      return s;
+    };
+    var colorTokens = {};
+    Object.keys(tokens).forEach(function (name) {
+      var k = colorKey(tokens[name]);
+      if (k && k !== "transparent") colorTokens[k] = name;
+    });
+
+    /* ---------- Pass 1: authored values ---------- */
+    var VAR = /var\(--/;
+    var SPACING = /^(padding|padding-top|padding-right|padding-bottom|padding-left|padding-inline|padding-block|margin|margin-top|margin-right|margin-bottom|margin-left|margin-inline|margin-block|gap|row-gap|column-gap|top|right|bottom|left|inset)$/;
+    var INK = /^(color|background|background-color|border-color|border-top-color|border-right-color|border-bottom-color|border-left-color|outline-color)$/;
+    var authoredIssues = { spacing: [], ink: [], radius: [], fontSize: [], weight: [], tracking: [], motion: [] };
+    var noteA = function (bucket, item) { if (authoredIssues[bucket].length < 8) authoredIssues[bucket].push(item); };
+
+    authored.forEach(function (d) {
+      var v = d.value;
+      var where = d.selector + " { " + d.prop + ": " + v + " }";
+      if (SPACING.test(d.prop)) {
+        if (VAR.test(v)) return;
+        if (/^(0|auto|inherit|initial|unset|normal)$/.test(v)) return;
+        if (/[%]|calc\(|em$|rem$|ch$|vh$|vw$/.test(v)) return;
+        var num = px(v);
+        if (num !== null && num % 4 === 0) return;
+        noteA("spacing", where);
+      } else if (INK.test(d.prop)) {
+        if (VAR.test(v)) return;
+        var parts = v.split(/\s+/).filter(Boolean);
+        if (parts.every(function (part) { return /^(transparent|inherit|currentcolor|none)$/i.test(part); })) return;
+        noteA("ink", where);
+      } else if (d.prop === "border-radius") {
+        if (VAR.test(v) || /^(0|0px|50%)$/.test(v)) return;
+        noteA("radius", where);
+      } else if (d.prop === "font-size") {
+        if (VAR.test(v) || /^(inherit|100%|1em)$/.test(v)) return;
+        noteA("fontSize", where);
+      } else if (d.prop === "font-weight") {
+        if (VAR.test(v) || /^(normal|inherit|bold)$/.test(v)) return;
+        noteA("weight", where);
+      } else if (d.prop === "letter-spacing") {
+        if (VAR.test(v) || /^(normal|inherit)$/.test(v)) return;
+        noteA("tracking", where);
+      } else if (d.prop === "transition" || d.prop === "animation") {
+        if (/\d+(\.\d+)?m?s\b/.test(v) && !VAR.test(v)) noteA("motion", where);
+      } else if (d.prop === "transition-duration" || d.prop === "animation-duration") {
+        if (VAR.test(v) || /^0s$/.test(v)) return;
+        noteA("motion", where);
+      } else if (d.prop === "transition-timing-function") {
+        if (VAR.test(v) || /^(ease|linear|ease-in|ease-out|ease-in-out|inherit)$/.test(v)) return;
+        noteA("motion", where);
+      }
+    });
+
+    /* ---------- Pass 2: computed styles ---------- */
+    var SKIP_TAGS = { OPTION: 1, OPTGROUP: 1, SCRIPT: 1, STYLE: 1, BR: 1, HEAD: 1, META: 1, LINK: 1, TITLE: 1 };
+    var computedIssues = { fontSize: [], weight: [], radius: [], ink: [], tracking: [], background: [] };
+    var noteC = function (bucket, item) { if (computedIssues[bucket].length < 8) computedIssues[bucket].push(item); };
+    var pathOf = function (el) {
+      var name = el.tagName.toLowerCase();
+      if (typeof el.className === "string" && el.className.trim()) name += "." + el.className.trim().split(/\s+/).join(".");
+      return name;
+    };
+    Array.prototype.forEach.call(document.querySelectorAll("body, body *"), function (el) {
+      if (SKIP_TAGS[el.tagName]) return;
+      if (el.closest("[hidden]")) return;
+      if (el.closest("[aria-hidden='true']")) return;
+      var s = getComputedStyle(el);
+      if (s.display === "none" || s.visibility === "hidden") return;
+      var p = pathOf(el);
+      var fs = px(s.fontSize);
+      if (fs !== null && !Object.prototype.hasOwnProperty.call(textSet, fs)) noteC("fontSize", p + " { font-size: " + s.fontSize + " }");
+      var w = Math.round(parseFloat(s.fontWeight));
+      if (w && !Object.prototype.hasOwnProperty.call(weightSet, w)) noteC("weight", p + " { font-weight: " + s.fontWeight + " }");
+      s.borderRadius.split(/[\s\/]+/).forEach(function (part) {
+        if (!part || part === "0px" || part === "50%") return;
+        var v = px(part);
+        if (v === null || !Object.prototype.hasOwnProperty.call(radiusSet, v)) noteC("radius", p + " { border-radius: " + s.borderRadius + " }");
+      });
+      var ls = px(s.letterSpacing);
+      if (fs !== null && fs >= 24 && ls !== null && ls >= 0) noteC("tracking", p + " { letter-spacing: " + s.letterSpacing + " at " + s.fontSize + " }");
+      if (fs !== null && fs < 24 && ls !== null && Math.abs(ls) > 0.01) noteC("tracking", p + " { letter-spacing: " + s.letterSpacing + " at " + s.fontSize + " }");
+      var fg = colorKey(s.color);
+      if (fg && fg !== "transparent" && !colorTokens[fg]) noteC("ink", p + " { color: " + s.color + " }");
+      var bg = colorKey(s.backgroundColor);
+      if (bg && bg !== "transparent" && !colorTokens[bg]) noteC("ink", p + " { background-color: " + s.backgroundColor + " }");
+      if (s.backgroundImage && s.backgroundImage !== "none") noteC("background", p + " { background-image: " + s.backgroundImage + " }");
+    });
+
+    /* ---------- Pass 3: contrast, overflow, console ---------- */
+    var parseRGB = function (str) {
+      var m = /rgba?\(([^)]+)\)/.exec(String(str));
+      if (!m) return null;
+      var parts = m[1].replace(/\//g, " ").split(/[,\s]+/).filter(function (x) { return x !== ""; }).map(parseFloat);
+      if (parts.length < 3) return null;
+      return { r: parts[0], g: parts[1], b: parts[2], a: parts.length > 3 ? parts[3] : 1 };
+    };
+    var lum = function (c) {
+      var f = function (v) { v /= 255; return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); };
+      return 0.2126 * f(c.r) + 0.7152 * f(c.g) + 0.0722 * f(c.b);
+    };
+    var blend = function (fg, bg) {
+      return { r: Math.round(fg.r * fg.a + bg.r * (1 - fg.a)), g: Math.round(fg.g * fg.a + bg.g * (1 - fg.a)), b: Math.round(fg.b * fg.a + bg.b * (1 - fg.a)), a: 1 };
+    };
+    var pageBg = { r: 8, g: 9, b: 10, a: 1 };
+    var rootBg = parseRGB(getComputedStyle(docEl).backgroundColor);
+    if (rootBg && rootBg.a > 0) pageBg = rootBg;
+    var bgOf = function (el) {
+      var node = el;
+      while (node && node !== docEl) {
+        var bg = parseRGB(getComputedStyle(node).backgroundColor);
+        if (bg && bg.a > 0) return bg.a < 1 ? blend(bg, pageBg) : bg;
+        node = node.parentElement;
+      }
+      return pageBg;
+    };
+    var contrastFailures = [];
+    Array.prototype.forEach.call(document.querySelectorAll("body *"), function (el) {
+      if (el.children.length) return;
+      if (el.closest("[aria-hidden='true']")) return;
+      var text = (el.textContent || "").trim();
+      if (!text) return;
+      var s = getComputedStyle(el);
+      if (s.display === "none" || s.visibility === "hidden" || parseFloat(s.opacity) < 0.5) return;
+      var fg = parseRGB(s.color);
+      if (!fg) return;
+      var bg = bgOf(el);
+      if (fg.a < 1) fg = blend(fg, bg);
+      var l1 = lum(fg), l2 = lum(bg);
+      var ratio = (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
+      var fs2 = parseFloat(s.fontSize) || 0;
+      var large = fs2 >= 24 || (fs2 >= 18.66 && parseFloat(s.fontWeight) >= 590);
+      var need = large ? 3 : 4.5;
+      if (ratio < need) {
+        contrastFailures.push({
+          text: text.slice(0, 40),
+          selector: pathOf(el),
+          fontSize: s.fontSize,
+          color: s.color,
+          background: "rgb(" + bg.r + ", " + bg.g + ", " + bg.b + ")",
+          ratio: Math.round(ratio * 100) / 100,
+          need: need
+        });
+      }
+    });
+
+    var wide = [];
+    Array.prototype.forEach.call(document.querySelectorAll("body *"), function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.width > 0 && r.right > docEl.clientWidth + 1) wide.push(pathOf(el) + " right=" + Math.round(r.right));
+    });
+
+    var countOf = function (obj) { return Object.keys(obj).reduce(function (n, k) { return n + obj[k].length; }, 0); };
+
+    return {
+      route: state.route,
+      theme: state.theme,
+      state: state.route === "notes" ? state.notes : state.settings,
+      viewport: { w: docEl.clientWidth, h: docEl.clientHeight, scrollW: docEl.scrollWidth },
+      overflow: { horizontal: docEl.scrollWidth > docEl.clientWidth + 1, wideElements: wide.slice(0, 8) },
+      tokenCount: Object.keys(tokens).length,
+      authored: authoredIssues,
+      authoredViolationCount: countOf(authoredIssues),
+      computed: computedIssues,
+      computedViolationCount: countOf(computedIssues),
+      violationCount: countOf(authoredIssues) + countOf(computedIssues),
+      contrastFailures: contrastFailures.slice(0, 20),
+      consoleErrors: errors.slice()
+    };
+  };
+  /* ============================================================
+     Boot
+     ============================================================ */
+  function boot() {
+    var parsed = parseHash();
+    setTheme(parsed.params.has("theme") ? parsed.params.get("theme") : "dark");
+    setDemo(parsed.params.get("demo") !== "0");
+    setRoute(parsed.path.replace(/^\//, ""), { keepScroll: true });
+    if (parsed.params.has("state")) window.__setState(parsed.params.get("state"));
+    if (parsed.params.get("modal") === "1") openModal();
+    if (parsed.params.get("freeze") === "1") freezeMotion();
+    setNotesState(state.notes);
+    refreshDirtyState();
+  }
+
+  window.addEventListener("hashchange", onHashChange);
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+})();
+</script>
+</body>
+</html>

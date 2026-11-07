@@ -1,0 +1,41 @@
+/* drift fixture: CSS 文件里的违规 + 少量合法写法 */
+
+.clean-card {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-3);
+  padding: var(--space-5);
+  font-size: var(--font-size-3);
+  font-family: var(--font-inter);
+  z-index: var(--z-10);
+}
+
+.dirty-card {
+  background: #1a1b20;                    /* hardcoded-color */
+  border-radius: 10px;                    /* off-scale-radius (10 不在 4/8/12) */
+  padding: 20px;                          /* off-scale-spacing (20 不在刻度) */
+  margin: 0 0 18px 0;                     /* off-scale-spacing: 18px */
+  font-size: 18px;                        /* off-scale-font-size */
+  font-weight: 900;                       /* 不校验字重（无规则） */
+  backdrop-filter: saturate(180%) blur(20px); /* glassmorphism */
+  box-shadow: 0 0 0 1px #ffffff22, 0 8px 24px #00000080, 0 2px 4px #00000040; /* shadow-stack 3 层 */
+  z-index: 999;                           /* magic-zindex */
+}
+
+.legit-token-only {
+  background: #08090a;                    /* OK */
+  color: #e6e8ec;                         /* OK */
+  font-size: 14px;                        /* OK */
+  padding: 8px 16px;                      /* OK */
+  border-radius: 8px;                     /* OK */
+  z-index: 100;                           /* OK */
+}
+
+.legit-gradient {
+  background: linear-gradient(90deg, #3b82f6 0%, #08090a 100%);  /* 蓝色渐变：不应触发 ai-purple */
+}
+
+@media (min-width: 640px) {
+  .dirty-card { padding: 24px; }          /* OK */
+}

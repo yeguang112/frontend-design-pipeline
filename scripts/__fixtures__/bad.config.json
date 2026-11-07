@@ -1,0 +1,48 @@
+{
+  "baseUrl": "./accept-site/index.html",
+  "out": "out-acceptance",
+  "viewport": {
+    "width": 800,
+    "height": 600,
+    "deviceScaleFactor": 2
+  },
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "routes": [
+    {
+      "id": "home",
+      "path": "#/home"
+    },
+    {
+      "id": "settings",
+      "path": "#/settings"
+    }
+  ],
+  "states": [
+    {
+      "id": "default",
+      "actions": [
+        {
+          "type": "nope"
+        }
+      ]
+    },
+    {
+      "id": "menu-open",
+      "actions": [
+        {
+          "type": "click",
+          "selector": "#menu-btn"
+        },
+        {
+          "type": "wait",
+          "ms": 120
+        }
+      ]
+    }
+  ],
+  "freezeAnimations": true,
+  "waitMs": 300
+}

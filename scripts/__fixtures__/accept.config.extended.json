@@ -1,0 +1,42 @@
+{
+  "baseUrl": "./accept-site/index.html",
+  "out": "out-acceptance-extended",
+  "viewport": { "width": 800, "height": 600, "deviceScaleFactor": 2 },
+  "viewports": [
+    { "width": 800, "height": 600, "deviceScaleFactor": 2, "label": "desktop" },
+    { "width": 390, "height": 844, "deviceScaleFactor": 2, "label": "mobile" }
+  ],
+  "themes": ["light", "dark"],
+  "routes": [
+    { "id": "home", "path": "#/home" },
+    { "id": "settings", "path": "#/settings" }
+  ],
+  "states": [
+    { "id": "default", "actions": [] },
+    {
+      "id": "menu-open",
+      "actions": [
+        { "type": "click", "selector": "#menu-btn" },
+        { "type": "wait", "ms": 120 }
+      ]
+    },
+    {
+      "id": "empty",
+      "actions": [
+        { "type": "eval", "script": "window.__setEmpty && window.__setEmpty(); return true;" },
+        { "type": "wait", "ms": 100 }
+      ]
+    },
+    {
+      "id": "hover-card",
+      "actions": [
+        { "type": "hover", "selector": "#view-home .card" },
+        { "type": "scroll", "y": 0 },
+        { "type": "screenshot-only" }
+      ]
+    }
+  ],
+  "freezeAnimations": true,
+  "waitMs": 200,
+  "fullPage": true
+}

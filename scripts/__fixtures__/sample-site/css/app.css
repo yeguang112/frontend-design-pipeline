@@ -1,0 +1,143 @@
+/* Fixture Site — 外部样式表（用于验证 link 解析 + 目录递归 + @media 断点） */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+.page {
+  background-color: #08090a;
+  color: #e6e8ec;
+  font-family: "Inter", "Noto Sans SC", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 24px;
+}
+
+.surface {
+  background: #12141a;
+  border-radius: 12px;
+  padding: 32px;
+  margin-bottom: 24px;
+}
+
+.surface--raised {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  border: 1px solid #262a33;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.5px;
+  color: #e6e8ec;
+  margin: 0 0 12px 0;
+}
+
+.subtitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: #e6e8ec;
+  margin: 0 0 8px;
+}
+
+.body {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #8b919d;
+  margin: 0 0 16px;
+}
+
+.caption {
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+  color: #8b919d;
+}
+
+.hero {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.5px;
+  color: #e6e8ec;
+  margin-bottom: 24px;
+}
+
+.divider {
+  border-top: 1px solid #262a33;
+  margin: 24px 0;
+}
+
+.btn {
+  background: #3b82f6;
+  color: #ffffff;
+  border: 0;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 150ms ease-out, transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: #3b82f6;
+  border: 1px solid #3b82f6;
+  border-radius: 8px;
+  padding: 8px 16px;
+}
+
+.btn--danger {
+  background: #ff6b6b;
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 8px 16px;
+}
+
+.tooltip {
+  position: absolute;
+  z-index: 100;
+  background: #12141a;
+  color: #e6e8ec;
+  border: 1px solid #262a33;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 10;
+}
+
+.skeleton {
+  border-radius: 4px;
+  animation: pulse 1500ms ease-in-out infinite;
+  background: #12141a;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+@media (max-width: 639px) {
+  .page { padding: 16px; }
+  .hero { font-size: 24px; }
+  .title { font-size: 20px; }
+}
+
+@media (min-width: 640px) {
+  .page { padding: 32px; }
+  .surface { padding: 32px; }
+}
+
+@media (min-width: 1024px) {
+  .page { padding: 48px; }
+  .hero { font-size: 32px; }
+  .surface { border-radius: 16px; }
+}

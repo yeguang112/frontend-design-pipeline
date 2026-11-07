@@ -1,0 +1,48 @@
+{
+  "$comment": "验收截图配置。矩阵 = route × state × viewport × theme。states 为顶层数组（与 capture-acceptance.mjs 对齐）；actions 必须可复现，不依赖后端/随机。",
+  "baseUrl": "file:///D:/project/design/frozen/index.html",
+  "out": "acceptance/screenshots",
+  "viewports": [
+    { "width": 1440, "height": 900, "deviceScaleFactor": 2 },
+    { "width": 768, "height": 1024, "deviceScaleFactor": 2 },
+    { "width": 390, "height": 844, "deviceScaleFactor": 2 }
+  ],
+  "themes": ["light", "dark"],
+  "freezeAnimations": true,
+  "waitForFonts": true,
+  "waitMs": 300,
+  "routes": [
+    { "id": "home", "url": "#/home" },
+    { "id": "settings", "url": "#/settings" }
+  ],
+  "states": [
+    { "id": "default", "actions": [] },
+    {
+      "id": "menu-open",
+      "actions": [{ "type": "click", "selector": "#nav-menu-btn" }]
+    },
+    {
+      "id": "empty",
+      "actions": [{ "type": "eval", "script": "window.__setState && window.__setState('empty')" }]
+    },
+    {
+      "id": "loading",
+      "actions": [{ "type": "eval", "script": "window.__setState && window.__setState('loading')" }]
+    },
+    {
+      "id": "error",
+      "actions": [{ "type": "eval", "script": "window.__setState && window.__setState('error')" }]
+    },
+    {
+      "id": "form-error",
+      "actions": [
+        { "type": "fill", "selector": "#email", "value": "not-an-email" },
+        { "type": "click", "selector": "#submit" }
+      ]
+    }
+  ],
+  "thresholds": {
+    "pixelDiffRatio": 0.003,
+    "minScreenshotBytes": 5120
+  }
+}

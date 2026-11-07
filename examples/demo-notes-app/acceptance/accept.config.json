@@ -1,0 +1,81 @@
+{
+  "$comment": "DevNotes 验收截图配置。每个 route 用独立 url(?r=<id> 缓存击穿) 保证是整页加载，状态由 hash query 固定，可复现。",
+  "baseUrl": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html",
+  "out": "screenshots",
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 900,
+      "deviceScaleFactor": 1,
+      "label": "desktop"
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "deviceScaleFactor": 1,
+      "label": "tablet"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "deviceScaleFactor": 1,
+      "label": "mobile"
+    }
+  ],
+  "themes": [
+    "dark"
+  ],
+  "freezeAnimations": true,
+  "waitForFonts": true,
+  "waitMs": 450,
+  "fullPage": false,
+  "routes": [
+    {
+      "id": "home",
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=home#/home?demo=0"
+    },
+    {
+      "id": "notes",
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=notes#/notes?demo=0"
+    },
+    {
+      "id": "notes-empty",
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=notes-empty#/notes?state=empty&demo=0"
+    },
+    {
+      "id": "notes-loading",
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=notes-loading#/notes?state=loading&demo=0"
+    },
+    {
+      "id": "notes-error",
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=notes-error#/notes?state=error&demo=0"
+    },
+    {
+      "id": "settings",
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=settings#/settings?demo=0"
+    },
+    {
+      "id": "settings-form-error",
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=settings-form-error#/settings?state=form-error&demo=0"
+    },
+    {
+      "id": "settings-modal",
+      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=settings-modal#/settings?modal=1&demo=0"
+    }
+  ],
+  "states": [
+    {
+      "id": "default",
+      "actions": []
+    }
+  ],
+  "thresholds": {
+    "pixelDiffRatio": 0.003,
+    "minScreenshotBytes": 5120
+  },
+  "$notes": [
+    "deviceScaleFactor=1：PNG 尺寸 === viewport（A3 判定更直接）。模板默认 DSR=2，本次降为 1，已在验收报告记录。",
+    "state 通过 route.url 的 hash query 固定（#/notes?state=empty），不用 click/eval，保证每次截图一致。",
+    "url 里的 ?r=<id> 只用于让每次截图都是新文档加载：同文档只改 hash 的导航不会重跑 boot()，状态可能不生效（见 README 已知问题 F5）。"
+  ]
+}

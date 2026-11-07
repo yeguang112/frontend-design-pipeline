@@ -1,0 +1,133 @@
+/* ============================================================
+ * tokens.css · <项目名>
+ * 由冻结 HTML 提取 + 人工审校。实现只允许引用本文件的变量。
+ * 对应 tokens.json / tokens.md；修改须走 CR 并重冻结。
+ * ============================================================ */
+
+:root {
+  /* ── Primitive（仅内部映射，组件不要直接引用） ── */
+  --gray-0:  #ffffff;
+  --gray-50: #f7f7f8;
+  --gray-200:#e4e4e7;
+  --gray-400:#a1a1aa;
+  --gray-500:#71717a;
+  --gray-700:#3f3f46;
+  --gray-900:#111113;
+  --blue-600:#2563eb;
+  --blue-700:#1d4ed8;
+  --blue-800:#1e40af;
+
+  /* ── Surface ── */
+  --bg:            var(--gray-0);
+  --surface:       var(--gray-50);
+  --surface-2:     var(--gray-0);
+  --overlay:       rgb(0 0 0 / .45);
+
+  /* ── Foreground ── */
+  --fg:            var(--gray-900);
+  --fg-2:          var(--gray-700);
+  --muted:         var(--gray-500);
+  --meta:          var(--gray-400);
+
+  /* ── Border ── */
+  --border:        var(--gray-200);
+  --border-strong: #d4d4d8;
+
+  /* ── Accent ── */
+  --accent:        var(--blue-600);
+  --accent-hover:  var(--blue-700);
+  --accent-active: var(--blue-800);
+  --accent-on:     #ffffff;
+
+  /* ── Status ── */
+  --success: #16a34a;
+  --warn:    #d97706;
+  --danger:  #dc2626;
+  --success-bg: #f0fdf4;
+  --warn-bg:    #fffbeb;
+  --danger-bg:  #fef2f2;
+
+  /* ── Typography ── */
+  --font-display: "Geist", system-ui, -apple-system, sans-serif;
+  --font-body:    "Geist", system-ui, -apple-system, sans-serif;
+  --font-mono:    ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --text-xs:   12px;
+  --text-sm:   14px;
+  --text-base: 16px;
+  --text-lg:   18px;
+  --text-xl:   24px;
+  --text-2xl:  32px;
+  --text-3xl:  48px;
+  --text-4xl:  64px;
+
+  --leading-body:  1.6;
+  --leading-tight: 1.15;
+  --tracking-display: -0.02em;
+
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-strong:  600;
+
+  /* ── Spacing（4pt 基准） ── */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* ── Radius ── */
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   14px;
+  --radius-full: 999px;
+
+  /* ── Elevation ── */
+  --shadow-1: 0 1px 2px rgb(0 0 0 / .06);
+  --shadow-2: 0 4px 16px rgb(0 0 0 / .08);
+  --shadow-3: 0 12px 32px rgb(0 0 0 / .12);
+
+  /* ── Motion ── */
+  --ease-standard: cubic-bezier(.23, 1, .32, 1);
+  --dur-enter: 200ms;
+  --dur-exit:  140ms;
+
+  /* ── Layer ── */
+  --z-base:     0;
+  --z-sticky:   10;
+  --z-dropdown: 100;
+  --z-modal:    1000;
+  --z-toast:    1100;
+
+  /* ── Layout ── */
+  --container:       1200px;
+  --container-wide:  1400px;
+  --gutter:          var(--space-6);
+}
+
+/* 深色主题：只覆盖语义层，不重复组件规则 */
+[data-theme="dark"] {
+  --bg:        #0b0b0d;
+  --surface:   #141417;
+  --surface-2: #1b1b20;
+  --fg:        #f4f4f5;
+  --fg-2:      #d4d4d8;
+  --muted:     #9b9ba3;
+  --meta:      #6e6e76;
+  --border:    #2a2a31;
+  --border-strong: #3a3a44;
+  --accent:    #60a5fa;
+  --accent-hover: #93c5fd;
+  --accent-active: #3b82f6;
+  --accent-on: #0b0b0d;
+  --shadow-1:  0 1px 2px rgb(0 0 0 / .5);
+  --shadow-2:  0 4px 16px rgb(0 0 0 / .55);
+  --shadow-3:  0 12px 32px rgb(0 0 0 / .6);
+}

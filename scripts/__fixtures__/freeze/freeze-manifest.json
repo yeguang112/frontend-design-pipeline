@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "frozen_at": "2026-11-07T15:46:00.065Z",
+  "files": {
+    "assets/logo.svg": {
+      "sha256": "ac91e1a03ae27d8c1ca626a436b113df091e349c1180f66d1b3316dd938870ad",
+      "bytes": 227
+    },
+    "css/app.css": {
+      "sha256": "1817178fee287b7b1bb19ca4601c28c21f4d25e3b36d17cace7d6c715af47b2c",
+      "bytes": 491
+    },
+    "index.html": {
+      "sha256": "13d332f4c42118965c276f7c7dff469c4e1bd12b7829af701c6273983e9869ee",
+      "bytes": 484
+    }
+  },
+  "meta": {
+    "tool": "verify-freeze.mjs@1.0.0",
+    "root": "D:\\work\\deepseekhharness\\frontend-design-pipeline\\scripts\\__fixtures__\\freeze",
+    "fileCount": 3,
+    "totalBytes": 1202,
+    "label": "self-test"
+  }
+}

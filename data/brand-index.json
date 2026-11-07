@@ -1,0 +1,3938 @@
+{
+  "version": 1,
+  "generated_at": "2026-11-07T11:36:56.049Z",
+  "source": {
+    "repo": "VoltAgent/awesome-design-md",
+    "url": "https://github.com/VoltAgent/awesome-design-md",
+    "license": "MIT License",
+    "note": "DESIGN.md 由公开网站提取，非官方设计系统，仅作风格参考"
+  },
+  "families": [
+    {
+      "id": "F1",
+      "name": "devtools-dark",
+      "zh": "深色工程感开发者工具",
+      "definition": "以深色（或近黑暖灰）为原生介质，用等宽字体、极细半透明描边与克制的单一强调色建立层级，服务于开发者与工程型产品的视觉语汇。",
+      "keywords_en": [
+        "developer tool",
+        "dark",
+        "precise",
+        "mono",
+        "terminal",
+        "api",
+        "infrastructure",
+        "engineering"
+      ],
+      "keywords_zh": [
+        "开发者工具",
+        "深色",
+        "精密",
+        "工程感",
+        "终端",
+        "API",
+        "基础设施",
+        "B2B SaaS",
+        "技术文档"
+      ],
+      "when_to_use": "面向工程师的产品（编辑器/终端/数据库/CI/监控/Agent 框架）、API 平台官网、技术文档站、需要\"精密可信\"的 B2B 工具界面。",
+      "never_use": "面向儿童或大众消费的温暖产品、奢侈品、需要高饱和促销冲击的电商大促页、纯情绪化的品牌叙事页。",
+      "default_dials": {
+        "variance": 4,
+        "motion": 3,
+        "density": 6
+      }
+    },
+    {
+      "id": "F2",
+      "name": "premium-minimal",
+      "zh": "高端极简/消费电子",
+      "definition": "用极大留白、单一强调色与产品图本身承担全部叙事，界面几乎\"不存在\"——高端硬件与精品工具的克制表达。",
+      "keywords_en": [
+        "premium",
+        "minimal",
+        "whitespace",
+        "product-as-hero",
+        "restrained",
+        "luxury",
+        "understated"
+      ],
+      "keywords_zh": [
+        "高端",
+        "极简",
+        "留白",
+        "产品即主角",
+        "克制",
+        "精品",
+        "消费电子",
+        "轻奢"
+      ],
+      "when_to_use": "硬件/消费电子发布、单品营销长页、高端工具类产品、需要\"贵而不吵\"的品牌官网。",
+      "never_use": "功能密集的后台、需要并列大量指标的数据看板、强调信息密度的企业系统、多语长文档。",
+      "default_dials": {
+        "variance": 2,
+        "motion": 3,
+        "density": 3
+      }
+    },
+    {
+      "id": "F3",
+      "name": "fintech-trust",
+      "zh": "金融科技信任感",
+      "definition": "白底或深底上的高信任度蓝/紫品牌色，配克制圆角与成体系的语义状态色，让资金与数字显得稳定、可核对。",
+      "keywords_en": [
+        "fintech",
+        "trust",
+        "secure",
+        "banking",
+        "payments",
+        "crypto",
+        "regulated",
+        "institutional"
+      ],
+      "keywords_zh": [
+        "金融",
+        "信任",
+        "安全",
+        "支付",
+        "银行",
+        "加密资产",
+        "合规",
+        "费率",
+        "账户"
+      ],
+      "when_to_use": "支付/银行/券商/加密交易所、需要建立信任的 B2C 金融产品、定价与费率页、账户与对账界面。",
+      "never_use": "娱乐化社交产品、儿童教育、追求怪趣的实验性品牌、纯艺术表达页。",
+      "default_dials": {
+        "variance": 3,
+        "motion": 3,
+        "density": 5
+      }
+    },
+    {
+      "id": "F4",
+      "name": "enterprise-system",
+      "zh": "企业级系统/文档密集",
+      "definition": "token/组件库驱动的中性界面，允许高信息密度与长文档，用边框、层级与语义色承担结构而非装饰。",
+      "keywords_en": [
+        "enterprise",
+        "design system",
+        "documentation",
+        "dense",
+        "tokenized",
+        "dashboard",
+        "b2b",
+        "admin"
+      ],
+      "keywords_zh": [
+        "企业级",
+        "系统化",
+        "文档",
+        "信息密集",
+        "组件库",
+        "控制台",
+        "后台",
+        "B2B 平台"
+      ],
+      "when_to_use": "企业控制台、文档站、数据表格、组件库驱动的大型产品、需要长表格与多状态的后台。",
+      "never_use": "单页品牌叙事、需要强情绪冲击的营销页、儿童或娱乐产品。",
+      "default_dials": {
+        "variance": 2,
+        "motion": 2,
+        "density": 8
+      }
+    },
+    {
+      "id": "F5",
+      "name": "ai-native",
+      "zh": "AI 原生产品",
+      "definition": "以模型能力为叙事核心：渐变/辉光/流体质感、未来感大标题与轻量等宽标签，强调\"正在生成\"的动势。",
+      "keywords_en": [
+        "ai",
+        "llm",
+        "model",
+        "generative",
+        "agent",
+        "gradient",
+        "glow",
+        "futuristic",
+        "chat"
+      ],
+      "keywords_zh": [
+        "AI",
+        "大模型",
+        "生成式",
+        "智能体",
+        "渐变",
+        "辉光",
+        "未来感",
+        "对话",
+        "推理"
+      ],
+      "when_to_use": "AI 助手/生成式工具、模型 API 平台、AI 基础设施、需要表达\"智能正在发生\"的产品页。",
+      "never_use": "严肃合规金融的对外官网、传统制造业产品目录、儿童产品、需要绝对中性的政府/医疗界面。",
+      "default_dials": {
+        "variance": 6,
+        "motion": 6,
+        "density": 4
+      }
+    },
+    {
+      "id": "F6",
+      "name": "creative-tool",
+      "zh": "创意工具/画布/多彩",
+      "definition": "把颜色当作内容而不是装饰：中性 UI 外壳包住鲜活的画布/内容，圆角友善，强调可玩性、可组合与协作感。",
+      "keywords_en": [
+        "creative",
+        "canvas",
+        "colorful",
+        "playful",
+        "design tool",
+        "collaboration",
+        "swatch",
+        "no-code"
+      ],
+      "keywords_zh": [
+        "创意工具",
+        "画布",
+        "多彩",
+        "可玩",
+        "设计工具",
+        "协作",
+        "色板",
+        "无代码",
+        "白板"
+      ],
+      "when_to_use": "设计/白板/无代码/内容创作工具、需要表达\"自由组合\"的产品、面向创意人的营销页。",
+      "never_use": "严肃金融交易界面、需要绝对稳定的企业控制台、儿童安全类产品。",
+      "default_dials": {
+        "variance": 7,
+        "motion": 6,
+        "density": 4
+      }
+    },
+    {
+      "id": "F7",
+      "name": "editorial-brand",
+      "zh": "编辑感/品牌叙事",
+      "definition": "以大字号衬线或压缩无衬线 + 摄影与叙事段落构建杂志式节奏，页面像一篇故事而不是一张功能表。",
+      "keywords_en": [
+        "editorial",
+        "brand narrative",
+        "magazine",
+        "serif",
+        "storytelling",
+        "photography",
+        "manifesto"
+      ],
+      "keywords_zh": [
+        "编辑感",
+        "品牌叙事",
+        "杂志",
+        "衬线",
+        "故事性",
+        "摄影",
+        "宣言",
+        "年度报告"
+      ],
+      "when_to_use": "品牌官网/年度报告/发布叙事页、需要讲清\"为什么\"的产品、文化与内容品牌。",
+      "never_use": "高频操作的后台、需要并排比较大量参数的界面、以转化为唯一目标的短落地页。",
+      "default_dials": {
+        "variance": 6,
+        "motion": 4,
+        "density": 3
+      }
+    },
+    {
+      "id": "F8",
+      "name": "consumer-warm",
+      "zh": "消费/生活/好友好",
+      "definition": "暖中性色与圆润几何，配合真实照片与柔和阴影，让产品显得亲切、可信、可日常使用。",
+      "keywords_en": [
+        "consumer",
+        "warm",
+        "friendly",
+        "lifestyle",
+        "approachable",
+        "rounded",
+        "human",
+        "cozy"
+      ],
+      "keywords_zh": [
+        "消费",
+        "生活",
+        "温暖",
+        "友好",
+        "亲切",
+        "圆润",
+        "有人味",
+        "社区",
+        "预订"
+      ],
+      "when_to_use": "消费级 App/预订/本地生活/生活方式、面向大众的服务、需要降低使用门槛的工具。",
+      "never_use": "硬核工程仪表盘、金融风控后台、高端冷调奢侈品、严肃合规文档。",
+      "default_dials": {
+        "variance": 4,
+        "motion": 4,
+        "density": 5
+      }
+    },
+    {
+      "id": "F9",
+      "name": "industrial-bold",
+      "zh": "工业/汽车/硬朗力量",
+      "definition": "零或极小圆角、全大写宽字距、黑白摄影与单一金属/品牌色，传达机械精度与压迫性的力量感。",
+      "keywords_en": [
+        "industrial",
+        "automotive",
+        "bold",
+        "sharp",
+        "uppercase",
+        "engineering",
+        "power",
+        "aerospace"
+      ],
+      "keywords_zh": [
+        "工业",
+        "汽车",
+        "硬朗",
+        "直角",
+        "大写",
+        "工程",
+        "力量感",
+        "航天",
+        "硬件"
+      ],
+      "when_to_use": "汽车/机械/航天/硬件，需要表达性能与权威的发布页、参数与规格展示、产品线目录。",
+      "never_use": "母婴/儿童、温柔生活方式、需要轻松幽默的社交产品、亲和力优先的医疗界面。",
+      "default_dials": {
+        "variance": 3,
+        "motion": 5,
+        "density": 4
+      }
+    },
+    {
+      "id": "F10",
+      "name": "commerce-conversion",
+      "zh": "电商/营销转化",
+      "definition": "为点击与转化组织信息：强 CTA、清晰价格层级、产品网格与信任标记，视觉整体服务于漏斗效率。",
+      "keywords_en": [
+        "ecommerce",
+        "conversion",
+        "marketing",
+        "landing page",
+        "cta",
+        "pricing",
+        "growth",
+        "signup"
+      ],
+      "keywords_zh": [
+        "电商",
+        "转化",
+        "营销",
+        "落地页",
+        "CTA",
+        "定价",
+        "增长",
+        "注册",
+        "活动页"
+      ],
+      "when_to_use": "电商/预订/订阅转化页、SaaS 营销落地页、定价与方案对比页、活动与促销页。",
+      "never_use": "内部工具、深度技术文档、需要长时间沉浸的编辑器界面、以品牌叙事为主的官网。",
+      "default_dials": {
+        "variance": 5,
+        "motion": 6,
+        "density": 6
+      }
+    }
+  ],
+  "brands": [
+    {
+      "id": "airbnb",
+      "name": "Airbnb",
+      "repo_path": "design-md/airbnb/DESIGN.md",
+      "source_url": "https://airbnb.com/",
+      "family": "F8",
+      "secondary_family": "F10",
+      "theme": [
+        "light"
+      ],
+      "vibe_keywords_en": [
+        "warm",
+        "photographic",
+        "friendly",
+        "travel"
+      ],
+      "vibe_keywords_zh": [
+        "温暖",
+        "摄影主导",
+        "友好",
+        "旅行感"
+      ],
+      "best_for": [
+        "旅行/住宿/本地生活",
+        "图片驱动的商品发现",
+        "消费级双边市场"
+      ],
+      "avoid_for": [
+        "深色工程仪表盘",
+        "极简 B2B 文档站"
+      ],
+      "density": 5,
+      "formality": 4,
+      "energy": 6,
+      "signature": [
+        "Rausch 红 #ff385c 作为唯一品牌色",
+        "Cereal 字体圆润末端",
+        "三层次叠加的暖调卡片投影",
+        "摄影优先的房源卡片，圆角 8/14/20/32 分档"
+      ],
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#f2f2f2",
+        "text": "#222222",
+        "muted": "#6a6a6a",
+        "accent": "#ff385c",
+        "accent_alt": "#e00b41",
+        "border": "#c1c1c1"
+      },
+      "fonts": {
+        "display": "Airbnb Cereal VF",
+        "body": "Airbnb Cereal VF",
+        "mono": null
+      },
+      "radius_px": 8,
+      "shadow_style": "三层叠加：描边环 + 2px 柔光 + 4px 强模糊，暖调",
+      "motion_feel": "短促 ease-out；悬停加深阴影/放大图片",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "红色强调 + 大圆角是品牌资产；若抽掉摄影只留红色圆角卡片，会退化成通用消费模板。",
+      "one_liner_zh": "白底 Rausch 红、摄影优先的温暖消费级空气感"
+    },
+    {
+      "id": "airtable",
+      "name": "Airtable",
+      "repo_path": "design-md/airtable/DESIGN.md",
+      "source_url": "https://airtable.com/",
+      "family": "F4",
+      "secondary_family": "F10",
+      "theme": [
+        "light"
+      ],
+      "vibe_keywords_en": [
+        "systematic",
+        "neutral",
+        "grid",
+        "product-led"
+      ],
+      "vibe_keywords_zh": [
+        "系统化",
+        "中性",
+        "表格感",
+        "产品驱动"
+      ],
+      "best_for": [
+        "数据库/表格类产品",
+        "团队协作 SaaS",
+        "企业产品营销页"
+      ],
+      "avoid_for": [
+        "豪华/艺术品牌",
+        "强情绪化叙事"
+      ],
+      "density": 6,
+      "formality": 6,
+      "energy": 4,
+      "signature": [
+        "深海军蓝 #181d26 正文 + Airtable 蓝 #1b61c9 动作色",
+        "Haas + Haas Groot Disp 双字体",
+        "正文正字距（0.08–0.28px）",
+        "蓝调多层投影与 1px 描边并存"
+      ],
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#f8fafc",
+        "text": "#181d26",
+        "muted": "rgba(4,14,32,0.69)",
+        "accent": "#1b61c9",
+        "accent_alt": "#254fad",
+        "border": "#e0e2e6"
+      },
+      "fonts": {
+        "display": "Haas Groot Disp",
+        "body": "Haas",
+        "mono": null
+      },
+      "radius_px": 16,
+      "shadow_style": "蓝调多层投影（rgba(45,127,249,0.28) 作近层）",
+      "motion_feel": "克制；状态切换以背景色/描边为主",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "中性克制是它的价值；若加上渐变或大圆角会立刻像通用 SaaS 模板。",
+      "one_liner_zh": "白底深蓝文字、蓝调投影的克制企业级表格系统"
+    },
+    {
+      "id": "apple",
+      "name": "Apple",
+      "repo_path": "design-md/apple/DESIGN.md",
+      "source_url": "https://apple.com/",
+      "family": "F2",
+      "secondary_family": "F10",
+      "theme": [
+        "light",
+        "dark"
+      ],
+      "vibe_keywords_en": [
+        "premium",
+        "restrained",
+        "product-as-hero",
+        "cinematic"
+      ],
+      "vibe_keywords_zh": [
+        "高端",
+        "克制",
+        "产品即主角",
+        "消费电子"
+      ],
+      "best_for": [
+        "消费电子/硬件发布",
+        "高端单品营销长页",
+        "品牌官网"
+      ],
+      "avoid_for": [
+        "数据密集后台",
+        "开发者文档",
+        "长表格"
+      ],
+      "density": 3,
+      "formality": 8,
+      "energy": 4,
+      "signature": [
+        "黑 #000000 与浅灰 #f5f5f7 交替的分区节奏",
+        "单一苹果蓝 #0071e3 只用于交互",
+        "980px 胶囊 CTA 与极紧标题行高（1.07–1.14）",
+        "产品摄影铺满视口，无渐变无纹理"
+      ],
+      "palette": {
+        "bg": "#f5f5f7",
+        "surface": "#ffffff",
+        "text": "#1d1d1f",
+        "muted": "rgba(0,0,0,0.48)",
+        "accent": "#0071e3",
+        "accent_alt": "#2997ff",
+        "border": null
+      },
+      "fonts": {
+        "display": "SF Pro Display",
+        "body": "SF Pro Text",
+        "mono": null
+      },
+      "radius_px": 980,
+      "shadow_style": "极少；商品卡用大偏移宽模糊柔光（3px 5px 30px）",
+      "motion_feel": "慢速淡入与轻微缩放，克制无弹跳",
+      "ai_slop_risk": "medium",
+      "ai_slop_note": "极易被做成\"白底黑字 + 胶囊按钮\"的空壳；必须补上产品摄影与极紧行高，否则只剩无特征极简。",
+      "one_liner_zh": "黑白双色节奏、产品摄影即页面的高端极简"
+    },
+    {
+      "id": "bmw",
+      "name": "BMW",
+      "repo_path": "design-md/bmw/DESIGN.md",
+      "source_url": "https://bmw.com/",
+      "family": "F9",
+      "secondary_family": "F2",
+      "theme": [
+        "light"
+      ],
+      "vibe_keywords_en": [
+        "engineered",
+        "angular",
+        "showroom",
+        "premium"
+      ],
+      "vibe_keywords_zh": [
+        "工程感",
+        "直角",
+        "展厅感",
+        "高端"
+      ],
+      "best_for": [
+        "汽车/机械/硬件",
+        "高端制造业",
+        "参数与规格页"
+      ],
+      "avoid_for": [
+        "温暖消费/母婴",
+        "卡通风",
+        "轻松社交"
+      ],
+      "density": 4,
+      "formality": 8,
+      "energy": 5,
+      "signature": [
+        "零圆角——直角直角再直角的工业几何",
+        "BMWTypeNextLatin Light 300 字重大写标题",
+        "BMW 蓝 #1c69d4 仅用于交互元素",
+        "暗色展台摄影 + 白色内容区的明暗节奏"
+      ],
+      "palette": {
+        "bg": "#ffffff",
+        "surface": null,
+        "text": "#262626",
+        "muted": "#757575",
+        "accent": "#1c69d4",
+        "accent_alt": "#1c69d4",
+        "border": null
+      },
+      "fonts": {
+        "display": "BMWTypeNextLatin Light",
+        "body": "BMWTypeNextLatin",
+        "mono": null
+      },
+      "radius_px": 0,
+      "shadow_style": "几乎无投影；靠摄影明暗与白/黑分区建立层级",
+      "motion_feel": "克制；以图片切换与视差为主",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "零圆角是硬约束；一旦加上圆角与渐变就失去德国工业感。",
+      "one_liner_zh": "零圆角直角几何 + 展台式明暗分区的高端工业感"
+    },
+    {
+      "id": "cal",
+      "name": "Cal.com",
+      "repo_path": "design-md/cal/DESIGN.md",
+      "source_url": "https://cal.com/",
+      "family": "F2",
+      "secondary_family": "F4",
+      "theme": [
+        "light"
+      ],
+      "vibe_keywords_en": [
+        "monochrome",
+        "geometric",
+        "calm",
+        "systematic"
+      ],
+      "vibe_keywords_zh": [
+        "纯灰阶",
+        "几何",
+        "沉静",
+        "系统化"
+      ],
+      "best_for": [
+        "SaaS 排程/效率工具",
+        "中性开发者友好产品",
+        "极简仪表盘"
+      ],
+      "avoid_for": [
+        "强品牌叙事",
+        "儿童/娱乐"
+      ],
+      "density": 5,
+      "formality": 6,
+      "energy": 3,
+      "signature": [
+        "完全无品牌色的纯灰阶体系",
+        "Cal Sans 几何标题 + 极紧字距，正文交给 Inter",
+        "11 组阴影定义：环描边 + 弥散 + 内高光",
+        "2–8px 小圆角，中性内敛"
+      ],
+      "palette": {
+        "bg": "#ffffff",
+        "surface": null,
+        "text": "#242424",
+        "muted": "#898989",
+        "accent": null,
+        "accent_alt": null,
+        "border": "rgba(34,42,53,0.08)"
+      },
+      "fonts": {
+        "display": "Cal Sans",
+        "body": "Inter",
+        "mono": "Roboto Mono"
+      },
+      "radius_px": 8,
+      "shadow_style": "11 层体系：ring border + 弥散投影 + inset 高光",
+      "motion_feel": "细腻过渡，靠阴影层级变化表达状态",
+      "ai_slop_risk": "medium",
+      "ai_slop_note": "无彩色 + 大留白很容易做成无个性的通用 SaaS；Cal Sans 的紧字距是唯一辨识点，不能换字。",
+      "one_liner_zh": "纯灰阶无品牌色，靠 Cal Sans 与阴影层级取胜"
+    },
+    {
+      "id": "claude",
+      "name": "Claude (Anthropic)",
+      "repo_path": "design-md/claude/DESIGN.md",
+      "source_url": "https://claude.ai/",
+      "family": "F5",
+      "secondary_family": "F8",
+      "theme": [
+        "light"
+      ],
+      "vibe_keywords_en": [
+        "warm",
+        "paper",
+        "literary",
+        "human"
+      ],
+      "vibe_keywords_zh": [
+        "温暖",
+        "纸感",
+        "文学感",
+        "有人味"
+      ],
+      "best_for": [
+        "AI 助手/对话产品",
+        "内容与写作工具",
+        "想反\"冷科技\"的 AI 品牌"
+      ],
+      "avoid_for": [
+        "需要高饱和冲击的营销页",
+        "硬核工程仪表盘"
+      ],
+      "density": 4,
+      "formality": 6,
+      "energy": 3,
+      "signature": [
+        "羊皮纸底 #f5f4ed，所有灰都带黄褐底色",
+        "Anthropic Serif 标题 + Anthropic Sans 界面 + Anthropic Mono 代码",
+        "陶土橘 #c96442 作为唯一强调色",
+        "奶油色描边 #f0eee6 与暖调透明黑投影"
+      ],
+      "palette": {
+        "bg": "#f5f4ed",
+        "surface": "#faf9f5",
+        "text": "#141413",
+        "muted": "#5e5d59",
+        "accent": "#c96442",
+        "accent_alt": null,
+        "border": "#f0eee6"
+      },
+      "fonts": {
+        "display": "Anthropic Serif",
+        "body": "Anthropic Sans",
+        "mono": "Anthropic Mono"
+      },
+      "radius_px": null,
+      "shadow_style": "暖调透明黑，不透明度极低，避免\"浮起\"",
+      "motion_feel": "温和渐入，无弹跳无位移",
+      "ai_slop_risk": "medium",
+      "ai_slop_note": "米色 + 衬线已是 2025 年 AI 站点最常见模板；必须保留陶土橘与黄褐底调的关系，否则就是通用\"温暖 AI\"套路。",
+      "one_liner_zh": "羊皮纸底色 + 陶土橘的温暖人文学术 AI 风"
+    },
+    {
+      "id": "clay",
+      "name": "Clay",
+      "repo_path": "design-md/clay/DESIGN.md",
+      "source_url": "https://clay.com/",
+      "family": "F6",
+      "secondary_family": "F8",
+      "theme": [
+        "light"
+      ],
+      "vibe_keywords_en": [
+        "playful",
+        "artisanal",
+        "swatch-driven",
+        "warm"
+      ],
+      "vibe_keywords_zh": [
+        "顽皮",
+        "手作感",
+        "色板驱动",
+        "温暖"
+      ],
+      "best_for": [
+        "创意/GTM 类工具",
+        "面向设计师的品牌",
+        "想表达\"有趣但不幼稚\""
+      ],
+      "avoid_for": [
+        "严肃金融",
+        "大型企业文档"
+      ],
+      "density": 4,
+      "formality": 3,
+      "energy": 8,
+      "signature": [
+        "命名色板：Matcha/Slushie/Lemon/Ube/Pomegranate",
+        "燕麦色描边 #dad4c8 铺满全站",
+        "悬停时 rotateZ(-8deg) + 位移 + 硬投影",
+        "24px 卡片 / 40px 区块的大圆角"
+      ],
+      "palette": {
+        "bg": "#faf9f7",
+        "surface": "#ffffff",
+        "text": "#000000",
+        "muted": "#9f9b93",
+        "accent": "#078a52",
+        "accent_alt": "#fc7981",
+        "border": "#dad4c8"
+      },
+      "fonts": {
+        "display": "Roobert",
+        "body": "Roobert",
+        "mono": "Space Mono"
+      },
+      "radius_px": 24,
+      "shadow_style": "1px 描边 + 极浅内阴影；悬停改为硬边偏移投影（-7px 7px）",
+      "motion_feel": "弹性顽皮：旋转 + 位移 + 硬投影，非淡入",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "色板只在整段区块上大面积使用，不能缩小成小色点装饰，否则变成彩色 SaaS 模板。",
+      "one_liner_zh": "奶油底 + 命名色板（抹茶/紫薯）的手作顽皮感"
+    },
+    {
+      "id": "clickhouse",
+      "name": "ClickHouse",
+      "repo_path": "design-md/clickhouse/DESIGN.md",
+      "source_url": "https://clickhouse.com/",
+      "family": "F1",
+      "secondary_family": "F9",
+      "theme": [
+        "dark"
+      ],
+      "vibe_keywords_en": [
+        "loud",
+        "high-contrast",
+        "neon",
+        "performance"
+      ],
+      "vibe_keywords_zh": [
+        "张扬",
+        "高对比",
+        "霓虹",
+        "性能感"
+      ],
+      "best_for": [
+        "数据库/基础设施",
+        "性能导向的开发者产品",
+        "强冲击技术发布会页"
+      ],
+      "avoid_for": [
+        "高端奢侈品",
+        "温暖消费"
+      ],
+      "density": 6,
+      "formality": 4,
+      "energy": 7,
+      "signature": [
+        "纯黑 #000000 + 荧光黄绿 #faff69 的极端对比",
+        "Inter 900 字重、96px 的厚重标题",
+        "深灰卡片 + 80% 透明度 #414141 描边",
+        "森林绿 #166534 作次级按钮"
+      ],
+      "palette": {
+        "bg": "#000000",
+        "surface": null,
+        "text": "#ffffff",
+        "muted": "#a0a0a0",
+        "accent": "#faff69",
+        "accent_alt": "#166534",
+        "border": "rgba(65,65,65,0.8)"
+      },
+      "fonts": {
+        "display": "Inter",
+        "body": "Inter",
+        "mono": "Inconsolata"
+      },
+      "radius_px": 4,
+      "shadow_style": "内阴影制造\"压入\"感；卡片靠描边而非投影分层",
+      "motion_feel": "克制；性能导向，不做装饰动画",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "荧光黄绿是唯一强调色，不可扩散成多色霓虹；900 字重不可降级成常规粗体。",
+      "one_liner_zh": "纯黑 + 荧光黄绿 + Inter 900 的暴烈性能感"
+    },
+    {
+      "id": "cohere",
+      "name": "Cohere",
+      "repo_path": "design-md/cohere/DESIGN.md",
+      "source_url": "https://cohere.com/",
+      "family": "F5",
+      "secondary_family": "F4",
+      "theme": [
+        "light"
+      ],
+      "vibe_keywords_en": [
+        "enterprise",
+        "restrained",
+        "editorial-serif",
+        "trustworthy"
+      ],
+      "vibe_keywords_zh": [
+        "企业级",
+        "克制",
+        "衬线编辑感",
+        "可信"
+      ],
+      "best_for": [
+        "企业级 AI/基础设施",
+        "B2B 平台",
+        "需要\"稳重可信\"的 AI 产品"
+      ],
+      "avoid_for": [
+        "潮流消费",
+        "高饱和营销"
+      ],
+      "density": 5,
+      "formality": 7,
+      "energy": 3,
+      "signature": [
+        "22px 招牌圆角——所谓 \"Cohere 卡片感\"",
+        "CohereText 衬线标题 + Unica77 无衬线正文",
+        "冷灰描边 #d9d9dd 分隔而非投影",
+        "极简：黑、白、冷灰 + 一点蓝紫 #1863dc"
+      ],
+      "palette": {
+        "bg": "#ffffff",
+        "surface": null,
+        "text": "#000000",
+        "muted": "#93939f",
+        "accent": "#1863dc",
+        "accent_alt": null,
+        "border": "#d9d9dd"
+      },
+      "fonts": {
+        "display": "CohereText",
+        "body": "Unica77",
+        "mono": null
+      },
+      "radius_px": 22,
+      "shadow_style": "近乎无投影；深度靠背景色与描边对比",
+      "motion_feel": "克制；以淡入与背景过渡为主",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "22px 圆角 + 衬线标题是辨识点；换成 8px 圆角与无衬线就变成普通企业站。",
+      "one_liner_zh": "白底冷灰 + 22px 圆角的克制企业级 AI 风"
+    },
+    {
+      "id": "coinbase",
+      "name": "Coinbase",
+      "repo_path": "design-md/coinbase/DESIGN.md",
+      "source_url": "https://coinbase.com/",
+      "family": "F3",
+      "secondary_family": "F10",
+      "theme": [
+        "light",
+        "dark"
+      ],
+      "vibe_keywords_en": [
+        "crypto",
+        "bold-blue",
+        "high-trust",
+        "confident"
+      ],
+      "vibe_keywords_zh": [
+        "加密",
+        "招牌蓝",
+        "高信任",
+        "自信"
+      ],
+      "best_for": [
+        "加密/交易/钱包",
+        "面向大众的金融科技",
+        "注册转化页"
+      ],
+      "avoid_for": [
+        "温暖生活方式",
+        "儿童产品"
+      ],
+      "density": 5,
+      "formality": 7,
+      "energy": 4,
+      "signature": [
+        "Coinbase 蓝 #0052ff 作为唯一品牌色",
+        "四字体专有家族：Display/Sans/Text/Icons",
+        "56px 胶囊主按钮，悬停转亮蓝 #578bfa",
+        "近黑 #0a0b0d 暗区 + 纯白亮区交替"
+      ],
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#eef0f3",
+        "text": "#0a0b0d",
+        "muted": "#5b616e",
+        "accent": "#0052ff",
+        "accent_alt": "#578bfa",
+        "border": "rgba(91,97,110,0.2)"
+      },
+      "fonts": {
+        "display": "CoinbaseDisplay",
+        "body": "CoinbaseText",
+        "mono": null
+      },
+      "radius_px": 56,
+      "shadow_style": "极简；深度靠深浅区块对比，不做浮起",
+      "motion_feel": "胶囊按钮的颜色过渡为主，无位移",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "蓝色必须保持 #0052ff 的高饱和纯度；调淡或换成渐变蓝会立刻失去交易所的确定感。",
+      "one_liner_zh": "纯白 + 招牌蓝、56px 胶囊按钮的加密信任感"
+    },
+    {
+      "id": "composio",
+      "name": "Composio",
+      "repo_path": "design-md/composio/DESIGN.md",
+      "source_url": "https://composio.dev/",
+      "family": "F1",
+      "secondary_family": "F5",
+      "theme": [
+        "dark"
+      ],
+      "vibe_keywords_en": [
+        "bioluminescent",
+        "compressed",
+        "technical",
+        "glow"
+      ],
+      "vibe_keywords_zh": [
+        "生物荧光",
+        "压缩排版",
+        "技术感",
+        "辉光"
+      ],
+      "best_for": [
+        "AI Agent 工具链",
+        "开发者集成平台",
+        "深色技术产品页"
+      ],
+      "avoid_for": [
+        "温暖消费",
+        "母婴",
+        "传统企业文书"
+      ],
+      "density": 6,
+      "formality": 5,
+      "energy": 6,
+      "signature": [
+        "沥青黑 #0f0f0f + 4–12% 白描边的隐形容器",
+        "abcDiatype 几何无衬线 + JetBrains Mono 技术标签",
+        "0.87–1.0 的极紧标题行高（压缩文本块）",
+        "青/蓝辉光强调色，像从内部发光"
+      ],
+      "palette": {
+        "bg": "#0f0f0f",
+        "surface": null,
+        "text": "#ffffff",
+        "muted": "rgba(255,255,255,0.6)",
+        "accent": "#0007cd",
+        "accent_alt": null,
+        "border": "rgba(255,255,255,0.10)"
+      },
+      "fonts": {
+        "display": "abcDiatype",
+        "body": "abcDiatype",
+        "mono": "JetBrains Mono"
+      },
+      "radius_px": null,
+      "shadow_style": "硬偏移投影（4px 4px）+ 辉光，模拟发光生物",
+      "motion_feel": "辉光呼吸感；悬停亮度变化",
+      "ai_slop_risk": "medium",
+      "ai_slop_note": "辉光容易外溢成通用的\"AI 紫蓝渐变\"；强调色应保持低饱和深蓝 #0007cd。",
+      "one_liner_zh": "沥青黑 + 生物荧光辉光的 AI Agent 工具链"
+    },
+    {
+      "id": "cursor",
+      "name": "Cursor",
+      "repo_path": "design-md/cursor/DESIGN.md",
+      "source_url": "https://cursor.com/",
+      "family": "F7",
+      "secondary_family": "F1",
+      "theme": [
+        "light"
+      ],
+      "vibe_keywords_en": [
+        "warm-paper",
+        "editorial",
+        "compressed",
+        "serif-body"
+      ],
+      "vibe_keywords_zh": [
+        "暖纸",
+        "编辑感",
+        "压缩",
+        "衬线正文"
+      ],
+      "best_for": [
+        "编辑感开发者工具",
+        "AI 编程产品",
+        "需要\"人文 + 技术\"混合的品牌页"
+      ],
+      "avoid_for": [
+        "冷色 SaaS 模板化",
+        "儿童/娱乐"
+      ],
+      "density": 5,
+      "formality": 5,
+      "energy": 4,
+      "signature": [
+        "奶油纸底 #f2f1ed、暖近黑文字 #26251e",
+        "CursorGothic 极紧字距（72px 时 -2.16px）",
+        "jjannon 衬线做正文，带 \"cswh\" 上下文花体",
+        "berkeleyMono 承担代码与标签"
+      ],
+      "palette": {
+        "bg": "#f2f1ed",
+        "surface": null,
+        "text": "#26251e",
+        "muted": null,
+        "accent": "#f54e00",
+        "accent_alt": null,
+        "border": "rgba(38,37,30,0.1)"
+      },
+      "fonts": {
+        "display": "CursorGothic",
+        "body": "jjannon",
+        "mono": "berkeleyMono"
+      },
+      "radius_px": 10,
+      "shadow_style": "极浅暖调投影，以描边为主",
+      "motion_feel": "克制；以字距与排版变化承担强调",
+      "ai_slop_risk": "medium",
+      "ai_slop_note": "\"奶油底 + 衬线\"是当下最易被复制的组合；CursorGothic 的极紧压缩标题不可替换成普通无衬线。",
+      "one_liner_zh": "奶油纸底 + 衬线正文 + 压缩标题的编辑感编程工具"
+    },
+    {
+      "id": "elevenlabs",
+      "name": "ElevenLabs",
+      "repo_path": "design-md/elevenlabs/DESIGN.md",
+      "source_url": "https://elevenlabs.io/",
+      "family": "F5",
+      "secondary_family": "F2",
+      "theme": [
+        "light"
+      ],
+      "vibe_keywords_en": [
+        "ethereal",
+        "airy",
+        "whisper-thin",
+        "warm-stone"
+      ],
+      "vibe_keywords_zh": [
+        "空灵",
+        "通透",
+        "极细字重",
+        "暖石色"
+      ],
+      "best_for": [
+        "AI 语音/音频产品",
+        "高端 AI 品牌官网",
+        "需要\"轻而贵\"的界面"
+      ],
+      "avoid_for": [
+        "数据密集后台",
+        "高饱和促销"
+      ],
+      "density": 4,
+      "formality": 7,
+      "energy": 3,
+      "signature": [
+        "近白底 #ffffff / #f5f5f5 + 暖石 #f5f2ef 按钮",
+        "Waldenburg 300 极细字重标题",
+        "Inter 正文用正字距（0.14–0.18px）提升通透感",
+        "0.1 以下不透明度的多层阴影，表面几乎不存在"
+      ],
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#f5f5f5",
+        "text": "#000000",
+        "muted": "#777169",
+        "accent": null,
+        "accent_alt": null,
+        "border": "#e5e5e5"
+      },
+      "fonts": {
+        "display": "Waldenburg",
+        "body": "Inter",
+        "mono": "Geist Mono"
+      },
+      "radius_px": 16,
+      "shadow_style": "多层栈、<0.1 不透明度；几乎只靠 inset ring 定义边缘",
+      "motion_feel": "极缓渐变，几乎无位移",
+      "ai_slop_risk": "medium",
+      "ai_slop_note": "近白 + 极细字重很容易做成\"空无一物\"的空白页；必须保留 Waldenburg 300 的细度与暖石色按钮。",
+      "one_liner_zh": "近白 + 极细字重的空灵 AI 语音品牌"
+    },
+    {
+      "id": "expo",
+      "name": "Expo",
+      "repo_path": "design-md/expo/DESIGN.md",
+      "source_url": "https://expo.dev/",
+      "family": "F1",
+      "secondary_family": "F2",
+      "theme": [
+        "light"
+      ],
+      "vibe_keywords_en": [
+        "monochrome",
+        "gallery",
+        "pill",
+        "compressed-display"
+      ],
+      "vibe_keywords_zh": [
+        "单色",
+        "画廊感",
+        "胶囊",
+        "压缩标题"
+      ],
+      "best_for": [
+        "移动开发框架/工具",
+        "开发者文档与教程",
+        "单色系技术品牌"
+      ],
+      "avoid_for": [
+        "温暖消费",
+        "多彩创意工具"
+      ],
+      "density": 5,
+      "formality": 5,
+      "energy": 4,
+      "signature": [
+        "冷白 #f0f0f3 画布 + 严格单色（无装饰色）",
+        "64px 大标题配 -1.6px 到 -3px 的极紧字距",
+        "胶囊几何贯穿按钮/标签/图片（24–999px）",
+        "画廊式垂直留白，区块间距极大"
+      ],
+      "palette": {
+        "bg": "#f0f0f3",
+        "surface": "#ffffff",
+        "text": "#000000",
+        "muted": "#60646c",
+        "accent": "#000000",
+        "accent_alt": null,
+        "border": "#e0e1e6"
+      },
+      "fonts": {
+        "display": "Inter",
+        "body": "Inter",
+        "mono": "JetBrains Mono"
+      },
+      "radius_px": 24,
+      "shadow_style": "极轻\"耳语\"投影，仅轻微抬升",
+      "motion_feel": "克制；滚动淡入为主",
+      "ai_slop_risk": "medium",
+      "ai_slop_note": "单色 + 胶囊是通用选择；Expo 的辨识点在极端负字距与冷白画布，缺了就变普通框架站。",
+      "one_liner_zh": "冷白画布 + 胶囊几何 + 极紧大标题的单色开发者站"
+    },
+    {
+      "id": "ferrari",
+      "name": "Ferrari",
+      "repo_path": "design-md/ferrari/DESIGN.md",
+      "source_url": "https://ferrari.com/",
+      "family": "F9",
+      "secondary_family": "F7",
+      "theme": [
+        "dark",
+        "light"
+      ],
+      "vibe_keywords_en": [
+        "chiaroscuro",
+        "editorial",
+        "sparse-red",
+        "heritage"
+      ],
+      "vibe_keywords_zh": [
+        "明暗对比",
+        "编辑感",
+        "克制红",
+        "传承"
+      ],
+      "best_for": [
+        "汽车/赛车/奢侈机械",
+        "品牌传承叙事页",
+        "产品线图册"
+      ],
+      "avoid_for": [
+        "亲民消费",
+        "儿童",
+        "轻量社交"
+      ],
+      "density": 4,
+      "formality": 7,
+      "energy": 8,
+      "signature": [
+        "逐段切换的深黑/纯白\"明暗对照\"版式",
+        "Rosso Corsa #DA291C 只在关键时刻出现",
+        "Body-Font 全大写 + 1px 宽字距做编辑标注",
+        "2px 近零圆角，精密工程感"
+      ],
+      "palette": {
+        "bg": "#FFFFFF",
+        "surface": "#303030",
+        "text": "#181818",
+        "muted": "#666666",
+        "accent": "#DA291C",
+        "accent_alt": "#B01E0A",
+        "border": "#CCCCCC"
+      },
+      "fonts": {
+        "display": "FerrariSans",
+        "body": "Body-Font",
+        "mono": null
+      },
+      "radius_px": 2,
+      "shadow_style": "几乎无投影；层级由黑/白区块切换承担",
+      "motion_feel": "克制但有戏剧性：轮播与图片切换为主",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "红色必须极度稀疏；大面积红会让奢侈感变成促销感。",
+      "one_liner_zh": "黑白明暗对照 + 极稀疏法拉利红的高端机械叙事"
+    },
+    {
+      "id": "figma",
+      "name": "Figma",
+      "repo_path": "design-md/figma/DESIGN.md",
+      "source_url": "https://figma.com/",
+      "family": "F6",
+      "secondary_family": "F2",
+      "theme": [
+        "light",
+        "dark"
+      ],
+      "vibe_keywords_en": [
+        "binary",
+        "chrome-neutral",
+        "canvas",
+        "playful-geometry"
+      ],
+      "vibe_keywords_zh": [
+        "黑白二元",
+        "中性外壳",
+        "画布",
+        "几何玩心"
+      ],
+      "best_for": [
+        "设计/协作工具",
+        "内容驱动的创意产品",
+        "需要\"外壳中性、内容鲜艳\""
+      ],
+      "avoid_for": [
+        "严肃金融",
+        "需要强品牌色的营销页"
+      ],
+      "density": 5,
+      "formality": 5,
+      "energy": 6,
+      "signature": [
+        "界面严格黑白二元，彩色只存在于产品内容里",
+        "figmaSans 非标准字重档位（320/330/450/480/540/700）",
+        "50px 胶囊与 50% 圆形按钮几何",
+        "figmaMono 大写宽字距技术标签；首屏用多停渐变担当色彩"
+      ],
+      "palette": {
+        "bg": "#ffffff",
+        "surface": null,
+        "text": "#000000",
+        "muted": null,
+        "accent": null,
+        "accent_alt": null,
+        "border": "rgba(0,0,0,0.08)"
+      },
+      "fonts": {
+        "display": "figmaSans",
+        "body": "figmaSans",
+        "mono": "figmaMono"
+      },
+      "radius_px": 50,
+      "shadow_style": "克制；主要靠背景对比与描边",
+      "motion_feel": "轻快；组件反馈与画布交互为主",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "黑白外壳 + 内容彩色是纪律；若把品牌色涂到 UI 上，就失去 Figma 的\"让内容说话\"逻辑。",
+      "one_liner_zh": "黑白中性外壳 + 胶囊几何的设计工具画布感"
+    },
+    {
+      "id": "framer",
+      "name": "Framer",
+      "repo_path": "design-md/framer/DESIGN.md",
+      "source_url": "https://framer.com/",
+      "family": "F6",
+      "secondary_family": "F5",
+      "theme": [
+        "dark"
+      ],
+      "vibe_keywords_en": [
+        "void-black",
+        "electric",
+        "cold",
+        "motion-first"
+      ],
+      "vibe_keywords_zh": [
+        "纯黑",
+        "电光",
+        "冷峻",
+        "动效优先"
+      ],
+      "best_for": [
+        "网站构建/设计工具",
+        "动效与交互展示",
+        "AI 建站产品"
+      ],
+      "avoid_for": [
+        "温暖生活",
+        "文档密集后台"
+      ],
+      "density": 5,
+      "formality": 5,
+      "energy": 7,
+      "signature": [
+        "纯黑 #000000 虚空画布（非暖黑、非灰黑）",
+        "GT Walsheim 标题，110px 时 -5.5px 极紧字距",
+        "Framer 蓝 #0099ff 唯一强调色——冷、电、精确",
+        "40–100px 胶囊按钮，交互元素无直角"
+      ],
+      "palette": {
+        "bg": "#000000",
+        "surface": "rgba(255,255,255,0.1)",
+        "text": "#ffffff",
+        "muted": "#a6a6a6",
+        "accent": "#0099ff",
+        "accent_alt": null,
+        "border": null
+      },
+      "fonts": {
+        "display": "GT Walsheim Framer Medium",
+        "body": "Inter Variable",
+        "mono": "Azeret Mono"
+      },
+      "radius_px": 10,
+      "shadow_style": "环形描边投影为主，冷色环境光",
+      "motion_feel": "强：滚动触发、位移与缩放，动效即卖点",
+      "ai_slop_risk": "medium",
+      "ai_slop_note": "纯黑 + 电光蓝极易做成通用深色 SaaS；区别在极紧字距与大面积动效，缺一动效即失魂。",
+      "one_liner_zh": "纯黑虚空 + 电光蓝、以动效为卖点的建站工具"
+    },
+    {
+      "id": "hashicorp",
+      "name": "HashiCorp",
+      "repo_path": "design-md/hashicorp/DESIGN.md",
+      "source_url": "https://hashicorp.com/",
+      "family": "F1",
+      "secondary_family": "F4",
+      "theme": [
+        "light",
+        "dark"
+      ],
+      "vibe_keywords_en": [
+        "dual-mode",
+        "product-family",
+        "tokenized",
+        "enterprise"
+      ],
+      "vibe_keywords_zh": [
+        "双模",
+        "产品家族",
+        "token 驱动",
+        "企业级"
+      ],
+      "best_for": [
+        "多产品线基础设施平台",
+        "企业技术文档",
+        "多云/DevOps 产品"
+      ],
+      "avoid_for": [
+        "单品牌情绪叙事",
+        "消费级产品"
+      ],
+      "density": 6,
+      "formality": 6,
+      "energy": 4,
+      "signature": [
+        "双模：干净白区 + 戏剧性深区 #15181e",
+        "HashiCorp Sans 600–700 字重 + kern 特性",
+        "每个子产品一套品牌色（Terraform 紫/Vault 黄/Waypoint 青）",
+        "极轻 dual 微投影，状态靠 CSS 变量管理"
+      ],
+      "palette": {
+        "bg": "#15181e",
+        "surface": "#0d0e12",
+        "text": "#efeff1",
+        "muted": "#656a76",
+        "accent": "#7b42bc",
+        "accent_alt": "#1868f2",
+        "border": "rgba(178,182,189,0.4)"
+      },
+      "fonts": {
+        "display": "HashiCorp Sans",
+        "body": "HashiCorp Sans",
+        "mono": null
+      },
+      "radius_px": 8,
+      "shadow_style": "极轻双微投影 rgba(97,104,117,0.05)",
+      "motion_feel": "克制；状态过渡为主",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "子产品配色是体系的一部分，不可随机取色；否则多产品家族感瓦解。",
+      "one_liner_zh": "白/深双模 + 子产品各一色的企业基础设施体系"
+    },
+    {
+      "id": "ibm",
+      "name": "IBM",
+      "repo_path": "design-md/ibm/DESIGN.md",
+      "source_url": "https://ibm.com/",
+      "family": "F4",
+      "secondary_family": "F1",
+      "theme": [
+        "light"
+      ],
+      "vibe_keywords_en": [
+        "corporate",
+        "carbon",
+        "systematic",
+        "typographic"
+      ],
+      "vibe_keywords_zh": [
+        "企业级",
+        "Carbon 体系",
+        "系统化",
+        "字体驱动"
+      ],
+      "best_for": [
+        "大型企业系统",
+        "技术与咨询官网",
+        "组件库/设计规范"
+      ],
+      "avoid_for": [
+        "潮流消费",
+        "儿童",
+        "轻娱乐"
+      ],
+      "density": 7,
+      "formality": 8,
+      "energy": 3,
+      "signature": [
+        "IBM Plex Sans 300 细字重承担大标题的\"企业体面\"",
+        "唯一强调色 IBM Blue 60 #0f62fe",
+        "Carbon token 体系（--cds-*）驱动全部语义色",
+        "0–16px 圆角可选，正文 0.16px 固定字距"
+      ],
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#f4f4f4",
+        "text": "#161616",
+        "muted": null,
+        "accent": "#0f62fe",
+        "accent_alt": null,
+        "border": "#c6c6c6"
+      },
+      "fonts": {
+        "display": "IBM Plex Sans",
+        "body": "IBM Plex Sans",
+        "mono": "IBM Plex Mono"
+      },
+      "radius_px": 0,
+      "shadow_style": "几乎不用投影；靠背景色分层（Gray 10 面）",
+      "motion_feel": "克制；48px 节奏对齐，几乎无动效",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "Carbon 的克制是核心；加入渐变或大圆角会立刻与 IBM 体系冲突。",
+      "one_liner_zh": "Plex 细字重 + Carbon token 的大型企业系统"
+    },
+    {
+      "id": "intercom",
+      "name": "Intercom",
+      "repo_path": "design-md/intercom/DESIGN.md",
+      "source_url": "https://intercom.com/",
+      "family": "F10",
+      "secondary_family": "F4",
+      "theme": [
+        "light"
+      ],
+      "vibe_keywords_en": [
+        "warm-off-white",
+        "sharp",
+        "confident",
+        "b2b-saas"
+      ],
+      "vibe_keywords_zh": [
+        "暖白",
+        "锐利",
+        "自信",
+        "B2B SaaS"
+      ],
+      "best_for": [
+        "B2B SaaS 营销页",
+        "客服/支持产品",
+        "需要\"温暖但专业\""
+      ],
+      "avoid_for": [
+        "深色工程仪表盘",
+        "儿童产品"
+      ],
+      "density": 5,
+      "formality": 6,
+      "energy": 6,
+      "signature": [
+        "暖白 #faf9f6 画布 + 燕麦描边 #dedbd6",
+        "Saans 极紧字距（80px 时 -2.4px）+ 1.00 行高",
+        "Fin 橙 #ff5600 唯一品牌强调",
+        "4px 近直角圆角——锐利不圆滑"
+      ],
+      "palette": {
+        "bg": "#faf9f6",
+        "surface": null,
+        "text": "#111111",
+        "muted": "#7b7b78",
+        "accent": "#ff5600",
+        "accent_alt": "#ff5600",
+        "border": "#dedbd6"
+      },
+      "fonts": {
+        "display": "Saans",
+        "body": "Saans",
+        "mono": "SaansMono"
+      },
+      "radius_px": 4,
+      "shadow_style": "无可见投影；靠暖白/燕麦描边分层",
+      "motion_feel": "克制；以文字与颜色切换为主",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "暖白 + 锐角 + 橙色是组合关键；把 4px 改成 12px 就失去 Intercom 的利落感。",
+      "one_liner_zh": "暖白底 + 4px 锐角 + Fin 橙的自信 B2B SaaS"
+    },
+    {
+      "id": "kraken",
+      "name": "Kraken",
+      "repo_path": "design-md/kraken/DESIGN.md",
+      "source_url": "https://kraken.com/",
+      "family": "F3",
+      "secondary_family": "F10",
+      "theme": [
+        "light",
+        "dark"
+      ],
+      "vibe_keywords_en": [
+        "crypto",
+        "purple",
+        "cool-gray",
+        "trustworthy"
+      ],
+      "vibe_keywords_zh": [
+        "加密",
+        "紫色",
+        "冷灰",
+        "可信"
+      ],
+      "best_for": [
+        "加密交易/钱包",
+        "金融科技 B2C",
+        "专业交易界面"
+      ],
+      "avoid_for": [
+        "温暖生活",
+        "儿童",
+        "纯创意表达"
+      ],
+      "density": 5,
+      "formality": 6,
+      "energy": 5,
+      "signature": [
+        "Kraken 紫 #7132f5 主品牌 + 深紫 #5741d8 / #5b1ecf 层级",
+        "Kraken-Brand 展示体 + Kraken-Product 界面体双字体",
+        "近黑 #101114 文字配冷蓝灰中性阶",
+        "12px 圆角按钮——圆但不胶囊"
+      ],
+      "palette": {
+        "bg": "#ffffff",
+        "surface": null,
+        "text": "#101114",
+        "muted": "#9497a9",
+        "accent": "#7132f5",
+        "accent_alt": "#5741d8",
+        "border": "#dedee5"
+      },
+      "fonts": {
+        "display": "Kraken-Brand",
+        "body": "Kraken-Product",
+        "mono": null
+      },
+      "radius_px": 12,
+      "shadow_style": "耳语级 rgba(0,0,0,0.03) 0px 4px 24px",
+      "motion_feel": "克制；以颜色与边框变化表达状态",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "紫色系金融易被做成\"泛 AI 紫\"；必须维持 #7132f5 的品牌纯度与冷灰中性阶。",
+      "one_liner_zh": "白底 Kraken 紫 + 冷灰中性阶的专业加密交易感"
+    },
+    {
+      "id": "lamborghini",
+      "name": "Lamborghini",
+      "repo_path": "design-md/lamborghini/DESIGN.md",
+      "source_url": "https://lamborghini.com/",
+      "family": "F9",
+      "secondary_family": "F2",
+      "theme": [
+        "dark"
+      ],
+      "vibe_keywords_en": [
+        "aggressive",
+        "black-gold",
+        "uppercase",
+        "aerodynamic"
+      ],
+      "vibe_keywords_zh": [
+        "攻击性",
+        "黑金",
+        "全大写",
+        "空气动力"
+      ],
+      "best_for": [
+        "超跑/奢侈机械",
+        "高性能硬件",
+        "限量产品发布"
+      ],
+      "avoid_for": [
+        "亲民消费",
+        "母婴",
+        "轻社交"
+      ],
+      "density": 3,
+      "formality": 7,
+      "energy": 9,
+      "signature": [
+        "纯黑 #000000 主导，白与金是唯一浮雕",
+        "LamboType 带 12° 斜切端点（取自车身线条）",
+        "全大写 120px/80px/54px 极端字号 + 极紧行高",
+        "兰博金 #FFC000 只用于主 CTA"
+      ],
+      "palette": {
+        "bg": "#000000",
+        "surface": "#202020",
+        "text": "#ffffff",
+        "muted": "#7d7d7d",
+        "accent": "#FFC000",
+        "accent_alt": "#29ABE2",
+        "border": "#FFFFFF"
+      },
+      "fonts": {
+        "display": "LamboType",
+        "body": "LamboType",
+        "mono": null
+      },
+      "radius_px": 2,
+      "shadow_style": "几乎无投影；靠纯黑与金/白对比",
+      "motion_feel": "戏剧性滚动：逐段穿行于黑暗",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "金色极稀缺才成立；一旦铺开就变成廉价\"黑金豪华\"模板。",
+      "one_liner_zh": "纯黑 + 兰博金、全大写超大字的攻击性超跑语言"
+    },
+    {
+      "id": "linear.app",
+      "name": "Linear",
+      "repo_path": "design-md/linear.app/DESIGN.md",
+      "source_url": "https://linear.app/",
+      "family": "F1",
+      "secondary_family": "F10",
+      "theme": [
+        "dark",
+        "light"
+      ],
+      "vibe_keywords_en": [
+        "precise",
+        "engineered",
+        "dark-native",
+        "quiet"
+      ],
+      "vibe_keywords_zh": [
+        "精密",
+        "工程感",
+        "深色原生",
+        "克制"
+      ],
+      "best_for": [
+        "B2B SaaS",
+        "开发者工具",
+        "项目管理"
+      ],
+      "avoid_for": [
+        "儿童产品",
+        "温暖生活方式"
+      ],
+      "density": 6,
+      "formality": 8,
+      "energy": 3,
+      "signature": [
+        "510 中间字重（介于 regular 与 medium 之间）",
+        "半透明白描边 rgba(255,255,255,0.05–0.08)",
+        "单一靛紫强调色 #5e6ad2 / #7170ff",
+        "负字距大标题（72px 时 -1.584px）"
+      ],
+      "palette": {
+        "bg": "#08090a",
+        "surface": "#191a1b",
+        "text": "#f7f8f8",
+        "muted": "#8a8f98",
+        "accent": "#5e6ad2",
+        "accent_alt": "#7170ff",
+        "border": "rgba(255,255,255,0.08)"
+      },
+      "fonts": {
+        "display": "Inter Variable",
+        "body": "Inter Variable",
+        "mono": "Berkeley Mono"
+      },
+      "radius_px": 6,
+      "shadow_style": "多层内阴影 + 半透明描边",
+      "motion_feel": "短促 120–200ms ease-out",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "本身含靛紫强调色，若用户选此品牌则允许其品牌紫，但不得外溢成通用 AI 紫渐变。",
+      "one_liner_zh": "近黑画布 + 510 字重的精密克制深色原生工具"
+    },
+    {
+      "id": "lovable",
+      "name": "Lovable",
+      "repo_path": "design-md/lovable/DESIGN.md",
+      "source_url": "https://lovable.dev/",
+      "family": "F5",
+      "secondary_family": "F8",
+      "theme": [
+        "light"
+      ],
+      "vibe_keywords_en": [
+        "parchment",
+        "humanist",
+        "hand-selected",
+        "soft"
+      ],
+      "vibe_keywords_zh": [
+        "羊皮纸",
+        "人文",
+        "手选感",
+        "柔和"
+      ],
+      "best_for": [
+        "AI 应用生成器",
+        "面向非开发者的 AI 产品",
+        "需要\"温暖易上手\""
+      ],
+      "avoid_for": [
+        "硬核工程仪表盘",
+        "金融合规"
+      ],
+      "density": 4,
+      "formality": 4,
+      "energy": 5,
+      "signature": [
+        "暖羊皮底 #f7f4ed——刻意的奶油色而非白/米",
+        "Camera Plain Variable 人文主义字面 + 展示级字距",
+        "不透明度驱动的灰阶（全部由 #1c1c1c 派生）",
+        "按钮 inset 高光：白 0.5px 上亮 + 黑 0.5px 下暗"
+      ],
+      "palette": {
+        "bg": "#f7f4ed",
+        "surface": "#eceae4",
+        "text": "#1c1c1c",
+        "muted": "#5f5f5d",
+        "accent": "#1c1c1c",
+        "accent_alt": null,
+        "border": "#eceae4"
+      },
+      "fonts": {
+        "display": "Camera Plain Variable",
+        "body": "Camera Plain Variable",
+        "mono": null
+      },
+      "radius_px": 8,
+      "shadow_style": "inset 高光 + 极浅外投影，模拟实体按键",
+      "motion_feel": "柔和；以位移与淡入为主",
+      "ai_slop_risk": "high",
+      "ai_slop_note": "\"奶油底 + 黑字 + 大圆角\" 正是当前 AI 创业站最泛滥的模板；必须靠 Camera Plain 的人文细节与 inset 按钮质感区分。",
+      "one_liner_zh": "暖羊皮底 + 人文字体的亲和 AI 应用生成器"
+    },
+    {
+      "id": "minimax",
+      "name": "MiniMax",
+      "repo_path": "design-md/minimax/DESIGN.md",
+      "source_url": "https://minimax.io/",
+      "family": "F5",
+      "secondary_family": "F10",
+      "theme": [
+        "light"
+      ],
+      "vibe_keywords_en": [
+        "colorful-cards",
+        "multi-font",
+        "product-showcase",
+        "pill"
+      ],
+      "vibe_keywords_zh": [
+        "彩色卡片",
+        "多字体",
+        "产品陈列",
+        "胶囊"
+      ],
+      "best_for": [
+        "多产品线 AI 平台",
+        "模型能力陈列页",
+        "面向 C 端的 AI 应用"
+      ],
+      "avoid_for": [
+        "极致极简品牌",
+        "严肃合规文档"
+      ],
+      "density": 5,
+      "formality": 5,
+      "energy": 6,
+      "signature": [
+        "白底为主 + 彩色产品卡片区块",
+        "多字体分层：Outfit 展示 / DM Sans 界面 / Roboto 数据",
+        "9999px 胶囊按钮贯穿导航与 CTA",
+        "20–24px 大圆角产品卡 + 品牌紫调投影 rgba(44,30,116,0.16)"
+      ],
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#f0f0f0",
+        "text": "#222222",
+        "muted": "#8e8e93",
+        "accent": "#1456f0",
+        "accent_alt": "#ea5ec1",
+        "border": "#e5e7eb"
+      },
+      "fonts": {
+        "display": "Outfit",
+        "body": "DM Sans",
+        "mono": null
+      },
+      "radius_px": 20,
+      "shadow_style": "紫调品牌投影 + 大扩散环境柔光",
+      "motion_feel": "轻快；卡片悬停抬升为主",
+      "ai_slop_risk": "high",
+      "ai_slop_note": "DM Sans + 胶囊 + 彩色卡片是通用 SaaS 组合，极易生成无辨识度的 AI 产品页；需强化 Outfit 展示字与紫调投影。",
+      "one_liner_zh": "白底彩色产品卡 + 胶囊按钮的多产品 AI 陈列"
+    },
+    {
+      "id": "mintlify",
+      "name": "Mintlify",
+      "repo_path": "design-md/mintlify/DESIGN.md",
+      "source_url": "https://mintlify.com/",
+      "family": "F4",
+      "secondary_family": "F1",
+      "theme": [
+        "light"
+      ],
+      "vibe_keywords_en": [
+        "documentation",
+        "green-accent",
+        "mono-labels",
+        "compressed"
+      ],
+      "vibe_keywords_zh": [
+        "文档",
+        "绿色强调",
+        "等宽标签",
+        "压缩"
+      ],
+      "best_for": [
+        "文档站/知识库",
+        "开发者工具文档",
+        "API reference"
+      ],
+      "avoid_for": [
+        "强情绪品牌页",
+        "奢侈消费"
+      ],
+      "density": 6,
+      "formality": 6,
+      "energy": 4,
+      "signature": [
+        "Inter 展示标题紧字距（-0.8 到 -1.28px）",
+        "Geist Mono 全大写 12px 宽字距作为\"终端声音\"",
+        "品牌绿 #18E299 只用于 CTA/悬停/焦点环",
+        "绿白云雾状渐变 hero"
+      ],
+      "palette": {
+        "bg": "#ffffff",
+        "surface": null,
+        "text": "#0d0d0d",
+        "muted": "#666666",
+        "accent": "#18E299",
+        "accent_alt": null,
+        "border": "rgba(0,0,0,0.05)"
+      },
+      "fonts": {
+        "display": "Inter",
+        "body": "Inter",
+        "mono": "Geist Mono"
+      },
+      "radius_px": 16,
+      "shadow_style": "极浅；以 1px 透明黑描边为主",
+      "motion_feel": "克制；文档场景以可读性优先",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "绿色只作功能性强调；扩散成绿色主题会失去\"文档工具\"的中性。",
+      "one_liner_zh": "白底紧字距 + Geist Mono 标签的文档工具风"
+    },
+    {
+      "id": "miro",
+      "name": "Miro",
+      "repo_path": "design-md/miro/DESIGN.md",
+      "source_url": "https://miro.com/",
+      "family": "F6",
+      "secondary_family": "F8",
+      "theme": [
+        "light"
+      ],
+      "vibe_keywords_en": [
+        "pastel",
+        "collaborative",
+        "canvas",
+        "friendly"
+      ],
+      "vibe_keywords_zh": [
+        "粉彩",
+        "协作",
+        "画布",
+        "友好"
+      ],
+      "best_for": [
+        "协作白板/画布",
+        "团队工作流工具",
+        "友好型创意产品"
+      ],
+      "avoid_for": [
+        "严肃金融",
+        "深色工程终端"
+      ],
+      "density": 5,
+      "formality": 4,
+      "energy": 6,
+      "signature": [
+        "白画布 + 近黑 #1c1c1e 文字",
+        "粉彩成对色板：coral/rose/teal/orange/yellow/moss（深浅成对）",
+        "Roobert PRO Medium 配多套 OpenType 变体",
+        "Blue 450 #5b76fe 作唯一交互色；ring 描边投影"
+      ],
+      "palette": {
+        "bg": "#ffffff",
+        "surface": null,
+        "text": "#1c1c1e",
+        "muted": "#555a6a",
+        "accent": "#5b76fe",
+        "accent_alt": "#2a41b6",
+        "border": "#c7cad5"
+      },
+      "fonts": {
+        "display": "Roobert PRO Medium",
+        "body": "Noto Sans",
+        "mono": null
+      },
+      "radius_px": 8,
+      "shadow_style": "ring 描边投影（0 0 0 1px）+ 白色圆形控件投影",
+      "motion_feel": "顺畅；Framer 式过渡与弹性",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "粉彩必须成对（浅/深）使用于整块背景，不能当小色点；否则变成通用彩色卡片站。",
+      "one_liner_zh": "白画布 + 粉彩成对色板的友好协作白板"
+    },
+    {
+      "id": "mistral.ai",
+      "name": "Mistral AI",
+      "repo_path": "design-md/mistral.ai/DESIGN.md",
+      "source_url": "https://mistral.ai/",
+      "family": "F5",
+      "secondary_family": "F7",
+      "theme": [
+        "light"
+      ],
+      "vibe_keywords_en": [
+        "amber",
+        "golden",
+        "brand-world",
+        "warm-gradient"
+      ],
+      "vibe_keywords_zh": [
+        "琥珀",
+        "金黄",
+        "品牌世界",
+        "暖渐变"
+      ],
+      "best_for": [
+        "AI 模型/研究机构",
+        "有强品牌色的 AI 产品",
+        "叙事型发布页"
+      ],
+      "avoid_for": [
+        "冷色工程仪表盘",
+        "需要中性的企业文档"
+      ],
+      "density": 4,
+      "formality": 6,
+      "energy": 7,
+      "signature": [
+        "金黄-琥珀色宇宙：从奶油 #fffaeb 到燃橙 #fa520f",
+        "82px 大标题配 -2.05px 负字距",
+        "暖金调投影（琥珀色 rgba）",
+        "\"M\" 色块渐变构成品牌标识"
+      ],
+      "palette": {
+        "bg": "#fffaeb",
+        "surface": "#fff0c2",
+        "text": "#1f1f1f",
+        "muted": null,
+        "accent": "#fa520f",
+        "accent_alt": null,
+        "border": "rgba(127,99,21,0.12)"
+      },
+      "fonts": {
+        "display": null,
+        "body": "Arial",
+        "mono": null
+      },
+      "radius_px": null,
+      "shadow_style": "琥珀调暖投影，随区块渐变加深",
+      "motion_feel": "渐变流动与滚动渐变过渡",
+      "ai_slop_risk": "medium",
+      "ai_slop_note": "橙色渐变 AI 视觉已很常见；需坚持\"奶油→燃橙\"的整色谱与暖金投影，而非只用一个橙色按钮。",
+      "one_liner_zh": "奶油到燃橙的金黄色宇宙、品牌叙事型 AI 实验室"
+    },
+    {
+      "id": "mongodb",
+      "name": "MongoDB",
+      "repo_path": "design-md/mongodb/DESIGN.md",
+      "source_url": "https://mongodb.com/",
+      "family": "F1",
+      "secondary_family": "F7",
+      "theme": [
+        "dark",
+        "light"
+      ],
+      "vibe_keywords_en": [
+        "teal-dark",
+        "editorial-serif",
+        "organic-neon",
+        "dual-mode"
+      ],
+      "vibe_keywords_zh": [
+        "深青黑",
+        "衬线编辑感",
+        "有机霓虹",
+        "双模"
+      ],
+      "best_for": [
+        "数据库/开发者平台",
+        "技术品牌叙事",
+        "文档 + 营销混合站"
+      ],
+      "avoid_for": [
+        "温暖消费",
+        "儿童",
+        "极简奢侈"
+      ],
+      "density": 6,
+      "formality": 6,
+      "energy": 5,
+      "signature": [
+        "深青黑 #001e2b（森林暗，而非太空暗）",
+        "MongoDB Value Serif 承担 96px hero 的编辑权威",
+        "霓虹绿 #00ed64 是唯一强调色——电而有机",
+        "Euclid Circular A 正文用 300 轻字重"
+      ],
+      "palette": {
+        "bg": "#001e2b",
+        "surface": null,
+        "text": "#e8edeb",
+        "muted": "#5c6c75",
+        "accent": "#00ed64",
+        "accent_alt": "#00684a",
+        "border": "#b8c4c2"
+      },
+      "fonts": {
+        "display": "MongoDB Value Serif",
+        "body": "Euclid Circular A",
+        "mono": "Source Code Pro"
+      },
+      "radius_px": 16,
+      "shadow_style": "青调深色投影；明暗双模切换制造戏剧对比",
+      "motion_feel": "克制；明暗模式切换为叙事手段",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "青黑底 + 衬线标题是独特组合；若改用纯黑 + 无衬线就退化为普通数据库站。",
+      "one_liner_zh": "深青黑 + 价值衬线 + 霓虹绿的开发者品牌叙事"
+    },
+    {
+      "id": "notion",
+      "name": "Notion",
+      "repo_path": "design-md/notion/DESIGN.md",
+      "source_url": "https://notion.so/",
+      "family": "F4",
+      "secondary_family": "F8",
+      "theme": [
+        "light",
+        "dark"
+      ],
+      "vibe_keywords_en": [
+        "warm-neutral",
+        "whisper-border",
+        "document",
+        "friendly"
+      ],
+      "vibe_keywords_zh": [
+        "暖中性",
+        "耳语描边",
+        "文档",
+        "友好"
+      ],
+      "best_for": [
+        "文档/知识管理",
+        "协作工作区",
+        "需要\"低刺激高密度\"的界面"
+      ],
+      "avoid_for": [
+        "强视觉冲击营销",
+        "娱乐社交"
+      ],
+      "density": 6,
+      "formality": 5,
+      "energy": 4,
+      "signature": [
+        "暖中性灰（带黄褐底调）：#f6f5f4 暖白 / #31302e 暖暗",
+        "NotionInter 展示级负字距（64px 时 -2.125px）",
+        "近乎透明的描边 1px rgba(0,0,0,0.1)",
+        "多层极低不透明度阴影（<0.05）堆叠出\"几乎不存在\"的深度"
+      ],
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#f6f5f4",
+        "text": "rgba(0,0,0,0.95)",
+        "muted": "#615d59",
+        "accent": "#0075de",
+        "accent_alt": "#213183",
+        "border": "rgba(0,0,0,0.1)"
+      },
+      "fonts": {
+        "display": "NotionInter",
+        "body": "NotionInter",
+        "mono": null
+      },
+      "radius_px": 8,
+      "shadow_style": "多层栈、单层不透明度 <0.05 的耳语级投影",
+      "motion_feel": "极克制；以 hover 背景微变为主",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "暖灰而非纯灰是核心；换成冷灰就变成普通文档工具。",
+      "one_liner_zh": "暖中性灰 + 耳语描边的友好文档工作区"
+    },
+    {
+      "id": "nvidia",
+      "name": "NVIDIA",
+      "repo_path": "design-md/nvidia/DESIGN.md",
+      "source_url": "https://nvidia.com/",
+      "family": "F9",
+      "secondary_family": "F1",
+      "theme": [
+        "dark",
+        "light"
+      ],
+      "vibe_keywords_en": [
+        "sharp",
+        "engineered",
+        "green-signal",
+        "industrial"
+      ],
+      "vibe_keywords_zh": [
+        "锐利",
+        "工程感",
+        "绿色信号",
+        "工业"
+      ],
+      "best_for": [
+        "硬件/算力/芯片",
+        "技术发布会页",
+        "规格参数展示"
+      ],
+      "avoid_for": [
+        "温暖消费",
+        "儿童",
+        "轻松社交"
+      ],
+      "density": 6,
+      "formality": 7,
+      "energy": 6,
+      "signature": [
+        "NVIDIA 绿 #76b900 只作描边/下划线/指示，绝不大面积填充",
+        "1–2px 最小圆角，全站锐利工程角",
+        "2px 实心绿边框按钮作为主交互范式",
+        "Font Awesome 900 字重的锐利图标系统"
+      ],
+      "palette": {
+        "bg": "#000000",
+        "surface": "#1a1a1a",
+        "text": "#ffffff",
+        "muted": "#757575",
+        "accent": "#76b900",
+        "accent_alt": "#bff230",
+        "border": "#5e5e5e"
+      },
+      "fonts": {
+        "display": "NVIDIA-EMEA",
+        "body": "NVIDIA-EMEA",
+        "mono": null
+      },
+      "radius_px": 2,
+      "shadow_style": "深色重投影系统（0.3 不透明度级）",
+      "motion_feel": "克制；以硬切换与视差为主",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "绿色是\"信号\"不是\"表面\"——大面积绿填充会立刻破坏 NVIDIA 语言。",
+      "one_liner_zh": "纯黑 + 绿色描边信号、1px 锐角的工业算力感"
+    },
+    {
+      "id": "ollama",
+      "name": "Ollama",
+      "repo_path": "design-md/ollama/DESIGN.md",
+      "source_url": "https://ollama.com/",
+      "family": "F1",
+      "secondary_family": "F2",
+      "theme": [
+        "light"
+      ],
+      "vibe_keywords_en": [
+        "grayscale",
+        "rounded",
+        "zero-shadow",
+        "reductive"
+      ],
+      "vibe_keywords_zh": [
+        "纯灰度",
+        "圆润",
+        "零投影",
+        "极简"
+      ],
+      "best_for": [
+        "本地模型/命令行工具",
+        "极简开发者产品",
+        "需要\"零装饰\"的技术站"
+      ],
+      "avoid_for": [
+        "多彩创意工具",
+        "奢侈品",
+        "强营销页"
+      ],
+      "density": 3,
+      "formality": 5,
+      "energy": 2,
+      "signature": [
+        "纯白画布、零彩色——全站无品牌色",
+        "SF Pro Rounded 标题带来苹果式柔和",
+        "二元圆角：12px 容器 / 9999px 一切可交互",
+        "零阴影——深度只来自背景色差与描边"
+      ],
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#fafafa",
+        "text": "#000000",
+        "muted": "#737373",
+        "accent": null,
+        "accent_alt": null,
+        "border": "#e5e5e5"
+      },
+      "fonts": {
+        "display": "SF Pro Rounded",
+        "body": "SF Pro Rounded",
+        "mono": "ui-monospace"
+      },
+      "radius_px": 12,
+      "shadow_style": "零阴影（明确禁止）",
+      "motion_feel": "零动效——交互必须即时、直接",
+      "ai_slop_risk": "medium",
+      "ai_slop_note": "无彩色 + 无阴影极易做成\"空白页\"；SF Pro Rounded 的柔和曲线是唯一辨识来源，不可换成普通无衬线。",
+      "one_liner_zh": "纯白零彩、无阴影无动效的极简本地模型工具"
+    },
+    {
+      "id": "opencode.ai",
+      "name": "OpenCode",
+      "repo_path": "design-md/opencode.ai/DESIGN.md",
+      "source_url": "https://opencode.ai/",
+      "family": "F1",
+      "secondary_family": "F9",
+      "theme": [
+        "dark"
+      ],
+      "vibe_keywords_en": [
+        "monospace-only",
+        "warm-black",
+        "utilitarian",
+        "terminal"
+      ],
+      "vibe_keywords_zh": [
+        "全等宽",
+        "暖黑",
+        "实用主义",
+        "终端"
+      ],
+      "best_for": [
+        "终端/CLI 工具",
+        "极客向开发者产品",
+        "需要\"纯终端气质\""
+      ],
+      "avoid_for": [
+        "消费级",
+        "温暖生活",
+        "企业营销"
+      ],
+      "density": 6,
+      "formality": 4,
+      "energy": 3,
+      "signature": [
+        "Berkeley Mono 是唯一字体——全站等宽，无无衬线/衬线声部",
+        "暖近黑 #201d1d 带红褐底调，非纯黑",
+        "暖白文字 #fdfcfc，非纯白",
+        "全站 4px 小圆角——锋利、实用"
+      ],
+      "palette": {
+        "bg": "#201d1d",
+        "surface": "#302c2c",
+        "text": "#fdfcfc",
+        "muted": "#9a9898",
+        "accent": "#007aff",
+        "accent_alt": "#0056b3",
+        "border": "rgba(15,0,0,0.12)"
+      },
+      "fonts": {
+        "display": "Berkeley Mono",
+        "body": "Berkeley Mono",
+        "mono": "Berkeley Mono"
+      },
+      "radius_px": 4,
+      "shadow_style": "零阴影、零描边（Level 0 平铺）",
+      "motion_feel": "几乎无动效；即时响应",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "全等宽是硬约束；混入任何无衬线字体会立刻失去终端气质。",
+      "one_liner_zh": "全站等宽 Berkeley Mono + 暖黑底的纯终端气质"
+    },
+    {
+      "id": "pinterest",
+      "name": "Pinterest",
+      "repo_path": "design-md/pinterest/DESIGN.md",
+      "source_url": "https://pinterest.com/",
+      "family": "F8",
+      "secondary_family": "F6",
+      "theme": [
+        "light"
+      ],
+      "vibe_keywords_en": [
+        "warm-olive",
+        "visual-discovery",
+        "craft",
+        "cozy"
+      ],
+      "vibe_keywords_zh": [
+        "暖橄榄",
+        "视觉发现",
+        "手作感",
+        "温馨"
+      ],
+      "best_for": [
+        "视觉发现/灵感社区",
+        "图片流产品",
+        "生活方式品牌"
+      ],
+      "avoid_for": [
+        "深色工程终端",
+        "严肃金融"
+      ],
+      "density": 5,
+      "formality": 4,
+      "energy": 6,
+      "signature": [
+        "暖白画布 + 橄榄/沙色中性阶（#e5e5e0 / #e0e0d9）",
+        "Pinterest 红 #e60023 唯一强调——自信而非含蓄",
+        "Pin Sans 定制字体 + 含 CJK 的全局回退栈",
+        "16px 标准圆角、最大 40px，圆形 50%"
+      ],
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#e5e5e0",
+        "text": "#211922",
+        "muted": "#62625b",
+        "accent": "#e60023",
+        "accent_alt": "#103c25",
+        "border": "#91918c"
+      },
+      "fonts": {
+        "display": "Pin Sans",
+        "body": "Pin Sans",
+        "mono": null
+      },
+      "radius_px": 16,
+      "shadow_style": "多数卡片无投影——靠内容与暖底区分",
+      "motion_feel": "轻快；瀑布流滚动与图片缩放为主",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "暖橄榄中性阶是它的\"手作感\"来源；换成冷灰就变成普通图片站。",
+      "one_liner_zh": "暖橄榄中性阶 + Pinterest 红的温馨视觉发现"
+    },
+    {
+      "id": "posthog",
+      "name": "PostHog",
+      "repo_path": "design-md/posthog/DESIGN.md",
+      "source_url": "https://posthog.com/",
+      "family": "F1",
+      "secondary_family": "F8",
+      "theme": [
+        "light"
+      ],
+      "vibe_keywords_en": [
+        "earthy",
+        "sage",
+        "anti-corporate",
+        "hand-drawn"
+      ],
+      "vibe_keywords_zh": [
+        "泥土感",
+        "鼠尾草绿",
+        "反企业",
+        "手绘"
+      ],
+      "best_for": [
+        "开发者分析/工具",
+        "需要\"人味\"的 B2B 产品",
+        "反套路的品牌表达"
+      ],
+      "avoid_for": [
+        "严肃金融",
+        "奢侈品牌",
+        "极简高端"
+      ],
+      "density": 5,
+      "formality": 4,
+      "energy": 6,
+      "signature": [
+        "鼠尾草/橄榄暖色系替代常规蓝色",
+        "IBM Plex Sans Variable 700/800 粗标题 + 1.50 以上宽松行高",
+        "隐藏的品牌橙 #F54E00 只在 hover 时出现",
+        "手绘刺猬插画，刻意反企业化"
+      ],
+      "palette": {
+        "bg": "#fdfdf8",
+        "surface": "#ffffff",
+        "text": "#4d4f46",
+        "muted": "#65675e",
+        "accent": "#F54E00",
+        "accent_alt": null,
+        "border": "#bfc1b7"
+      },
+      "fonts": {
+        "display": "IBM Plex Sans Variable",
+        "body": "IBM Plex Sans Variable",
+        "mono": null
+      },
+      "radius_px": 4,
+      "shadow_style": "单层深投影（0 25px 50px -12px）用于抬升卡片",
+      "motion_feel": "俏皮；hover 才暴露橙色",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "土色系 + 手绘插画是价值；若去掉插画只留土色，会显得\"脏\"而非\"亲切\"。",
+      "one_liner_zh": "鼠尾草暖色 + 手绘刺猬的反企业开发者分析"
+    },
+    {
+      "id": "raycast",
+      "name": "Raycast",
+      "repo_path": "design-md/raycast/DESIGN.md",
+      "source_url": "https://raycast.com/",
+      "family": "F1",
+      "secondary_family": "F2",
+      "theme": [
+        "dark"
+      ],
+      "vibe_keywords_en": [
+        "macos-native",
+        "blue-black",
+        "inset-highlight",
+        "tactile"
+      ],
+      "vibe_keywords_zh": [
+        "macOS 原生",
+        "蓝黑",
+        "内高光",
+        "触感"
+      ],
+      "best_for": [
+        "启动器/效率工具",
+        "macOS 生态产品",
+        "需要\"实体质感\"的深色界面"
+      ],
+      "avoid_for": [
+        "温暖生活",
+        "儿童",
+        "大型企业文档"
+      ],
+      "density": 5,
+      "formality": 6,
+      "energy": 5,
+      "signature": [
+        "近黑蓝调 #07080a（微妙偏蓝，非纯黑）",
+        "macOS 原生多层投影 + inset 高光，模拟物理深度",
+        "Raycast 红 #FF6363 只作标点（hero 条纹），不铺开",
+        "Inter 配正字距（0.2px）营造通透深色阅读"
+      ],
+      "palette": {
+        "bg": "#07080a",
+        "surface": "#101111",
+        "text": "#f9f9f9",
+        "muted": "#9c9c9d",
+        "accent": "#FF6363",
+        "accent_alt": null,
+        "border": "#252829"
+      },
+      "fonts": {
+        "display": "Inter",
+        "body": "Inter",
+        "mono": "GeistMono"
+      },
+      "radius_px": 8,
+      "shadow_style": "macOS 式多层 inset 高光 + 环境投影",
+      "motion_feel": "按钮只做 opacity 过渡，不变背景色",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "inset 高光是\"触感\"来源；去掉后变成扁平深色 SaaS。红色必须保持点缀密度。",
+      "one_liner_zh": "蓝黑底 + inset 高光的 macOS 原生触感启动器"
+    },
+    {
+      "id": "renault",
+      "name": "Renault",
+      "repo_path": "design-md/renault/DESIGN.md",
+      "source_url": "https://renault.com/",
+      "family": "F9",
+      "secondary_family": "F6",
+      "theme": [
+        "light",
+        "dark"
+      ],
+      "vibe_keywords_en": [
+        "aurora-gradient",
+        "zero-radius",
+        "geometric",
+        "bold-yellow"
+      ],
+      "vibe_keywords_zh": [
+        "极光渐变",
+        "零圆角",
+        "几何",
+        "亮黄"
+      ],
+      "best_for": [
+        "汽车/电动出行",
+        "产品线展示",
+        "需要\"科技 + 力量\"的发布页"
+      ],
+      "avoid_for": [
+        "温柔消费",
+        "儿童",
+        "文档密集"
+      ],
+      "density": 4,
+      "formality": 6,
+      "energy": 8,
+      "signature": [
+        "全屏 hero 配品红/紫/青的极光渐变背景",
+        "NouvelR 字体 28° \"radical r\" 呼应钻石 logo 几何",
+        "Renault 黄 #EFDF00 只给最高优先级 CTA",
+        "按钮零圆角——锐利矩形表达精密工程"
+      ],
+      "palette": {
+        "bg": "#FFFFFF",
+        "surface": null,
+        "text": "#000000",
+        "muted": "#222222",
+        "accent": "#EFDF00",
+        "accent_alt": null,
+        "border": "#D1D1D1"
+      },
+      "fonts": {
+        "display": "NouvelR",
+        "body": "NouvelR",
+        "mono": null
+      },
+      "radius_px": 0,
+      "shadow_style": "静止态无投影无描边（明确如此）",
+      "motion_feel": "强：全屏轮播与渐变流动",
+      "ai_slop_risk": "medium",
+      "ai_slop_note": "多层极光渐变极易做成\"科技感噪音\"；必须配零圆角与单一亮黄才会读作雷诺而非通用科技站。",
+      "one_liner_zh": "极光渐变 + 零圆角 + 亮黄点缀的电动出行力量感"
+    },
+    {
+      "id": "replicate",
+      "name": "Replicate",
+      "repo_path": "design-md/replicate/DESIGN.md",
+      "source_url": "https://replicate.com/",
+      "family": "F5",
+      "secondary_family": "F6",
+      "theme": [
+        "light"
+      ],
+      "vibe_keywords_en": [
+        "explosive-gradient",
+        "pill-everything",
+        "bold-type",
+        "high-contrast"
+      ],
+      "vibe_keywords_zh": [
+        "爆裂渐变",
+        "全胶囊",
+        "粗字",
+        "高对比"
+      ],
+      "best_for": [
+        "AI 模型托管/推理平台",
+        "开发者向 AI 产品",
+        "需要强视觉冲击的发布页"
+      ],
+      "avoid_for": [
+        "温暖生活",
+        "严肃金融",
+        "文档密集"
+      ],
+      "density": 4,
+      "formality": 4,
+      "energy": 8,
+      "signature": [
+        "橙红到品红的爆裂渐变 hero（#ea2804 为锚）",
+        "128px 超粗 rb-freigeist-neue 展示字",
+        "9999px 全胶囊几何——所有元素都圆到底",
+        "高对比黑白 + 红色品牌强调"
+      ],
+      "palette": {
+        "bg": "#ffffff",
+        "surface": null,
+        "text": "#202020",
+        "muted": "#646464",
+        "accent": "#ea2804",
+        "accent_alt": null,
+        "border": "#202020"
+      },
+      "fonts": {
+        "display": "rb-freigeist-neue",
+        "body": "basier-square",
+        "mono": null
+      },
+      "radius_px": 9999,
+      "shadow_style": "极简标准投影；靠描边与色彩对比",
+      "motion_feel": "强：渐变流动 + 大字号冲击",
+      "ai_slop_risk": "medium",
+      "ai_slop_note": "橙红渐变 + 全胶囊是当前 AI 站常见套路；rb-freigeist-neue 的极端粗度不可替换。",
+      "one_liner_zh": "橙红爆裂渐变 + 全胶囊 + 128px 粗字的 AI 推理平台"
+    },
+    {
+      "id": "resend",
+      "name": "Resend",
+      "repo_path": "design-md/resend/DESIGN.md",
+      "source_url": "https://resend.com/",
+      "family": "F7",
+      "secondary_family": "F1",
+      "theme": [
+        "dark"
+      ],
+      "vibe_keywords_en": [
+        "theatrical",
+        "serif-hero",
+        "icy-border",
+        "gallery-dark"
+      ],
+      "vibe_keywords_zh": [
+        "戏剧性",
+        "衬线 hero",
+        "冷冽描边",
+        "画廊暗"
+      ],
+      "best_for": [
+        "开发者工具的品牌叙事页",
+        "邮件/API 产品",
+        "需要\"贵而技术\"的深色站"
+      ],
+      "avoid_for": [
+        "温暖消费",
+        "极简白站",
+        "文档密集后台"
+      ],
+      "density": 4,
+      "formality": 6,
+      "energy": 5,
+      "signature": [
+        "纯黑 #000000 + 近白 #f0f0f0 的画廊式明暗",
+        "Domaine Display 衬线承担 hero（三字体体系：Domaine/ABC Favorit/Inter）",
+        "冷蓝调描边 rgba(214,235,253,0.19)——每根线都像冰晶",
+        "多色编号强调体系（橙/绿/蓝/黄/红各带 scale）"
+      ],
+      "palette": {
+        "bg": "#000000",
+        "surface": null,
+        "text": "#f0f0f0",
+        "muted": null,
+        "accent": "#ff801f",
+        "accent_alt": null,
+        "border": "rgba(214,235,253,0.19)"
+      },
+      "fonts": {
+        "display": "Domaine Display",
+        "body": "ABC Favorit",
+        "mono": "Inter"
+      },
+      "radius_px": 12,
+      "shadow_style": "耳语级蓝调 ring 投影（0 0 0 1px）",
+      "motion_feel": "克制；以排版节奏而非动效叙事",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "衬线 hero + 冰蓝描边是它的签名；若换成无衬线就沦为普通深色开发者站。",
+      "one_liner_zh": "纯黑画廊 + Domaine 衬线的戏剧性开发者品牌叙事"
+    },
+    {
+      "id": "revolut",
+      "name": "Revolut",
+      "repo_path": "design-md/revolut/DESIGN.md",
+      "source_url": "https://revolut.com/",
+      "family": "F3",
+      "secondary_family": "F2",
+      "theme": [
+        "light",
+        "dark"
+      ],
+      "vibe_keywords_en": [
+        "billboard-scale",
+        "pill-everything",
+        "binary",
+        "fintech-premium"
+      ],
+      "vibe_keywords_zh": [
+        "广告牌级",
+        "全胶囊",
+        "二元",
+        "金融精品"
+      ],
+      "best_for": [
+        "金融超级 App",
+        "面向大众的 fintech",
+        "需要\"大规模权威感\""
+      ],
+      "avoid_for": [
+        "温暖生活",
+        "儿童",
+        "创意画布"
+      ],
+      "density": 5,
+      "formality": 7,
+      "energy": 5,
+      "signature": [
+        "Aeonik Pro 136px / 500 字重的广告牌级标题",
+        "近黑 #191c1f + 纯白二元，配 --rui-* 语义 token",
+        "9999px 通用胶囊按钮 + 14px 32px 大内距",
+        "零阴影——深度只靠颜色对比"
+      ],
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#f4f4f4",
+        "text": "#191c1f",
+        "muted": null,
+        "accent": "#494fdf",
+        "accent_alt": "#4f55f1",
+        "border": "#c9c9cd"
+      },
+      "fonts": {
+        "display": "Aeonik Pro",
+        "body": "Inter",
+        "mono": null
+      },
+      "radius_px": 9999,
+      "shadow_style": "零阴影（明确如此）",
+      "motion_feel": "克制；胶囊按钮颜色过渡为主",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "全胶囊 + 二元色是纪律；若加入圆角卡片与投影就破坏其\"金融工业\"感。",
+      "one_liner_zh": "136px 广告牌标题 + 全胶囊、零阴影的金融精品感"
+    },
+    {
+      "id": "runwayml",
+      "name": "Runway",
+      "repo_path": "design-md/runwayml/DESIGN.md",
+      "source_url": "https://runwayml.com/",
+      "family": "F5",
+      "secondary_family": "F7",
+      "theme": [
+        "dark"
+      ],
+      "vibe_keywords_en": [
+        "cinematic",
+        "full-bleed",
+        "invisible-interface",
+        "cool-neutral"
+      ],
+      "vibe_keywords_zh": [
+        "电影感",
+        "满幅影像",
+        "界面隐形",
+        "冷中性"
+      ],
+      "best_for": [
+        "AI 视频/图像生成",
+        "影视创意工具",
+        "需要\"作品即界面\"的展示"
+      ],
+      "avoid_for": [
+        "文档密集",
+        "温暖生活",
+        "表单密集型后台"
+      ],
+      "density": 3,
+      "formality": 6,
+      "energy": 5,
+      "signature": [
+        "满幅电影级影像/视频作为主要 UI 元素",
+        "abcNormal 单一字体覆盖展示到微标签",
+        "深色主导 + 冷调中性灰（#767d88 / #7d848e）",
+        "零阴影、极少描边——界面刻意隐形"
+      ],
+      "palette": {
+        "bg": "#000000",
+        "surface": "#1a1a1a",
+        "text": "#ffffff",
+        "muted": "#767d88",
+        "accent": null,
+        "accent_alt": null,
+        "border": "#27272a"
+      },
+      "fonts": {
+        "display": "abcNormal",
+        "body": "abcNormal",
+        "mono": null
+      },
+      "radius_px": 4,
+      "shadow_style": "零阴影；层级由影像本身承担",
+      "motion_feel": "影像驱动；转场即内容",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "无强调色是设计决定；若补一个\"AI 蓝\"会立刻破坏电影感。",
+      "one_liner_zh": "满幅电影影像 + 隐形界面的 AI 视频工具"
+    },
+    {
+      "id": "sanity",
+      "name": "Sanity",
+      "repo_path": "design-md/sanity/DESIGN.md",
+      "source_url": "https://sanity.io/",
+      "family": "F1",
+      "secondary_family": "F6",
+      "theme": [
+        "dark"
+      ],
+      "vibe_keywords_en": [
+        "near-black",
+        "achromatic",
+        "precision-type",
+        "neon-punctuation"
+      ],
+      "vibe_keywords_zh": [
+        "近黑",
+        "无彩色",
+        "精密排版",
+        "霓虹标点"
+      ],
+      "best_for": [
+        "无头 CMS/内容平台",
+        "开发者内容工具",
+        "需要\"精密 + 一点叛逆\""
+      ],
+      "avoid_for": [
+        "温暖消费",
+        "儿童",
+        "极简白站"
+      ],
+      "density": 6,
+      "formality": 5,
+      "energy": 5,
+      "signature": [
+        "近黑 #0b0b0b 是默认环境而非\"暗色模式\"",
+        "waldenburgNormal 展示级极端负字距",
+        "纯中性灰阶（无冷暖偏向）的纪律",
+        "霓虹绿/电蓝 #0052ef/珊瑚红 #f36458 作标点强调"
+      ],
+      "palette": {
+        "bg": "#0b0b0b",
+        "surface": "#212121",
+        "text": "#ffffff",
+        "muted": "#b9b9b9",
+        "accent": "#f36458",
+        "accent_alt": "#0052ef",
+        "border": "#353535"
+      },
+      "fonts": {
+        "display": "waldenburgNormal",
+        "body": "waldenburgNormal",
+        "mono": "IBM Plex Mono"
+      },
+      "radius_px": 6,
+      "shadow_style": "以 0 0 0 1px #212121 的\"描边式投影\"代替阴影；层级靠表面色阶",
+      "motion_feel": "克制；色阶切换为主",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "中性灰阶是纪律；一旦给灰加冷暖倾向就失去\"精密仪器\"感。",
+      "one_liner_zh": "纯中性近黑 + 霓虹标点的精密 CMS 工具"
+    },
+    {
+      "id": "sentry",
+      "name": "Sentry",
+      "repo_path": "design-md/sentry/DESIGN.md",
+      "source_url": "https://sentry.io/",
+      "family": "F1",
+      "secondary_family": "F6",
+      "theme": [
+        "dark"
+      ],
+      "vibe_keywords_en": [
+        "purple-dark",
+        "playful",
+        "personality",
+        "lime-accent"
+      ],
+      "vibe_keywords_zh": [
+        "紫黑",
+        "顽皮",
+        "有个性",
+        "青柠强调"
+      ],
+      "best_for": [
+        "开发者监控/排错工具",
+        "需要\"有个性\"的 B2B",
+        "社区型开发者产品"
+      ],
+      "avoid_for": [
+        "严肃金融",
+        "奢侈品牌",
+        "极简高端"
+      ],
+      "density": 5,
+      "formality": 4,
+      "energy": 6,
+      "signature": [
+        "暗紫黑 #1f1633 / #150f23（刻意不用纯黑）",
+        "Dammit Sans 个性展示字（hero 88px/700）",
+        "青柠绿 #c2ef4e 作高可见 CTA",
+        "粉珊瑚 #fa7faa 作焦点与次要强调；inset 投影带来触感"
+      ],
+      "palette": {
+        "bg": "#1f1633",
+        "surface": "#150f23",
+        "text": "#ffffff",
+        "muted": "#e5e7eb",
+        "accent": "#c2ef4e",
+        "accent_alt": "#fa7faa",
+        "border": "#362d59"
+      },
+      "fonts": {
+        "display": "Dammit Sans",
+        "body": "Rubik",
+        "mono": null
+      },
+      "radius_px": 8,
+      "shadow_style": "紫调 inset 投影，制造\"可按压\"的触感",
+      "motion_feel": "俏皮；hover 色相切换（#6a5fc1 → 白字）",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "紫黑 + 青柠是鲜明签名；不要把它简化成\"深色 + 荧光绿\"的通用开发者站。",
+      "one_liner_zh": "紫黑底 + 青柠绿的顽皮有个性开发者监控"
+    },
+    {
+      "id": "spacex",
+      "name": "SpaceX",
+      "repo_path": "design-md/spacex/DESIGN.md",
+      "source_url": "https://spacex.com/",
+      "family": "F9",
+      "secondary_family": "F7",
+      "theme": [
+        "dark"
+      ],
+      "vibe_keywords_en": [
+        "aerospace",
+        "stencil-uppercase",
+        "photography-only",
+        "radical-minimal"
+      ],
+      "vibe_keywords_zh": [
+        "航天",
+        "模板大写",
+        "纯摄影",
+        "极端极简"
+      ],
+      "best_for": [
+        "航天/重工业",
+        "发布与任务叙事页",
+        "需要\"极致权威\""
+      ],
+      "avoid_for": [
+        "温暖消费",
+        "儿童",
+        "表单密集后台"
+      ],
+      "density": 2,
+      "formality": 6,
+      "energy": 7,
+      "signature": [
+        "纯黑画布 + 满视口电影级摄影，界面\"不存在\"",
+        "D-DIN / D-DIN-Bold 的 DIN 工业传承字体",
+        "全大写 + 正字距（0.96–1.17px）的航天模板感",
+        "近白光谱色 #f0f0fa（微蓝紫），非纯白"
+      ],
+      "palette": {
+        "bg": "#000000",
+        "surface": "rgba(240,240,250,0.1)",
+        "text": "#f0f0fa",
+        "muted": null,
+        "accent": null,
+        "accent_alt": null,
+        "border": "rgba(240,240,250,0.35)"
+      },
+      "fonts": {
+        "display": "D-DIN-Bold",
+        "body": "D-DIN",
+        "mono": null
+      },
+      "radius_px": 32,
+      "shadow_style": "零阴影、零卡片、零容器——文字直接压在影像上",
+      "motion_feel": "影像驱动；滚动叙事为主",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "极简到没有任何装饰，只剩字体与摄影；一旦加入卡片/图标就会破坏。",
+      "one_liner_zh": "纯黑 + DIN 大写 + 满幅摄影的航天权威语言"
+    },
+    {
+      "id": "spotify",
+      "name": "Spotify",
+      "repo_path": "design-md/spotify/DESIGN.md",
+      "source_url": "https://spotify.com/",
+      "family": "F8",
+      "secondary_family": "F10",
+      "theme": [
+        "dark"
+      ],
+      "vibe_keywords_en": [
+        "content-first-dark",
+        "achromatic-ui",
+        "bold-marketing",
+        "immersive"
+      ],
+      "vibe_keywords_zh": [
+        "内容优先暗色",
+        "无彩界面",
+        "强势营销",
+        "沉浸"
+      ],
+      "best_for": [
+        "内容/媒体/音乐产品",
+        "消费级订阅服务",
+        "需要\"内容即色彩\"的界面"
+      ],
+      "avoid_for": [
+        "文档密集",
+        "严肃金融",
+        "极简白站"
+      ],
+      "density": 5,
+      "formality": 4,
+      "energy": 7,
+      "signature": [
+        "近黑沉浸 #121212–#1f1f1f，UI 退到内容之后",
+        "Spotify 绿 #1ed760 只做功能（播放/激活），绝不作装饰",
+        "大写按钮 + 1.4px 以上宽字距",
+        "重投影抬升面板 rgba(0,0,0,0.5) 0 8px 24px；封面图是唯一色彩来源"
+      ],
+      "palette": {
+        "bg": "#121212",
+        "surface": "#181818",
+        "text": "#ffffff",
+        "muted": "#b3b3b3",
+        "accent": "#1ed760",
+        "accent_alt": "#1db954",
+        "border": "#4d4d4d"
+      },
+      "fonts": {
+        "display": "SpotifyMixUITitle",
+        "body": "SpotifyMixUI",
+        "mono": null
+      },
+      "radius_px": 8,
+      "shadow_style": "重投影（0 8px 24px，0.5）用于浮层；卡片靠浅色面分层",
+      "motion_feel": "顺畅；播放态与封面切换为主",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "无彩 UI + 内容供色是核心逻辑；若给界面加品牌色会与封面图打架。",
+      "one_liner_zh": "近黑沉浸 + 无彩 UI、让封面供色的消费音乐界面"
+    },
+    {
+      "id": "stripe",
+      "name": "Stripe",
+      "repo_path": "design-md/stripe/DESIGN.md",
+      "source_url": "https://stripe.com/",
+      "family": "F3",
+      "secondary_family": "F4",
+      "theme": [
+        "light",
+        "dark"
+      ],
+      "vibe_keywords_en": [
+        "financial-grade",
+        "premium",
+        "blue-shadow",
+        "developer"
+      ],
+      "vibe_keywords_zh": [
+        "金融级",
+        "精品",
+        "蓝调投影",
+        "开发者友好"
+      ],
+      "best_for": [
+        "支付/金融基础设施",
+        "开发者文档密集平台",
+        "需要\"昂贵可信\""
+      ],
+      "avoid_for": [
+        "儿童",
+        "娱乐社交",
+        "温暖生活"
+      ],
+      "density": 5,
+      "formality": 7,
+      "energy": 5,
+      "signature": [
+        "深海军蓝 #061b31 作为标题色（不是黑，不是灰）",
+        "蓝调多层阴影 rgba(50,50,93,0.25) —— 投影自带品牌色",
+        "4–8px 保守圆角，永不做胶囊",
+        "sohne-var 300 细字重 + \"ss01\" 特性"
+      ],
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#ffffff",
+        "text": "#061b31",
+        "muted": "#64748d",
+        "accent": "#533afd",
+        "accent_alt": "#ea2261",
+        "border": "#e5edf5"
+      },
+      "fonts": {
+        "display": "sohne-var",
+        "body": "sohne-var",
+        "mono": "SourceCodePro"
+      },
+      "radius_px": 6,
+      "shadow_style": "蓝调双层公式：远层大 Y/B + 近层小 Y/B，色值为 rgba(50,50,93,0.25)",
+      "motion_feel": "克制；渐变装饰与 hover 过渡为主",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "标题必须用深海军蓝；改成黑色或灰色会立刻失去 Stripe 的\"金融级温度\"。",
+      "one_liner_zh": "白色 + 深海军蓝标题 + 蓝调阴影的金融级开发者平台"
+    },
+    {
+      "id": "supabase",
+      "name": "Supabase",
+      "repo_path": "design-md/supabase/DESIGN.md",
+      "source_url": "https://supabase.com/",
+      "family": "F1",
+      "secondary_family": "F4",
+      "theme": [
+        "dark"
+      ],
+      "vibe_keywords_en": [
+        "dark-native",
+        "emerald",
+        "border-depth",
+        "open-source"
+      ],
+      "vibe_keywords_zh": [
+        "深色原生",
+        "祖母绿",
+        "描边分层",
+        "开源"
+      ],
+      "best_for": [
+        "数据库/后端平台",
+        "开源开发者产品",
+        "深色技术文档"
+      ],
+      "avoid_for": [
+        "温暖消费",
+        "儿童",
+        "奢侈品牌"
+      ],
+      "density": 6,
+      "formality": 5,
+      "energy": 5,
+      "signature": [
+        "近黑 #171717 / #0f0f0f（刻意非纯黑）",
+        "祖母绿 #3ecf8e 克制使用，作为身份标记而非装饰",
+        "几乎不用阴影——深度靠描边对比与表面色阶",
+        "胶囊主 CTA 与 6px 次级元素并存；Circular 几何无衬线"
+      ],
+      "palette": {
+        "bg": "#171717",
+        "surface": "#0f0f0f",
+        "text": "#fafafa",
+        "muted": "#898989",
+        "accent": "#3ecf8e",
+        "accent_alt": "#00c573",
+        "border": "#242424"
+      },
+      "fonts": {
+        "display": "Circular",
+        "body": "Circular",
+        "mono": "Source Code Pro"
+      },
+      "radius_px": 6,
+      "shadow_style": "几乎无阴影（明确如此）；靠描边与色阶分层",
+      "motion_feel": "克制；状态以描边/色阶变化表达",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "绿色只作品牌标记；大面积绿会与\"数据库\"的冷静定位冲突。",
+      "one_liner_zh": "近黑底 + 祖母绿标记、靠描边分层的开源后端平台"
+    },
+    {
+      "id": "superhuman",
+      "name": "Superhuman",
+      "repo_path": "design-md/superhuman/DESIGN.md",
+      "source_url": "https://superhuman.com/",
+      "family": "F2",
+      "secondary_family": "F4",
+      "theme": [
+        "light",
+        "dark"
+      ],
+      "vibe_keywords_en": [
+        "understated-luxury",
+        "variable-weight",
+        "compressed",
+        "cream-cta"
+      ],
+      "vibe_keywords_zh": [
+        "低调奢华",
+        "可变字重",
+        "压缩",
+        "奶油色 CTA"
+      ],
+      "best_for": [
+        "高端效率工具",
+        "专业用户订阅产品",
+        "需要\"低调昂贵\""
+      ],
+      "avoid_for": [
+        "多彩创意工具",
+        "儿童",
+        "大众娱乐"
+      ],
+      "density": 4,
+      "formality": 7,
+      "energy": 4,
+      "signature": [
+        "深紫渐变 hero #1b1938 对大面积白内容区",
+        "Super Sans VF 非标准字重档位（460/540/600/700）",
+        "0.96 极紧展示行高，压缩而有力",
+        "暖奶油色 #e9e5dd 按钮取代高饱和 CTA——低调奢华"
+      ],
+      "palette": {
+        "bg": "#1b1938",
+        "surface": "#ffffff",
+        "text": "#292827",
+        "muted": null,
+        "accent": "#cbb7fb",
+        "accent_alt": null,
+        "border": "#dcd7d3"
+      },
+      "fonts": {
+        "display": "Super Sans VF",
+        "body": "Super Sans VF",
+        "mono": "Messina Mono"
+      },
+      "radius_px": 12,
+      "shadow_style": "近乎无投影无描边；靠暖调 1px 描边分层",
+      "motion_feel": "克制；以字重与行高变化承担强调",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "奶油色 CTA 是\"奢华\"信号；换成高饱和品牌色立刻变成普通效率工具。",
+      "one_liner_zh": "深紫 hero + 奶油色按钮的低调奢华效率工具"
+    },
+    {
+      "id": "tesla",
+      "name": "Tesla",
+      "repo_path": "design-md/tesla/DESIGN.md",
+      "source_url": "https://tesla.com/",
+      "family": "F9",
+      "secondary_family": "F2",
+      "theme": [
+        "light",
+        "dark"
+      ],
+      "vibe_keywords_en": [
+        "zero-decoration",
+        "full-viewport",
+        "cinematic-photo",
+        "single-accent"
+      ],
+      "vibe_keywords_zh": [
+        "零装饰",
+        "满视口",
+        "电影摄影",
+        "单一强调"
+      ],
+      "best_for": [
+        "汽车/能源/硬件",
+        "产品发布长页",
+        "需要\"产品即全部\""
+      ],
+      "avoid_for": [
+        "文档密集",
+        "儿童",
+        "多产品目录"
+      ],
+      "density": 3,
+      "formality": 7,
+      "energy": 5,
+      "signature": [
+        "100vh 满视口 hero + 电影级车辆摄影，叠加极简 UI",
+        "近零装饰：无阴影、无渐变、无描边、无图案",
+        "单一电光蓝 #3E6AE1 只给主 CTA",
+        "Universal Sans Display/Text 统一网页/车机/App"
+      ],
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#f4f4f4",
+        "text": "#171a20",
+        "muted": "#393c41",
+        "accent": "#3e6ae1",
+        "accent_alt": null,
+        "border": null
+      },
+      "fonts": {
+        "display": "Universal Sans Display",
+        "body": "Universal Sans Text",
+        "mono": null
+      },
+      "radius_px": 4,
+      "shadow_style": "零阴影（明确禁止）",
+      "motion_feel": "克制；视差与影像切换承担情绪",
+      "ai_slop_risk": "medium",
+      "ai_slop_note": "去掉摄影后就只剩\"白底黑字 + 蓝按钮\"，会变成通用极简模板；摄影不可缺。",
+      "one_liner_zh": "满视口车辆摄影 + 零装饰 + 单一电光蓝的汽车极简"
+    },
+    {
+      "id": "together.ai",
+      "name": "Together AI",
+      "repo_path": "design-md/together.ai/DESIGN.md",
+      "source_url": "https://together.ai/",
+      "family": "F5",
+      "secondary_family": "F6",
+      "theme": [
+        "light"
+      ],
+      "vibe_keywords_en": [
+        "pastel-gradient",
+        "research",
+        "soft",
+        "optimistic"
+      ],
+      "vibe_keywords_zh": [
+        "粉彩渐变",
+        "研究感",
+        "柔和",
+        "乐观"
+      ],
+      "best_for": [
+        "AI 模型/推理平台",
+        "研究导向的 AI 品牌",
+        "需要\"柔和科技感\""
+      ],
+      "avoid_for": [
+        "严肃金融",
+        "工业硬朗",
+        "文档密集后台"
+      ],
+      "density": 4,
+      "formality": 5,
+      "energy": 7,
+      "signature": [
+        "纯白画布上的粉/蓝/薰衣草柔彩渐变",
+        "深午夜蓝 #010120 用于研究/暗区（非灰黑）",
+        "\"The Future\" 定制字体，全站激进负字距",
+        "PP Neue Montreal Mono 全大写技术标签"
+      ],
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#010120",
+        "text": "#000000",
+        "muted": null,
+        "accent": "#ef2cc1",
+        "accent_alt": "#fc4c02",
+        "border": "rgba(0,0,0,0.08)"
+      },
+      "fonts": {
+        "display": "The Future",
+        "body": "The Future",
+        "mono": "PP Neue Montreal Mono"
+      },
+      "radius_px": 4,
+      "shadow_style": "深蓝调投影 rgba(1,1,32,0.1)",
+      "motion_feel": "柔和；渐变流动与淡入",
+      "ai_slop_risk": "high",
+      "ai_slop_note": "粉彩渐变 + 白色是 AI 生成站最高频套路；必须靠\"The Future\"字体的极端负字距建立辨识度，否则必滑向通用 AI 模板。",
+      "one_liner_zh": "白底粉彩渐变 + 极紧字距的乐观研究型 AI 平台"
+    },
+    {
+      "id": "uber",
+      "name": "Uber",
+      "repo_path": "design-md/uber/DESIGN.md",
+      "source_url": "https://uber.com/",
+      "family": "F8",
+      "secondary_family": "F2",
+      "theme": [
+        "light"
+      ],
+      "vibe_keywords_en": [
+        "monochrome-stark",
+        "pill",
+        "human-illustration",
+        "urban"
+      ],
+      "vibe_keywords_zh": [
+        "极简黑白",
+        "胶囊",
+        "人文插画",
+        "都市"
+      ],
+      "best_for": [
+        "出行/本地服务",
+        "大众消费 App",
+        "需要\"黑白 + 人味\"对比"
+      ],
+      "avoid_for": [
+        "文档密集",
+        "儿童教育",
+        "创意画布"
+      ],
+      "density": 5,
+      "formality": 4,
+      "energy": 6,
+      "signature": [
+        "纯黑白基础，UI 几乎不出现中间灰",
+        "UberMove 标题 + UberMoveText 正文的双专有家族",
+        "999px 胶囊贯穿按钮/标签/导航",
+        "温暖人文插画，与冷峻黑白界面形成反差"
+      ],
+      "palette": {
+        "bg": "#ffffff",
+        "surface": null,
+        "text": "#000000",
+        "muted": "#4b4b4b",
+        "accent": "#000000",
+        "accent_alt": "#e2e2e2",
+        "border": null
+      },
+      "fonts": {
+        "display": "UberMove",
+        "body": "UberMoveText",
+        "mono": null
+      },
+      "radius_px": 999,
+      "shadow_style": "极轻投影（0.12–0.16）仅用于卡片抬升",
+      "motion_feel": "克制；硬边切换为主，无缓动花活",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "黑白 + 胶囊容易做成通用出行模板；人文插画是它区别于其他黑白极简的关键资产。",
+      "one_liner_zh": "纯黑白 + 全胶囊 + 温暖插画的都市出行界面"
+    },
+    {
+      "id": "vercel",
+      "name": "Vercel",
+      "repo_path": "design-md/vercel/DESIGN.md",
+      "source_url": "https://vercel.com/",
+      "family": "F1",
+      "secondary_family": "F2",
+      "theme": [
+        "light",
+        "dark"
+      ],
+      "vibe_keywords_en": [
+        "monochrome",
+        "shadow-as-border",
+        "geist",
+        "infrastructure"
+      ],
+      "vibe_keywords_zh": [
+        "单色",
+        "投影即描边",
+        "Geist",
+        "基础设施"
+      ],
+      "best_for": [
+        "云/部署平台",
+        "开发者基础设施",
+        "极简黑白技术站"
+      ],
+      "avoid_for": [
+        "温暖消费",
+        "多彩创意",
+        "儿童"
+      ],
+      "density": 5,
+      "formality": 7,
+      "energy": 3,
+      "signature": [
+        "用 box-shadow 0 0 0 1px 代替传统描边（shadow-as-border）",
+        "Geist Sans 展示级极端负字距（-2.4 到 -2.88px）",
+        "Geist Mono 配全局 \"liga\" 用于代码与标签",
+        "单色黑白，无品牌色强调"
+      ],
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#fafafa",
+        "text": "#171717",
+        "muted": "#666666",
+        "accent": "#171717",
+        "accent_alt": null,
+        "border": "rgba(0,0,0,0.08)"
+      },
+      "fonts": {
+        "display": "Geist",
+        "body": "Geist",
+        "mono": "Geist Mono"
+      },
+      "radius_px": 6,
+      "shadow_style": "多层栈：描边层 + 高度层 + 环境光，单条声明完成",
+      "motion_feel": "极克制；以 opacity 与位移微动为主",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "无品牌色是刻意的；若补一个\"科技蓝\"就直接破坏 Vercel 的黑白纪律。",
+      "one_liner_zh": "投影即描边 + Geist 极端负字距的单色基础设施站"
+    },
+    {
+      "id": "voltagent",
+      "name": "VoltAgent",
+      "repo_path": "design-md/voltagent/DESIGN.md",
+      "source_url": "https://voltagent.dev/",
+      "family": "F1",
+      "secondary_family": "F5",
+      "theme": [
+        "dark"
+      ],
+      "vibe_keywords_en": [
+        "carbon-black",
+        "signal-green",
+        "compressed",
+        "glow"
+      ],
+      "vibe_keywords_zh": [
+        "碳黑",
+        "信号绿",
+        "压缩",
+        "辉光"
+      ],
+      "best_for": [
+        "AI Agent 框架",
+        "开发者 SDK 产品",
+        "深色技术发布页"
+      ],
+      "avoid_for": [
+        "温暖消费",
+        "儿童",
+        "奢侈品牌"
+      ],
+      "density": 6,
+      "formality": 5,
+      "energy": 6,
+      "signature": [
+        "碳黑 #050507 画布 + 暖灰描边 #3d3a39（不冷硬）",
+        "祖母绿信号绿 #00d992 作为唯一色彩能量源",
+        "双排版：system-ui 权威标题 + Inter 精密正文 + SFMono 代码",
+        "1.0–1.11 极紧标题行高，压缩成\"功率块\""
+      ],
+      "palette": {
+        "bg": "#050507",
+        "surface": "#101010",
+        "text": "#f2f2f2",
+        "muted": "#b8b3b0",
+        "accent": "#00d992",
+        "accent_alt": null,
+        "border": "#3d3a39"
+      },
+      "fonts": {
+        "display": "system-ui",
+        "body": "Inter",
+        "mono": "SFMono-Regular"
+      },
+      "radius_px": null,
+      "shadow_style": "绿色辉光 drop-shadow + 描边发光",
+      "motion_feel": "辉光呼吸；悬停亮度提升",
+      "ai_slop_risk": "medium",
+      "ai_slop_note": "深色 + 单一荧光绿是常见\"AI 开发者\"套路；暖灰描边 #3d3a39 是它避免冷硬的关键，不能换成纯灰。",
+      "one_liner_zh": "碳黑 + 信号绿辉光的 AI Agent 框架"
+    },
+    {
+      "id": "warp",
+      "name": "Warp",
+      "repo_path": "design-md/warp/DESIGN.md",
+      "source_url": "https://warp.com/",
+      "family": "F1",
+      "secondary_family": "F8",
+      "theme": [
+        "dark"
+      ],
+      "vibe_keywords_en": [
+        "warm-dark",
+        "matter-geometric",
+        "monochrome",
+        "lifestyle"
+      ],
+      "vibe_keywords_zh": [
+        "暖深色",
+        "Matter 几何",
+        "单色",
+        "生活方式"
+      ],
+      "best_for": [
+        "终端/命令行工具",
+        "想\"去工具化\"的开发者产品",
+        "需要\"温暖技术感\""
+      ],
+      "avoid_for": [
+        "高饱和营销",
+        "多彩创意工具",
+        "儿童"
+      ],
+      "density": 5,
+      "formality": 5,
+      "energy": 4,
+      "signature": [
+        "暖深色 #353534（泥土感近黑，非冷黑）",
+        "暖羊皮文字 #faf9f6 取代纯白",
+        "Matter 几何但亲和（不用典型开发者字体）",
+        "几乎单色——明确\"无粗体强调色\"，靠色温与几何区分"
+      ],
+      "palette": {
+        "bg": "#353534",
+        "surface": null,
+        "text": "#faf9f6",
+        "muted": "#868584",
+        "accent": null,
+        "accent_alt": null,
+        "border": "rgba(226,226,226,0.35)"
+      },
+      "fonts": {
+        "display": "Matter",
+        "body": "Matter",
+        "mono": "Matter Mono"
+      },
+      "radius_px": 10,
+      "shadow_style": "分级平的：Level 0 无阴影，靠半透明白 0.04 overlay 分层",
+      "motion_feel": "克制；自然摄影与产品截图交替",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "刻意的\"无强调色\"是设计决定；补一个品牌色会破坏温暖克制的基调。",
+      "one_liner_zh": "暖深色 + Matter 柔和几何、刻意无强调色的终端"
+    },
+    {
+      "id": "webflow",
+      "name": "Webflow",
+      "repo_path": "design-md/webflow/DESIGN.md",
+      "source_url": "https://webflow.com/",
+      "family": "F6",
+      "secondary_family": "F10",
+      "theme": [
+        "light"
+      ],
+      "vibe_keywords_en": [
+        "builder",
+        "rich-palette",
+        "marketing",
+        "structured"
+      ],
+      "vibe_keywords_zh": [
+        "建站工具",
+        "丰富色板",
+        "营销导向",
+        "结构化"
+      ],
+      "best_for": [
+        "建站/无代码工具",
+        "营销落地页",
+        "需要\"丰富但可控\"的色板"
+      ],
+      "avoid_for": [
+        "严肃金融",
+        "深色工程终端"
+      ],
+      "density": 5,
+      "formality": 5,
+      "energy": 7,
+      "signature": [
+        "白画布 + 近黑 #080808 文字",
+        "Webflow 蓝 #146ef5 主品牌与交互色",
+        "WF Visual Sans Variable 500–700 字重",
+        "丰富次级色板（紫/粉/绿/橙/黄）用于内容区块"
+      ],
+      "palette": {
+        "bg": "#ffffff",
+        "surface": null,
+        "text": "#080808",
+        "muted": "#ababab",
+        "accent": "#146ef5",
+        "accent_alt": "#7a3dff",
+        "border": "#d8d8d8"
+      },
+      "fonts": {
+        "display": "WF Visual Sans Variable",
+        "body": "WF Visual Sans Variable",
+        "mono": null
+      },
+      "radius_px": 6,
+      "shadow_style": "5 层级联投影栈",
+      "motion_feel": "translate(6px) 的按钮 hover 位移",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "丰富色板必须由变量驱动并服务于内容区块；随手取色会变成杂乱的多彩营销页。",
+      "one_liner_zh": "白底 Webflow 蓝 + 丰富次级色板的建站工具"
+    },
+    {
+      "id": "wise",
+      "name": "Wise",
+      "repo_path": "design-md/wise/DESIGN.md",
+      "source_url": "https://wise.com/",
+      "family": "F3",
+      "secondary_family": "F8",
+      "theme": [
+        "light"
+      ],
+      "vibe_keywords_en": [
+        "lime-green",
+        "billboard-bold",
+        "fresh-fintech",
+        "confident"
+      ],
+      "vibe_keywords_zh": [
+        "青柠绿",
+        "广告牌粗字",
+        "清新金融",
+        "自信"
+      ],
+      "best_for": [
+        "跨境汇款/个人金融",
+        "面向大众的 fintech",
+        "需要\"清新不冷\"的金融"
+      ],
+      "avoid_for": [
+        "严肃机构投资",
+        "儿童",
+        "工业硬朗"
+      ],
+      "density": 5,
+      "formality": 5,
+      "energy": 6,
+      "signature": [
+        "Wise Sans 900 字重 + 0.85 行高的广告牌标题",
+        "青柠绿 #9fe870 + 深绿文字 #163300 的自然系金融色",
+        "Inter 正文默认 600 字重——自信而非纤细",
+        "近黑 #0e0f0c 带暖绿底调；胶囊按钮 9999px"
+      ],
+      "palette": {
+        "bg": "#ffffff",
+        "surface": null,
+        "text": "#0e0f0c",
+        "muted": "#868685",
+        "accent": "#9fe870",
+        "accent_alt": "#163300",
+        "border": null
+      },
+      "fonts": {
+        "display": "Wise Sans",
+        "body": "Inter",
+        "mono": null
+      },
+      "radius_px": 9999,
+      "shadow_style": "极简，仅 ring 级投影",
+      "motion_feel": "按钮 Scale(1.05) 物理放大",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "青柠绿必须配深绿文字；用白字或黑字会立刻失去\"自然金融\"的识别度。",
+      "one_liner_zh": "青柠绿 + 900 字重广告牌标题的清新跨境金融"
+    },
+    {
+      "id": "x.ai",
+      "name": "xAI",
+      "repo_path": "design-md/x.ai/DESIGN.md",
+      "source_url": "https://x.ai/",
+      "family": "F1",
+      "secondary_family": "F5",
+      "theme": [
+        "dark"
+      ],
+      "vibe_keywords_en": [
+        "mono-luxury",
+        "pure-dark",
+        "uppercase-technical",
+        "commanding"
+      ],
+      "vibe_keywords_zh": [
+        "等宽奢华",
+        "纯暗",
+        "大写技术感",
+        "命令感"
+      ],
+      "best_for": [
+        "AI 研究/模型平台",
+        "需要\"极客权威\"的技术站",
+        "开发者工具"
+      ],
+      "avoid_for": [
+        "温暖消费",
+        "儿童",
+        "友好社区"
+      ],
+      "density": 5,
+      "formality": 7,
+      "energy": 4,
+      "signature": [
+        "GeistMono 打到 320px / 300 字重——把等宽当奢侈",
+        "纯暗 #1f2228 + 纯白文字，没有中间灰",
+        "全大写等宽按钮 + 1.4px 宽字距",
+        "universalSans 承担正文（16px/1.5），与展示等宽形成对比"
+      ],
+      "palette": {
+        "bg": "#1f2228",
+        "surface": "rgba(255,255,255,0.05)",
+        "text": "#ffffff",
+        "muted": null,
+        "accent": "#ffffff",
+        "accent_alt": null,
+        "border": "rgba(255,255,255,0.1)"
+      },
+      "fonts": {
+        "display": "GeistMono",
+        "body": "universalSans",
+        "mono": "GeistMono"
+      },
+      "radius_px": 12,
+      "shadow_style": "无装饰投影；靠 5–10% 白表面分层",
+      "motion_feel": "极克制；几乎无动效",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "极简到只有等宽与暗色；加入渐变色或插画会立刻失去命令感。",
+      "one_liner_zh": "把等宽字体当奢侈的超大字号纯暗技术平台"
+    },
+    {
+      "id": "zapier",
+      "name": "Zapier",
+      "repo_path": "design-md/zapier/DESIGN.md",
+      "source_url": "https://zapier.com/",
+      "family": "F10",
+      "secondary_family": "F8",
+      "theme": [
+        "light"
+      ],
+      "vibe_keywords_en": [
+        "warm-cream",
+        "orange-cta",
+        "display-condensed",
+        "automation"
+      ],
+      "vibe_keywords_zh": [
+        "暖奶油",
+        "橙色 CTA",
+        "压缩展示字",
+        "自动化"
+      ],
+      "best_for": [
+        "自动化/集成 SaaS",
+        "面向非技术用户的工具",
+        "转化导向落地页"
+      ],
+      "avoid_for": [
+        "深色工程终端",
+        "奢侈品牌",
+        "文档密集后台"
+      ],
+      "density": 5,
+      "formality": 4,
+      "energy": 6,
+      "signature": [
+        "暖奶油 #fffefb 画布（非纯白，纸质感）",
+        "Degular Display 0.90 行高的压缩 hero 标题",
+        "Inter 承担全部功能性排版",
+        "Zapier 橙 #ff4f00 强力 CTA；暖灰描边 #c5c0b1 而非投影"
+      ],
+      "palette": {
+        "bg": "#fffefb",
+        "surface": "#eceae3",
+        "text": "#201515",
+        "muted": "#36342e",
+        "accent": "#ff4f00",
+        "accent_alt": null,
+        "border": "#c5c0b1"
+      },
+      "fonts": {
+        "display": "Degular Display",
+        "body": "Inter",
+        "mono": null
+      },
+      "radius_px": 8,
+      "shadow_style": "用 1px 暖灰描边定义结构，弱化投影",
+      "motion_feel": "明快；CTA 与卡片 hover 抬升",
+      "ai_slop_risk": "low",
+      "ai_slop_note": "暖奶油底 + 橙 CTA 是组合关键；换成纯白底会立刻变成普通 SaaS 落地页。",
+      "one_liner_zh": "暖奶油底 + 橙 CTA + 压缩展示字的自动化 SaaS"
+    }
+  ]
+}
