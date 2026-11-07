@@ -1,6 +1,6 @@
 {
   "$comment": "DevNotes 验收截图配置。每个 route 用独立 url(?r=<id> 缓存击穿) 保证是整页加载，状态由 hash query 固定，可复现。",
-  "baseUrl": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html",
+  "baseUrl": "../design/frozen/index.html",
   "out": "screenshots-light",
   "viewports": [
     {
@@ -26,23 +26,23 @@
   "routes": [
     {
       "id": "home",
-      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=light-home#/home?demo=0&theme=light"
+      "url": "../design/frozen/index.html?r=light-home#/home?demo=0&theme=light"
     },
     {
       "id": "notes",
-      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=light-notes#/notes?demo=0&theme=light"
+      "url": "../design/frozen/index.html?r=light-notes#/notes?demo=0&theme=light"
     },
     {
       "id": "settings",
-      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=light-settings#/settings?demo=0&theme=light"
+      "url": "../design/frozen/index.html?r=light-settings#/settings?demo=0&theme=light"
     },
     {
       "id": "settings-form-error",
-      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=light-settings-form-error#/settings?state=form-error&demo=0&theme=light"
+      "url": "../design/frozen/index.html?r=light-settings-form-error#/settings?state=form-error&demo=0&theme=light"
     },
     {
       "id": "notes-empty",
-      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=light-notes-empty#/notes?state=empty&demo=0&theme=light"
+      "url": "../design/frozen/index.html?r=light-notes-empty#/notes?state=empty&demo=0&theme=light"
     }
   ],
   "states": [

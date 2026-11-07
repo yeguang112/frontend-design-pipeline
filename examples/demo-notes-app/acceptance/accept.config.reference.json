@@ -1,6 +1,6 @@
 {
   "$comment": "冻结参考基线（P4 之后立刻截一次）。A4 用它和 screenshots/ 逐张对比，检验「冻结后未漂移 + 截图可复现」。",
-  "baseUrl": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html",
+  "baseUrl": "../design/frozen/index.html",
   "out": "reference",
   "viewports": [
     {
@@ -32,35 +32,35 @@
   "routes": [
     {
       "id": "home",
-      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=home#/home?demo=0"
+      "url": "../design/frozen/index.html?r=home#/home?demo=0"
     },
     {
       "id": "notes",
-      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=notes#/notes?demo=0"
+      "url": "../design/frozen/index.html?r=notes#/notes?demo=0"
     },
     {
       "id": "notes-empty",
-      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=notes-empty#/notes?state=empty&demo=0"
+      "url": "../design/frozen/index.html?r=notes-empty#/notes?state=empty&demo=0"
     },
     {
       "id": "notes-loading",
-      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=notes-loading#/notes?state=loading&demo=0"
+      "url": "../design/frozen/index.html?r=notes-loading#/notes?state=loading&demo=0"
     },
     {
       "id": "notes-error",
-      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=notes-error#/notes?state=error&demo=0"
+      "url": "../design/frozen/index.html?r=notes-error#/notes?state=error&demo=0"
     },
     {
       "id": "settings",
-      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=settings#/settings?demo=0"
+      "url": "../design/frozen/index.html?r=settings#/settings?demo=0"
     },
     {
       "id": "settings-form-error",
-      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=settings-form-error#/settings?state=form-error&demo=0"
+      "url": "../design/frozen/index.html?r=settings-form-error#/settings?state=form-error&demo=0"
     },
     {
       "id": "settings-modal",
-      "url": "file:///D:/work/deepseekhharness/deliverables/design-pipeline/examples/demo-notes-app/design/frozen/index.html?r=settings-modal#/settings?modal=1&demo=0"
+      "url": "../design/frozen/index.html?r=settings-modal#/settings?modal=1&demo=0"
     }
   ],
   "states": [

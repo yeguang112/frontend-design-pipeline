@@ -9,7 +9,7 @@
 |---|---|---|---|
 | A1 | 截图齐全 | PASS | 36 张（dark 24 + light 12） |
 | A2 | 截图非空 | PASS | 最小 18.8 KB，非纯色 |
-| A3 | 尺寸正确 | PASS | 2880×1800 / 1536×2048 / 780×1688（1440/768/390 @2x） |
+| A3 | 尺寸正确 | PASS | 1440×900 / 768×1024 / 390×844（DSR=1，控制仓库体积；正式项目建议 DSR=2） |
 | A4 | 像素 diff ≤0.3% | PASS | reference 与 screenshots 同一批，0.00% |
 | A5 | token 一致性 | PASS | drift total=0（error/warn/info 均 0） |
 | A6 | 计算样式 ⊆ token | PASS | `probe-report` computedViolationTotal=0（34 次测量） |
@@ -57,7 +57,7 @@
 
 ## 环境
 
-- 浏览器：本机 Chromium headless（CDP），DSR=2
+- 浏览器：本机 Chromium headless（CDP），DSR=1（演练为控制截图体积；正式验收建议 DSR=2）
 - 字体：本地 `design/frozen/assets/fonts/Inter-roman-latin*.woff2`
 - 动画：截图前注入 `animation:none;transition:none`，并启用 `prefers-reduced-motion`
 - 生成时间：2026-11-07T12:03–12:05Z
