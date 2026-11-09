@@ -1,0 +1,827 @@
+{
+  "$description": "Astryx component inventory (meta/astryx core api-report). MIT.",
+  "meta": {
+    "system": "astryx",
+    "version": "0.7.11",
+    "count": 204,
+    "source": "packages/core/api-report.md"
+  },
+  "components": [
+    {
+      "name": "AlertDialog",
+      "propsType": "AlertDialogProps"
+    },
+    {
+      "name": "AppShell",
+      "propsType": "AppShellProps"
+    },
+    {
+      "name": "AspectRatio",
+      "propsType": "AspectRatioProps"
+    },
+    {
+      "name": "Avatar",
+      "propsType": "AvatarProps"
+    },
+    {
+      "name": "AvatarGroup",
+      "propsType": "AvatarGroupProps"
+    },
+    {
+      "name": "AvatarGroupOverflow",
+      "propsType": "AvatarGroupOverflowProps"
+    },
+    {
+      "name": "AvatarStatusDot",
+      "propsType": "AvatarStatusDotProps"
+    },
+    {
+      "name": "Badge",
+      "propsType": "BadgeProps"
+    },
+    {
+      "name": "Banner",
+      "propsType": "BannerProps"
+    },
+    {
+      "name": "BaseTypeahead",
+      "propsType": "BaseTypeaheadProps"
+    },
+    {
+      "name": "Blockquote",
+      "propsType": "BlockquoteProps"
+    },
+    {
+      "name": "BottomSheet",
+      "propsType": "BottomSheetProps"
+    },
+    {
+      "name": "BottomSheetSwitcher",
+      "propsType": "BottomSheetSwitcherProps"
+    },
+    {
+      "name": "BreadcrumbItem",
+      "propsType": "BreadcrumbItemProps"
+    },
+    {
+      "name": "BreadcrumbMenuCheckboxItem",
+      "propsType": "DropdownMenuCheckboxItemProps"
+    },
+    {
+      "name": "BreadcrumbMenuDivider",
+      "propsType": "DropdownMenuDividerProps"
+    },
+    {
+      "name": "BreadcrumbMenuGroup",
+      "propsType": "DropdownMenuGroupProps"
+    },
+    {
+      "name": "BreadcrumbMenuItem",
+      "propsType": "DropdownMenuItemProps"
+    },
+    {
+      "name": "BreadcrumbMenuRadioGroup",
+      "propsType": "DropdownMenuRadioGroupProps"
+    },
+    {
+      "name": "BreadcrumbMenuRadioItem",
+      "propsType": "DropdownMenuRadioItemProps"
+    },
+    {
+      "name": "BreadcrumbMenuSubMenu",
+      "propsType": "DropdownMenuSubMenuProps"
+    },
+    {
+      "name": "Breadcrumbs",
+      "propsType": "BreadcrumbsProps"
+    },
+    {
+      "name": "Button",
+      "propsType": "ButtonProps"
+    },
+    {
+      "name": "ButtonGroup",
+      "propsType": "ButtonGroupProps"
+    },
+    {
+      "name": "Calendar",
+      "propsType": "CalendarProps"
+    },
+    {
+      "name": "Card",
+      "propsType": "CardProps"
+    },
+    {
+      "name": "Carousel",
+      "propsType": "CarouselProps"
+    },
+    {
+      "name": "Center",
+      "propsType": "CenterProps"
+    },
+    {
+      "name": "ChatComposer",
+      "propsType": "ChatComposerProps"
+    },
+    {
+      "name": "ChatComposerDrawer",
+      "propsType": "ChatComposerDrawerProps"
+    },
+    {
+      "name": "ChatComposerInput",
+      "propsType": "ChatComposerInputProps"
+    },
+    {
+      "name": "ChatComposerTokenElement",
+      "propsType": "ChatComposerTokenElementProps"
+    },
+    {
+      "name": "ChatDictationButton",
+      "propsType": "ChatDictationButtonProps"
+    },
+    {
+      "name": "ChatLayout",
+      "propsType": "ChatLayoutProps"
+    },
+    {
+      "name": "ChatLayoutScrollButton",
+      "propsType": "ChatLayoutScrollButtonProps"
+    },
+    {
+      "name": "ChatMessage",
+      "propsType": "ChatMessageProps"
+    },
+    {
+      "name": "ChatMessageBubble",
+      "propsType": "ChatMessageBubbleProps"
+    },
+    {
+      "name": "ChatMessageList",
+      "propsType": "ChatMessageListProps"
+    },
+    {
+      "name": "ChatMessageMetadata",
+      "propsType": "ChatMessageMetadataProps"
+    },
+    {
+      "name": "ChatSendButton",
+      "propsType": "ChatSendButtonProps"
+    },
+    {
+      "name": "ChatSystemMessage",
+      "propsType": "ChatSystemMessageProps"
+    },
+    {
+      "name": "ChatTokenizedText",
+      "propsType": "ChatTokenizedTextProps"
+    },
+    {
+      "name": "ChatToolCalls",
+      "propsType": "ChatToolCallsProps"
+    },
+    {
+      "name": "CheckIndicator",
+      "propsType": "IndicatorProps"
+    },
+    {
+      "name": "CheckboxIndicator",
+      "propsType": "IndicatorProps"
+    },
+    {
+      "name": "CheckboxInput",
+      "propsType": "CheckboxInputProps"
+    },
+    {
+      "name": "CheckboxList",
+      "propsType": "CheckboxListProps"
+    },
+    {
+      "name": "CheckboxListItem",
+      "propsType": "CheckboxListItemProps"
+    },
+    {
+      "name": "Citation",
+      "propsType": "CitationProps"
+    },
+    {
+      "name": "ClickableCard",
+      "propsType": "ClickableCardProps"
+    },
+    {
+      "name": "Code",
+      "propsType": "CodeProps"
+    },
+    {
+      "name": "CodeBlock",
+      "propsType": "CodeBlockProps"
+    },
+    {
+      "name": "Collapsible",
+      "propsType": "CollapsibleProps"
+    },
+    {
+      "name": "CollapsibleGroup",
+      "propsType": "CollapsibleGroupProps"
+    },
+    {
+      "name": "CommandPalette",
+      "propsType": "CommandPaletteProps"
+    },
+    {
+      "name": "CommandPaletteEmpty",
+      "propsType": "CommandPaletteEmptyProps"
+    },
+    {
+      "name": "CommandPaletteFooter",
+      "propsType": "CommandPaletteFooterProps"
+    },
+    {
+      "name": "CommandPaletteGroup",
+      "propsType": "CommandPaletteGroupProps"
+    },
+    {
+      "name": "CommandPaletteInput",
+      "propsType": "CommandPaletteInputProps"
+    },
+    {
+      "name": "CommandPaletteItem",
+      "propsType": "CommandPaletteItemProps"
+    },
+    {
+      "name": "CommandPaletteList",
+      "propsType": "CommandPaletteListProps"
+    },
+    {
+      "name": "ComplexSelector",
+      "propsType": "ComplexSelectorProps"
+    },
+    {
+      "name": "ContextMenu",
+      "propsType": "ContextMenuProps"
+    },
+    {
+      "name": "ContextMenuCheckboxItem",
+      "propsType": "DropdownMenuCheckboxItemProps"
+    },
+    {
+      "name": "ContextMenuDivider",
+      "propsType": "DropdownMenuDividerProps"
+    },
+    {
+      "name": "ContextMenuGroup",
+      "propsType": "DropdownMenuGroupProps"
+    },
+    {
+      "name": "ContextMenuItem",
+      "propsType": "DropdownMenuItemProps"
+    },
+    {
+      "name": "ContextMenuRadioGroup",
+      "propsType": "DropdownMenuRadioGroupProps"
+    },
+    {
+      "name": "ContextMenuRadioItem",
+      "propsType": "DropdownMenuRadioItemProps"
+    },
+    {
+      "name": "ContextMenuSubMenu",
+      "propsType": "DropdownMenuSubMenuProps"
+    },
+    {
+      "name": "DateInput",
+      "propsType": "DateInputProps"
+    },
+    {
+      "name": "DateRangeInput",
+      "propsType": "DateRangeInputProps"
+    },
+    {
+      "name": "DateTimeInput",
+      "propsType": "DateTimeInputProps"
+    },
+    {
+      "name": "Dialog",
+      "propsType": "DialogProps"
+    },
+    {
+      "name": "DialogHeader",
+      "propsType": "DialogHeaderProps"
+    },
+    {
+      "name": "Divider",
+      "propsType": "DividerProps"
+    },
+    {
+      "name": "Drawer",
+      "propsType": "DrawerProps"
+    },
+    {
+      "name": "DrawerHeader",
+      "propsType": "DrawerHeaderProps"
+    },
+    {
+      "name": "DropdownMenu",
+      "propsType": "DropdownMenuProps"
+    },
+    {
+      "name": "DropdownMenuCheckboxItem",
+      "propsType": "DropdownMenuCheckboxItemProps"
+    },
+    {
+      "name": "DropdownMenuDivider",
+      "propsType": "DropdownMenuDividerProps"
+    },
+    {
+      "name": "DropdownMenuGroup",
+      "propsType": "DropdownMenuGroupProps"
+    },
+    {
+      "name": "DropdownMenuItem",
+      "propsType": "DropdownMenuItemProps"
+    },
+    {
+      "name": "DropdownMenuRadioGroup",
+      "propsType": "DropdownMenuRadioGroupProps"
+    },
+    {
+      "name": "DropdownMenuRadioItem",
+      "propsType": "DropdownMenuRadioItemProps"
+    },
+    {
+      "name": "DropdownMenuSubMenu",
+      "propsType": "DropdownMenuSubMenuProps"
+    },
+    {
+      "name": "EmptyState",
+      "propsType": "EmptyStateProps"
+    },
+    {
+      "name": "Field",
+      "propsType": "FieldProps"
+    },
+    {
+      "name": "FieldLabel",
+      "propsType": "FieldLabelProps"
+    },
+    {
+      "name": "FieldStatus",
+      "propsType": "FieldStatusProps"
+    },
+    {
+      "name": "FileInput",
+      "propsType": "FileInputProps"
+    },
+    {
+      "name": "FormLayout",
+      "propsType": "FormLayoutProps"
+    },
+    {
+      "name": "Grid",
+      "propsType": "GridProps"
+    },
+    {
+      "name": "GridSpan",
+      "propsType": "GridSpanProps"
+    },
+    {
+      "name": "HStack",
+      "propsType": "HStackProps"
+    },
+    {
+      "name": "Heading",
+      "propsType": "HeadingProps"
+    },
+    {
+      "name": "HoverCard",
+      "propsType": "HoverCardProps"
+    },
+    {
+      "name": "Icon",
+      "propsType": "IconProps"
+    },
+    {
+      "name": "IconButton",
+      "propsType": "IconButtonProps"
+    },
+    {
+      "name": "InfoTip",
+      "propsType": "InfoTipProps"
+    },
+    {
+      "name": "InputClearButton",
+      "propsType": "InputClearButtonProps"
+    },
+    {
+      "name": "InputGroup",
+      "propsType": "InputGroupProps"
+    },
+    {
+      "name": "InputGroupText",
+      "propsType": "InputGroupTextProps"
+    },
+    {
+      "name": "InternationalizationProvider",
+      "propsType": "InternationalizationProviderProps"
+    },
+    {
+      "name": "Item",
+      "propsType": "ItemProps"
+    },
+    {
+      "name": "Kbd",
+      "propsType": "KbdProps"
+    },
+    {
+      "name": "LayerProvider",
+      "propsType": "LayerProviderProps"
+    },
+    {
+      "name": "Layout",
+      "propsType": "LayoutProps"
+    },
+    {
+      "name": "LayoutContent",
+      "propsType": "LayoutContentProps"
+    },
+    {
+      "name": "LayoutFooter",
+      "propsType": "LayoutFooterProps"
+    },
+    {
+      "name": "LayoutHeader",
+      "propsType": "LayoutHeaderProps"
+    },
+    {
+      "name": "LayoutPanel",
+      "propsType": "LayoutPanelProps"
+    },
+    {
+      "name": "Lightbox",
+      "propsType": "LightboxProps"
+    },
+    {
+      "name": "Link",
+      "propsType": "LinkProps"
+    },
+    {
+      "name": "LinkProvider",
+      "propsType": "LinkProviderProps"
+    },
+    {
+      "name": "List",
+      "propsType": "ListProps"
+    },
+    {
+      "name": "ListItem",
+      "propsType": "ListItemProps"
+    },
+    {
+      "name": "Markdown",
+      "propsType": "MarkdownProps"
+    },
+    {
+      "name": "MediaTheme",
+      "propsType": "MediaThemeProps"
+    },
+    {
+      "name": "MetadataList",
+      "propsType": "MetadataListProps"
+    },
+    {
+      "name": "MetadataListItem",
+      "propsType": "MetadataListItemProps"
+    },
+    {
+      "name": "MobileNav",
+      "propsType": "MobileNavProps"
+    },
+    {
+      "name": "MobileNavToggle",
+      "propsType": "MobileNavToggleProps"
+    },
+    {
+      "name": "MoreMenu",
+      "propsType": "MoreMenuProps"
+    },
+    {
+      "name": "MultiSelector",
+      "propsType": "MultiSelectorProps"
+    },
+    {
+      "name": "NavHeadingMenu",
+      "propsType": "NavHeadingMenuProps"
+    },
+    {
+      "name": "NavHeadingMenuItem",
+      "propsType": "NavHeadingMenuItemProps"
+    },
+    {
+      "name": "NavIcon",
+      "propsType": "NavIconProps"
+    },
+    {
+      "name": "NumberInput",
+      "propsType": "NumberInputProps"
+    },
+    {
+      "name": "Outline",
+      "propsType": "OutlineProps"
+    },
+    {
+      "name": "OverflowList",
+      "propsType": "OverflowListProps"
+    },
+    {
+      "name": "Overlay",
+      "propsType": "OverlayProps"
+    },
+    {
+      "name": "Pagination",
+      "propsType": "PaginationProps"
+    },
+    {
+      "name": "Popover",
+      "propsType": "PopoverProps"
+    },
+    {
+      "name": "PowerSearch",
+      "propsType": "PowerSearchProps"
+    },
+    {
+      "name": "PowerSearchFilterEditor",
+      "propsType": "PowerSearchEditorProps"
+    },
+    {
+      "name": "PowerSearchToken",
+      "propsType": "PowerSearchTokenProps"
+    },
+    {
+      "name": "ProgressBar",
+      "propsType": "ProgressBarProps"
+    },
+    {
+      "name": "RadioIndicator",
+      "propsType": "IndicatorProps"
+    },
+    {
+      "name": "RadioList",
+      "propsType": "RadioListProps"
+    },
+    {
+      "name": "RadioListItem",
+      "propsType": "RadioListItemProps"
+    },
+    {
+      "name": "ResizeHandle",
+      "propsType": "ResizeHandleProps"
+    },
+    {
+      "name": "ScrollableArea",
+      "propsType": "ScrollableAreaProps"
+    },
+    {
+      "name": "Section",
+      "propsType": "SectionProps"
+    },
+    {
+      "name": "SegmentedControl",
+      "propsType": "SegmentedControlProps"
+    },
+    {
+      "name": "SegmentedControlItem",
+      "propsType": "SegmentedControlItemProps"
+    },
+    {
+      "name": "SelectableCard",
+      "propsType": "SelectableCardProps"
+    },
+    {
+      "name": "Selector",
+      "propsType": "SelectorProps"
+    },
+    {
+      "name": "SelectorOption",
+      "propsType": "SelectorOptionProps"
+    },
+    {
+      "name": "SideNav",
+      "propsType": "SideNavProps"
+    },
+    {
+      "name": "SideNavCollapseButton",
+      "propsType": "SideNavCollapseButtonProps"
+    },
+    {
+      "name": "SideNavHeading",
+      "propsType": "SideNavHeadingProps"
+    },
+    {
+      "name": "SideNavItem",
+      "propsType": "SideNavItemProps"
+    },
+    {
+      "name": "SideNavSection",
+      "propsType": "SideNavSectionProps"
+    },
+    {
+      "name": "SizeProvider",
+      "propsType": "ProviderProps"
+    },
+    {
+      "name": "Skeleton",
+      "propsType": "SkeletonProps"
+    },
+    {
+      "name": "Slider",
+      "propsType": "SliderProps"
+    },
+    {
+      "name": "Spinner",
+      "propsType": "SpinnerProps"
+    },
+    {
+      "name": "Stack",
+      "propsType": "StackProps"
+    },
+    {
+      "name": "StackItem",
+      "propsType": "StackItemProps"
+    },
+    {
+      "name": "StatusDot",
+      "propsType": "StatusDotProps"
+    },
+    {
+      "name": "Step",
+      "propsType": "StepProps"
+    },
+    {
+      "name": "Stepper",
+      "propsType": "StepperProps"
+    },
+    {
+      "name": "Switch",
+      "propsType": "SwitchProps"
+    },
+    {
+      "name": "SyntaxTheme",
+      "propsType": "SyntaxThemeProps"
+    },
+    {
+      "name": "Tab",
+      "propsType": "TabProps"
+    },
+    {
+      "name": "TabList",
+      "propsType": "TabListProps"
+    },
+    {
+      "name": "TabMenu",
+      "propsType": "TabMenuProps"
+    },
+    {
+      "name": "TableBody",
+      "propsType": "TableBodyProps"
+    },
+    {
+      "name": "TableCell",
+      "propsType": "TableCellProps"
+    },
+    {
+      "name": "TableFooter",
+      "propsType": "TableFooterProps"
+    },
+    {
+      "name": "TableHeader",
+      "propsType": "TableHeaderProps"
+    },
+    {
+      "name": "TableHeaderCell",
+      "propsType": "TableHeaderCellProps"
+    },
+    {
+      "name": "TableRow",
+      "propsType": "TableRowProps"
+    },
+    {
+      "name": "TableSelectionToolbar",
+      "propsType": "TableSelectionToolbarProps"
+    },
+    {
+      "name": "Text",
+      "propsType": "TextProps"
+    },
+    {
+      "name": "TextArea",
+      "propsType": "TextAreaProps"
+    },
+    {
+      "name": "TextInput",
+      "propsType": "TextInputProps"
+    },
+    {
+      "name": "Theme",
+      "propsType": "ThemeProps"
+    },
+    {
+      "name": "Thumbnail",
+      "propsType": "ThumbnailProps"
+    },
+    {
+      "name": "TimeInput",
+      "propsType": "TimeInputProps"
+    },
+    {
+      "name": "Timer",
+      "propsType": "TimerProps"
+    },
+    {
+      "name": "Timestamp",
+      "propsType": "TimestampProps"
+    },
+    {
+      "name": "Toast",
+      "propsType": "ToastProps"
+    },
+    {
+      "name": "ToggleButton",
+      "propsType": "ToggleButtonProps"
+    },
+    {
+      "name": "ToggleButtonGroup",
+      "propsType": "ToggleButtonGroupProps"
+    },
+    {
+      "name": "Token",
+      "propsType": "TokenProps"
+    },
+    {
+      "name": "Tokenizer",
+      "propsType": "TokenizerProps"
+    },
+    {
+      "name": "Toolbar",
+      "propsType": "ToolbarProps"
+    },
+    {
+      "name": "Tooltip",
+      "propsType": "TooltipProps"
+    },
+    {
+      "name": "TopNav",
+      "propsType": "TopNavProps"
+    },
+    {
+      "name": "TopNavHeading",
+      "propsType": "TopNavHeadingProps"
+    },
+    {
+      "name": "TopNavItem",
+      "propsType": "TopNavItemProps"
+    },
+    {
+      "name": "TopNavMegaMenu",
+      "propsType": "TopNavMegaMenuProps"
+    },
+    {
+      "name": "TopNavMegaMenuFeaturedCard",
+      "propsType": "TopNavMegaMenuFeaturedCardProps"
+    },
+    {
+      "name": "TopNavMegaMenuItem",
+      "propsType": "TopNavMegaMenuItemProps"
+    },
+    {
+      "name": "TopNavMenu",
+      "propsType": "TopNavMenuProps"
+    },
+    {
+      "name": "TreeList",
+      "propsType": "TreeListProps"
+    },
+    {
+      "name": "Typeahead",
+      "propsType": "TypeaheadProps"
+    },
+    {
+      "name": "TypeaheadItem",
+      "propsType": "TypeaheadItemProps"
+    },
+    {
+      "name": "VStack",
+      "propsType": "VStackProps"
+    },
+    {
+      "name": "VisuallyHidden",
+      "propsType": "VisuallyHiddenProps"
+    },
+    {
+      "name": "MarkdownPluginNodeRenderer",
+      "propsType": "MarkdownPluginNodeRendererProps"
+    },
+    {
+      "name": "ToastViewport",
+      "propsType": "ToastViewportProps"
+    }
+  ]
+}

@@ -14,6 +14,7 @@
 | 风格族 | F<n> <名称> |
 | 主参考 | <brand> |
 | 辅参考 | <brand / none> |
+| 实现基座 | 自定义 / `systems/<id>`（如 Astryx 0.7.11 + neutral） |
 | 表盘 | VARIANCE <n> / MOTION <n> / DENSITY <n> |
 | 签收 | 未签收（v1.0 时填用户原话） |
 

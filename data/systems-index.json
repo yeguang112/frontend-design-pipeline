@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "generated_at": "2026-11-09T13:40:00+08:00",
+  "note": "官方实现系统索引（与 brand-specs 的风格参考互补）。机器可读入口，规则见 references/10-official-systems.md。",
+  "systems": [
+    {
+      "id": "astryx",
+      "name": "Astryx by Meta",
+      "kind": "official-implementation-system",
+      "version": "0.7.11",
+      "status": "beta",
+      "license": "MIT",
+      "repo": "https://github.com/meta/astryx",
+      "homepage": "https://astryx.atmeta.com/",
+      "entry": "systems/astryx/manifest.json",
+      "design": "systems/astryx/DESIGN.md",
+      "adapter": "systems/astryx/ADAPTER.md",
+      "tokens": "systems/astryx/tokens/astryx-tokens.css",
+      "components": "systems/astryx/components/astryx-components.json",
+      "sync": "node systems/astryx/sync.mjs",
+      "themes": ["neutral", "stone", "gothic", "matcha", "butter", "y2k", "chocolate", "probe"],
+      "default_theme": "neutral",
+      "frameworks": ["React 19+", "StyleX", "vanilla CSS tokens"],
+      "capabilities": {
+        "components": 204,
+        "cssVariables": 314,
+        "darkMode": true,
+        "theming": "token-level"
+      },
+      "keywords_en": ["meta", "astryx", "design system", "react", "stylex", "accessible", "enterprise", "dashboard", "theming"],
+      "keywords_zh": ["Meta", "Astryx", "官方设计系统", "组件库", "生产级", "后台", "控制台", "可访问性", "主题", "React"],
+      "when_to_use": [
+        "生产级 Web 应用 / 后台 / 控制台，需要大量可访问组件",
+        "团队使用 React 19+，希望组件行为由系统兜底",
+        "需要 token 级多主题 / 暗色 / 白标",
+        "希望 agent 按稳定组件清单生成代码"
+      ],
+      "not_for": [
+        "纯营销落地页且要强品牌叙事",
+        "非 React 的组件实现（只借 token）"
+      ],
+      "facts": {
+        "years_internal": 8,
+        "apps_powered": "13,000+",
+        "open_sourced": "2026-06-18",
+        "component_exports": 204,
+        "themes_in_repo": 8,
+        "themes_current_docs": 6
+      }
+    }
+  ]
+}

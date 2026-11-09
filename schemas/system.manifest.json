@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yeguang112/frontend-design-pipeline/schemas/system.manifest.json",
+  "title": "Design Pipeline system manifest",
+  "type": "object",
+  "required": ["schema", "id", "name", "kind", "version", "license", "files"],
+  "additionalProperties": true,
+  "properties": {
+    "schema": { "const": "design-pipeline/system/v1" },
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+    "name": { "type": "string", "minLength": 1 },
+    "kind": { "enum": ["official-implementation-system", "style-reference"] },
+    "description": { "type": "string" },
+    "homepage": { "type": "string", "format": "uri" },
+    "repo": { "type": "string", "format": "uri" },
+    "version": { "type": "string", "minLength": 1 },
+    "license": { "type": "string", "minLength": 1 },
+    "licenseFile": { "type": "string" },
+    "syncedAt": { "type": "string", "format": "date-time" },
+    "npm": { "type": "object", "additionalProperties": { "type": "string" } },
+    "theme": { "type": "string" },
+    "themes": { "type": "array", "items": { "type": "string" } },
+    "capabilities": {
+      "type": "object",
+      "properties": {
+        "components": { "type": "integer", "minimum": 0 },
+        "cssVariables": { "type": "integer", "minimum": 0 },
+        "frameworks": { "type": "array", "items": { "type": "string" } },
+        "vanillaCss": { "type": "boolean" },
+        "darkMode": { "type": "boolean" },
+        "theming": { "type": "string" }
+      }
+    },
+    "whenToUse": { "type": "array", "items": { "type": "string" } },
+    "notFor": { "type": "array", "items": { "type": "string" } },
+    "sync": { "type": "string" },
+    "files": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["sha256", "bytes"],
+        "properties": {
+          "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+          "bytes": { "type": "integer", "minimum": 0 }
+        }
+      }
+    }
+  }
+}

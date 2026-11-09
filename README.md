@@ -146,7 +146,10 @@ design-pipeline/
 │   ├── acceptance-report.md    # 验收报告
 │   └── freeze-manifest.json    # 冻结哈希清单
 ├── brand-specs/                # 58 个品牌的 DESIGN.md + preview（原样 vendored）
+├── systems/                    # 官方实现系统（Astryx by Meta）：tokens + components + adapter
+├── schemas/                    # system.manifest.json 等数据契约
 ├── data/brand-index.json       # 品牌 → 风格族 → 关键词 → 配色/字体索引
+├── data/systems-index.json     # 官方系统索引（Astryx 等）
 └── scripts/                    # 零依赖 Node 工具链
     ├── extract-tokens.mjs      # 冻结 HTML → tokens.json/css/md
     ├── detect-drift.mjs        # 裸值 / 紫渐变 / 玻璃 / 大圆角 / emoji 检测
@@ -194,12 +197,32 @@ design-pipeline/
 
 ---
 
+## 7.5 官方实现系统（systems/）
+
+`brand-specs/` 回答「长得像谁」；`systems/` 回答「用什么建」。
+
+| 层 | 内容 | 例 |
+|---|---|---|
+| 风格参考 | 从公开网站提取的视觉语言 | 58 个品牌（Linear、Stripe…） |
+| 官方实现系统 | 生产级组件 + 行为 + 可访问性 + token 主题 | **Astryx by Meta** |
+
+**已收录：Astryx by Meta**（`systems/astryx/`）
+
+- Meta 内部 8 年、13,000+ 应用，2026-06 开源（Beta 0.7.x），**MIT**。
+- React 19 + StyleX；204 个组件导出；token 为 CSS 自定义属性；8 个主题、暗色、token 级品牌化。
+- neutral 主题强调色是**近黑**，天然避开「AI 紫」。
+- 快照：`DESIGN.md` / `tokens/`（314 token）/ `components/`（204）/ `ADAPTER.md` / `sync.mjs`。
+- 规则见 [`references/10-official-systems.md`](references/10-official-systems.md)。
+
+> 升级 `node systems/astryx/sync.mjs`；换主题 `--theme stone`。上游 Beta，锁版本并复核 token diff。
+
 ## 8. 数据与许可
 
 | 来源 | 许可 | 用途 |
 |---|---|---|
 | [VoltAgent/awesome-design-md](https://github.com/VoltAgent/awesome-design-md) | MIT | 58 个品牌的 `DESIGN.md`（公开网站提取，**非官方设计系统**，仅作风格参考；商标归各自所有者） |
 | [nexu-io/open-design](https://github.com/nexu-io/open-design) | Apache-2.0 | 设计系统包结构（manifest + DESIGN.md + tokens.css）、craft 规则思路（**未复制源码**） |
+| [meta/astryx](https://github.com/meta/astryx) | MIT | systems/astryx/ 的 token 快照与组件清单（**未复制组件源码**；摘要非官方文档） |
 | 本仓库新增内容 | MIT | 规则、模板、脚本、示例 |
 
 - 完整许可：[LICENSE](LICENSE) · 第三方说明：[NOTICE](NOTICE) · 原始许可证：[THIRD_PARTY/](THIRD_PARTY/)
@@ -222,7 +245,7 @@ design-pipeline/
 - 像素 diff 对字体渲染敏感：跨机器/跨平台对比时阈值需放宽或只比布局区域。
 - `detect-drift` 是行级正则启发式：跨行选择器、emoji 区段可能误判，用 `rules.json` 调白名单；文案类靠 `check-copy` 补充。
 - 规则能约束「可检测的 AI 味」，不能替代人的审美判断——主观项始终由用户签收。
-- **A1–A17 由 6 个脚本支撑**：`accept-verify.mjs` 可一键输出 PASS/FAIL/未检（浏览器不可用时 A6/A7/A8/A11 记「未检」，不会伪装成 PASS）；`capture` / `pixel-diff` / `detect-drift` / `verify-freeze` / `check-copy` 分别负责矩阵、像素、漂移、冻结、文案。
+- **A1–A17 由 7 个脚本支撑**：`accept-verify.mjs` 一键输出 PASS/FAIL/未检（浏览器不可用时 A6/A7/A8/A11 记「未检」，不会伪装成 PASS）；`capture` / `pixel-diff` / `detect-drift` / `verify-freeze` / `check-copy` / `extract-tokens` 分别负责矩阵、像素、漂移、冻结、文案与 token。
 
 ## 11. 反馈与贡献
 

@@ -29,10 +29,23 @@
 - 相关规则为重新撰写与扩展（中文、面向本流程），并非原文档翻译；
 - 如需复用其实现，请遵守 Apache-2.0 并保留其 NOTICE。
 
+## 2.5 官方实现系统（systems/astryx/）
+
+`systems/astryx/` 收录 **Astryx by Meta**（https://github.com/meta/astryx）的 token 快照：
+
+- Astryx 以 **MIT License** 发布，Copyright (c) 2026 Meta Platforms, Inc.；
+  许可证全文见 `systems/astryx/LICENSE`。
+- 快照只包含：从 npm 包 `@astryxdesign/core` 与 `@astryxdesign/theme-neutral`
+  的构建产物中提取的 **CSS 自定义属性（token）**、组件名称清单（来自 core 的
+  `api-report`），以及本项目撰写的 `DESIGN.md` / `ADAPTER.md` 摘要。
+- **不包含** Astryx 的组件源码；`DESIGN.md` 不是官方文档的复制，官方说明以
+  https://astryx.atmeta.com/ 与上游仓库为准。
+- Astryx 名称与相关商标归 Meta；本仓库与 Meta 无关联，不得暗示背书。
+
 ## 3. 本仓库原创内容
 
-`SKILL.md`、`references/00–09`、`templates/`、`prompt-stub.md`、`scripts/`、
-`examples/demo-notes-app/` 为原创，按 MIT License 发布（见 `LICENSE`）。
+`SKILL.md`、`references/00–10`、`templates/`、`prompt-stub.md`、`scripts/`、
+`examples/demo-notes-app/`、`systems/` 中的摘要与工具为原创，按 MIT License 发布（见 `LICENSE`）。
 
 ## 4. 字体
 

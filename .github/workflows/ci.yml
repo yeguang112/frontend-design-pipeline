@@ -35,6 +35,26 @@ jobs:
       - name: Demo copy check (expect 0)
         run: node scripts/check-copy.mjs examples/demo-notes-app/design/frozen/index.html --json -
 
+      - name: Systems snapshot sanity (manifest + hashes + tokens)
+        shell: bash
+        run: |
+          node -e "
+          const fs=require('fs'),crypto=require('crypto');
+          const m=JSON.parse(fs.readFileSync('systems/astryx/manifest.json','utf8'));
+          if(m.schema!=='design-pipeline/system/v1'){console.error('schema');process.exit(1)}
+          if(m.license!=='MIT'){console.error('license');process.exit(1)}
+          for(const [f,v] of Object.entries(m.files||{})){
+            const h=crypto.createHash('sha256').update(fs.readFileSync('systems/astryx/'+f)).digest('hex');
+            if(h!==v.sha256){console.error('hash mismatch',f);process.exit(1)}
+          }
+          const j=JSON.parse(fs.readFileSync('systems/astryx/tokens/astryx-tokens.json','utf8'));
+          if(!j.color||Object.keys(j.color).length<100){console.error('tokens:color');process.exit(1)}
+          if(!j.spacing||Object.keys(j.spacing).length<10){console.error('tokens:spacing');process.exit(1)}
+          const c=JSON.parse(fs.readFileSync('systems/astryx/components/astryx-components.json','utf8'));
+          if(c.meta.count<150){console.error('components');process.exit(1)}
+          console.log('systems ok', m.version, m.capabilities.components);
+          "
+
       - name: Acceptance matrix dry-run (deterministic, no browser)
         run: node scripts/capture-acceptance.mjs --config examples/demo-notes-app/acceptance/accept.config.json --dry-run
 

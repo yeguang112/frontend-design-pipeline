@@ -69,7 +69,7 @@ od:
 | 阶段 | 名称 | 产物 | Gate |
 |---|---|---|---|
 | P0 | 意图识别 Design Read | 一句话读法 + 表盘 + 置信度 | 置信度 ≥ 0.6 且用户未反对；< 0.6 先问 1 个问题 |
-| P1 | 风格路由 | 1 主 + ≤1 辅品牌规范、keep/change/do-not-copy | 用户认可方向（可只回「可以」） |
+| P1 | 风格路由 + 基座选择 | 1 主 + ≤1 辅品牌规范，或官方系统（`systems/`）+ keep/change/do-not-copy | 用户认可方向（可只回「可以」） |
 | P2 | 准则校准 | `frontend-guidelines.md` v0.x + `decision-log.md` | **用户明确签收**（「就这个 / 确认 / 按这个做」） |
 | P3 | HTML 静态稿 | `prototype/` 可交互静态稿（全状态、三档视口） | 用户签收视觉；反 AI 味审计 0 error |
 | P4 | 冻结 | `design/frozen/` + `freeze-manifest.json` + `design-authority.md` | 校验哈希 PASS；用户确认「冻结」 |
@@ -122,8 +122,10 @@ od:
 9. `references/07-change-control.md` —— P7：变更自检矩阵、防漂移闸门
 10. `references/08-acceptance.md` —— P8：截图矩阵与客观验收项
 11. `references/09-handoff.md` —— P6：HTML 原型 → App / 小程序的映射与单位换算
+12. `references/10-official-systems.md` —— P1：官方实现系统（Astryx by Meta）与「基座」选择
 
 品牌规范原文：`brand-specs/<brand>/DESIGN.md`（来自 awesome-design-md，非官方，仅作风格参考）。
+官方实现系统：`systems/<id>/`（如 `systems/astryx/`：DESIGN.md + tokens + components + ADAPTER）。
 模板：`templates/`（含 `component-verification.md` 组件验证记录）。脚本：`scripts/README.md`。
 
 ## 6. P0 的固定输出格式（必须逐字给出，便于用户否决）
@@ -157,6 +159,7 @@ Design Read：这是 <页面类型>，给 <受众>，语言是 <氛围词>，倾
 | `scripts/pixel-diff.mjs` | P8 对比冻结参考 | 差异率 ≤ 阈值（默认 0.3%） |
 | `scripts/check-copy.mjs` | P3/P8、每次改文案 | 提示词泄漏/元说明/TODO/<12px 小字；error=0 |
 | `scripts/accept-verify.mjs` | P8 汇总 | 一键出 A1–A17 的 PASS/FAIL/未检 |
+| `systems/astryx/sync.mjs` | 使用/升级 Astryx 时 | 重新生成 `systems/astryx/` 的 token 快照与 manifest |
 
 没有脚本环境时（无 Node）：降级为人工清单 + `ego_*` / 浏览器截图工具，但**验收项与阈值不变**。
 

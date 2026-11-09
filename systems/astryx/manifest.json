@@ -1,0 +1,65 @@
+{
+  "schema": "design-pipeline/system/v1",
+  "id": "astryx",
+  "name": "Astryx by Meta",
+  "kind": "official-implementation-system",
+  "description": "Meta 内部使用 8 年的开源设计系统：150+ 可访问组件、品牌级主题、暗色模式、CLI，React 19 + StyleX，token 为 CSS 自定义属性。",
+  "homepage": "https://astryx.atmeta.com/",
+  "repo": "https://github.com/meta/astryx",
+  "license": "MIT",
+  "licenseFile": "LICENSE",
+  "npm": {
+    "core": "@astryxdesign/core@0.7.11",
+    "theme": "@astryxdesign/theme-neutral@0.7.11"
+  },
+  "version": "0.7.11",
+  "syncedAt": "2026-11-09T05:30:25.649Z",
+  "theme": "neutral",
+  "themes": [
+    "neutral",
+    "stone",
+    "gothic",
+    "matcha",
+    "butter",
+    "y2k",
+    "chocolate",
+    "probe"
+  ],
+  "capabilities": {
+    "components": 204,
+    "cssVariables": 314,
+    "frameworks": [
+      "React 19+",
+      "StyleX"
+    ],
+    "vanillaCss": true,
+    "darkMode": true,
+    "theming": "token-level"
+  },
+  "whenToUse": [
+    "生产级 Web 应用 / 后台 / 控制台，需要 150+ 可访问组件",
+    "团队使用 React 19+，希望组件行为与可访问性由系统负责",
+    "需要多品牌/多主题切换（token 级），不想 fork 组件",
+    "AI agent 需要一份稳定、可读的组件与 token 契约来生成代码"
+  ],
+  "notFor": [
+    "纯营销落地页且想要强品牌叙事（先用 brand-specs 风格参考）",
+    "需要非 React 组件实现（如小程序原生），只可借用 token 契约",
+    "要求完全自定义视觉、不接受组件内置行为约束"
+  ],
+  "sync": "node systems/astryx/sync.mjs",
+  "files": {
+    "tokens/astryx-tokens.css": {
+      "sha256": "3fa9c3e619c41379bf8cf06dd7683344344436baf8f454522193e21c74c602b6",
+      "bytes": 24886
+    },
+    "tokens/astryx-tokens.json": {
+      "sha256": "b23682711c8eb85c8bbaa817b9faeedb3cd1cf3c3db52b9bf697cd1fd351cdd0",
+      "bytes": 41520
+    },
+    "components/astryx-components.json": {
+      "sha256": "e79879db91bc168a95c57a23233c88f42d9e09fa4322e374fd50ca363cf14d6e",
+      "bytes": 17009
+    }
+  }
+}
