@@ -118,12 +118,14 @@ powershell -NoProfile -ExecutionPolicy Bypass -File install.ps1 -Target "C:\User
 
 ```
 design-pipeline/
-├── SKILL.md                    # 主文件：流程状态机 + 10 条铁律 + 门禁
+├── SKILL.md                    # 主文件：流程状态机 + 11 条铁律 + 门禁
+├── skill-budget.json           # 体量预算（唯一真源）
 ├── README.md                   # 本文件
 ├── prompt-stub.md              # 纯提示词版
 ├── references/                 # 细则是按需加载的
 │   ├── 00-intent-router.md     # 意图识别 / 风格族 / 品牌选择 / 提问话术
-│   ├── 01-brand-taxonomy.md    # 10 个风格族 + 58 品牌索引（生成）
+│   ├── 01-brand-taxonomy.md    # 10 个风格族路由层（轻量）
+│   ├── 01b-brand-families.md   # 逐族细节（选定候选族后再读）
 │   ├── 02-guidelines-spec.md   # frontend-guidelines 写法与版本迭代
 │   ├── 03-negative-list.md     # 反 AI 味清单（50+ 条，带检测方式）
 │   ├── 04-html-prototype.md    # HTML 静态稿规范 / 打磨 / 冻结 / CR
@@ -131,7 +133,9 @@ design-pipeline/
 │   ├── 06-component-contract.md# 组件契约字段与先定死流程
 │   ├── 07-change-control.md    # 变更自检矩阵 + 防漂移
 │   ├── 08-acceptance.md        # 逐状态截图验收（A1–A12）
-│   └── 09-handoff.md           # HTML 原型 → App / 小程序映射
+│   ├── 09-handoff.md           # HTML 原型 → App / 小程序映射
+│   ├── 10-official-systems.md  # 官方实现系统（Astryx）与基座选择
+│   └── 11-skill-budget.md      # 体量预算 + 整合协议
 ├── templates/                  # 可直接复制的项目文件模板
 │   ├── frontend-guidelines.md  # 正面/反面清单模板（含 12+15 条可用规则）
 │   ├── decision-log.md         # 用户偏好沉淀
@@ -230,6 +234,21 @@ design-pipeline/
 
 ---
 
+## 8.5 体量预算（整合时做适应性调整）
+
+技能会随「再加一个系统/品牌/规则」持续膨胀。本仓库用三层加载 + 预算强制约束：
+
+| 层 | 何时加载 | 预算 |
+|---|---|---|
+| T0 always | 每次会话语境 | `SKILL.md` ≤ 16 KB |
+| T1 on-demand | 进入阶段才读 | `references/*` 单文件 ≤ 42 KB；总计 ≤ 170 KB |
+| T2 data | 按 id 查 | `brand-specs/`、`systems/`、`examples/` 不整体加载 |
+
+- 整合协议：分类（路由/规则/数据）→ 落位 → 去重 → **裁剪** → 测量；一个 release 最多 1 个整合。
+- 发版前 `node scripts/check-skill-size.mjs`；超预算按「拆 → 删 → 下沉 → 提预算（最后手段）」处理。
+- 案例：v1.2.0 把 38 KB 的 `01-brand-taxonomy.md` 拆成路由层（15 KB）+ 按需细节（20 KB），P1 首次加载 −60%。
+- 规则全文见 [`references/11-skill-budget.md`](references/11-skill-budget.md)。
+
 ## 9. 维护
 
 - **更新品牌库**：重新 clone awesome-design-md，覆盖 `brand-specs/`，重跑索引生成（`data/brand-index.json`）。
@@ -245,7 +264,7 @@ design-pipeline/
 - 像素 diff 对字体渲染敏感：跨机器/跨平台对比时阈值需放宽或只比布局区域。
 - `detect-drift` 是行级正则启发式：跨行选择器、emoji 区段可能误判，用 `rules.json` 调白名单；文案类靠 `check-copy` 补充。
 - 规则能约束「可检测的 AI 味」，不能替代人的审美判断——主观项始终由用户签收。
-- **A1–A17 由 7 个脚本支撑**：`accept-verify.mjs` 一键输出 PASS/FAIL/未检（浏览器不可用时 A6/A7/A8/A11 记「未检」，不会伪装成 PASS）；`capture` / `pixel-diff` / `detect-drift` / `verify-freeze` / `check-copy` / `extract-tokens` 分别负责矩阵、像素、漂移、冻结、文案与 token。
+- **A1–A17 由 8 个脚本支撑**：`accept-verify.mjs` 一键输出 PASS/FAIL/未检（浏览器不可用时 A6/A7/A8/A11 记「未检」，不会伪装成 PASS）；`capture` / `pixel-diff` / `detect-drift` / `verify-freeze` / `check-copy` / `extract-tokens` 分别负责矩阵、像素、漂移、冻结、文案与 token。
 
 ## 11. 反馈与贡献
 

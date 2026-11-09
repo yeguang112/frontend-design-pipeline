@@ -1,0 +1,109 @@
+{
+  "version": 1,
+  "note": "技能体量预算。每次整合（新增系统/品牌/规则/脚本）前后跑 node scripts/check-skill-size.mjs；超预算必须先裁剪再合并。",
+  "tiers": {
+    "always": [
+      "SKILL.md"
+    ],
+    "onDemand": {
+      "P0-P1": [
+        "references/00-intent-router.md",
+        "references/01-brand-taxonomy.md"
+      ],
+      "P1-detail": [
+        "references/01b-brand-families.md",
+        "data/brand-index.json"
+      ],
+      "P2": [
+        "references/02-guidelines-spec.md",
+        "references/03-negative-list.md"
+      ],
+      "P3-P4": [
+        "references/04-html-prototype.md"
+      ],
+      "P5": [
+        "references/05-token-contract.md",
+        "references/06-component-contract.md"
+      ],
+      "P6": [
+        "references/09-handoff.md"
+      ],
+      "P7": [
+        "references/07-change-control.md"
+      ],
+      "P8": [
+        "references/08-acceptance.md"
+      ],
+      "basis-official": [
+        "references/10-official-systems.md",
+        "systems/<id>/manifest.json"
+      ],
+      "governance": [
+        "references/11-skill-budget.md"
+      ]
+    },
+    "data": [
+      "brand-specs/**",
+      "systems/**/tokens/**",
+      "systems/**/components/**",
+      "examples/**",
+      "data/*.json"
+    ]
+  },
+  "budgets": {
+    "skillMd": {
+      "maxLines": 200,
+      "maxBytes": 16000
+    },
+    "triggers": {
+      "max": 20
+    },
+    "alwaysLoad": {
+      "maxFiles": 1,
+      "maxBytes": 16000
+    },
+    "references": {
+      "maxFiles": 14,
+      "maxTotalBytes": 170000,
+      "maxFileLines": 400,
+      "maxFileBytes": 42000
+    },
+    "templates": {
+      "maxFiles": 14
+    },
+    "scripts": {
+      "maxRootMjs": 10
+    },
+    "data": {
+      "maxBrandSpecsMB": 6,
+      "maxExamplesMB": 6,
+      "maxSystemsMB": 2
+    },
+    "phaseLoadMaxBytes": 60000
+  },
+  "integrations": [
+    {
+      "id": "astryx",
+      "release": "v1.1.0",
+      "date": "2026-11-09",
+      "mode": "data + on-demand reference",
+      "delta": {
+        "skillMd": "+4 lines",
+        "references": "+1 file (10-official-systems.md)",
+        "data": "+systems/astryx (0.1 MB)"
+      },
+      "trim": "none at insert time; v1.2.0 split 01-brand-taxonomy to keep P1 load small"
+    },
+    {
+      "id": "brand-taxonomy-split",
+      "release": "v1.2.0",
+      "date": "2026-11-09",
+      "mode": "adaptive split",
+      "delta": {
+        "references": "+1 file (01b)",
+        "P1 load": "-30% bytes"
+      },
+      "trim": "01 从 483 行/38KB 降为 162 行/15KB；逐族细节仅在选定候选族后加载"
+    }
+  ]
+}

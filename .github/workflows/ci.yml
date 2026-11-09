@@ -35,6 +35,9 @@ jobs:
       - name: Demo copy check (expect 0)
         run: node scripts/check-copy.mjs examples/demo-notes-app/design/frozen/index.html --json -
 
+      - name: Skill size budget (T0/T1/T2)
+        run: node scripts/check-skill-size.mjs
+
       - name: Systems snapshot sanity (manifest + hashes + tokens)
         shell: bash
         run: |

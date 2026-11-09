@@ -472,3 +472,19 @@ node check-copy.mjs <file.html|dir> [--config rules.json] [--json -] [--fail-on 
 退出码：0 通过 / 1 违规 / 2 用法错误。
 
 已知限制：正则启发式；产品本身确有「说明」类文案时用 config 的 allow 白名单；只扫 HTML 静态文本，JS 动态插入的文本需在验收阶段用 DOM 断言补充（A16/A17）。
+
+
+## check-skill-size.mjs（体量预算检查）
+
+背景：技能会随整合持续膨胀。本脚本读 `skill-budget.json`，测量 T0（SKILL.md）/ T1（references）/ T2（数据）体量，超预算 exit 1。
+
+用法：
+```bash
+node check-skill-size.mjs [--json <file|->] [--budget <file>]
+```
+
+检查项：SKILL.md 行数/字节、触发词数、references 文件数/总字节/单文件行数、分阶段加载量、templates/scripts 数量、brand-specs/examples/systems 体积。
+
+退出码：0 通过 / 1 超预算 / 2 用法错误。
+
+超预算处理顺序：拆（split）→ 删（retire）→ 下沉（T1→T2）→ 提预算（最后手段，需写理由）。协议见 `references/11-skill-budget.md`。

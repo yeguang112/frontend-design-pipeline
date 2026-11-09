@@ -113,20 +113,28 @@ od:
 
 1. 本文件（流程与门禁）
 2. `references/00-intent-router.md` —— P0/P1：怎么读意图、怎么选风格族与品牌、怎么问用户
-3. `references/01-brand-taxonomy.md` + `data/brand-index.json` —— 58 个品牌 → 10 个风格族的索引
-4. `references/02-guidelines-spec.md` —— P2：`frontend-guidelines.md` 怎么写、怎么版本化、怎么让用户签收
-5. `references/03-negative-list.md` —— 反 AI 味清单（每条带可检测判定）
-6. `references/04-html-prototype.md` —— P3/P4：HTML 静态稿规范、打磨循环、冻结协议、变更请求
-7. `references/05-token-contract.md` —— P5：token 分类/命名/提取/平台映射
-8. `references/06-component-contract.md` —— P5：组件契约字段与「先定死」流程
-9. `references/07-change-control.md` —— P7：变更自检矩阵、防漂移闸门
-10. `references/08-acceptance.md` —— P8：截图矩阵与客观验收项
-11. `references/09-handoff.md` —— P6：HTML 原型 → App / 小程序的映射与单位换算
-12. `references/10-official-systems.md` —— P1：官方实现系统（Astryx by Meta）与「基座」选择
+3. `references/01-brand-taxonomy.md` —— 10 个风格族的路由表（**只读路由层**）
+4. 选定候选族后再读 `references/01b-brand-families.md`（逐族细节）+ 按 id 查 `data/brand-index.json`
+5. `references/02-guidelines-spec.md` —— P2：`frontend-guidelines.md` 怎么写、怎么版本化、怎么让用户签收
+6. `references/03-negative-list.md` —— 反 AI 味清单（每条带可检测判定）
+7. `references/04-html-prototype.md` —— P3/P4：HTML 静态稿规范、打磨循环、冻结协议、变更请求
+8. `references/05-token-contract.md` —— P5：token 分类/命名/提取/平台映射
+9. `references/06-component-contract.md` —— P5：组件契约字段与「先定死」流程
+10. `references/07-change-control.md` —— P7：变更自检矩阵、防漂移闸门
+11. `references/08-acceptance.md` —— P8：截图矩阵与客观验收项
+12. `references/09-handoff.md` —— P6：HTML 原型 → App / 小程序的映射与单位换算
+13. `references/10-official-systems.md` —— P1：官方实现系统（Astryx by Meta）与「基座」选择
+14. `references/11-skill-budget.md` —— 整合/发版时：体量预算与适应性调整协议
 
 品牌规范原文：`brand-specs/<brand>/DESIGN.md`（来自 awesome-design-md，非官方，仅作风格参考）。
 官方实现系统：`systems/<id>/`（如 `systems/astryx/`：DESIGN.md + tokens + components + ADAPTER）。
 模板：`templates/`（含 `component-verification.md` 组件验证记录）。脚本：`scripts/README.md`。
+
+### 体量与加载（不要整体加载）
+
+- T0（每次）：只有本文件；T1（按阶段）：`references/*` 单主题；T2（按 id）：`brand-specs/`、`systems/`、`examples/`。
+- 新增内容前先读 `references/11-skill-budget.md` 的整合协议；发版前跑 `node scripts/check-skill-size.mjs`。
+- 预算超了先拆/删/下沉，不要直接调高上限；一个 release 最多 1 个整合。
 
 ## 6. P0 的固定输出格式（必须逐字给出，便于用户否决）
 
