@@ -246,7 +246,7 @@ design-pipeline/
 
 - 整合协议：分类（路由/规则/数据）→ 落位 → 去重 → **裁剪** → 测量；一个 release 最多 1 个整合。
 - 发版前 `node scripts/check-skill-size.mjs`；超预算按「拆 → 删 → 下沉 → 提预算（最后手段）」处理。
-- 案例：v1.2.0 把 38 KB 的 `01-brand-taxonomy.md` 拆成路由层（15 KB）+ 按需细节（20 KB），P1 首次加载 −60%。
+- 案例：v1.2.0 把 38 KB 的 `01-brand-taxonomy.md` 拆成路由层（15 KB）+ 按需细节（20 KB），P1 首次加载 −46%（50.7 KB → 27.4 KB）。
 - 规则全文见 [`references/11-skill-budget.md`](references/11-skill-budget.md)。
 
 ## 9. 维护

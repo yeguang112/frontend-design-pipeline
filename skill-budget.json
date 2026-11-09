@@ -101,7 +101,7 @@
       "mode": "adaptive split",
       "delta": {
         "references": "+1 file (01b)",
-        "P1 load": "-30% bytes"
+        "P1 load": "-46% (50.7KB → 27.4KB)"
       },
       "trim": "01 从 483 行/38KB 降为 162 行/15KB；逐族细节仅在选定候选族后加载"
     }
